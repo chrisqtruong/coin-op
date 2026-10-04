@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-04T16:44:47+00:00",
+ "generated": "2026-10-04T18:50:11+00:00",
  "live": false,
  "product": "Vox2",
  "machines": 1,
@@ -26,10 +26,10 @@
    "name": "Snip, voice & audio",
    "color": "#ffb000",
    "theme": "daily",
-   "cost": 7.8713,
-   "tokens": 28648546,
-   "output": 63263,
-   "turns": 16
+   "cost": 8.4536,
+   "tokens": 30982051,
+   "output": 67562,
+   "turns": 17
   },
   {
    "id": "look",
@@ -66,10 +66,10 @@
    "name": "Releases & GitHub",
    "color": "#3ddc84",
    "theme": "upkeep",
-   "cost": 23.1661,
-   "tokens": 84421250,
-   "output": 171054,
-   "turns": 54
+   "cost": 29.0134,
+   "tokens": 85196187,
+   "output": 172392,
+   "turns": 55
   },
   {
    "id": "docs",
@@ -100,16 +100,16 @@
    "roadmap": true,
    "cost": 62.482,
    "value_share": 0.424,
-   "gap": -0.14
+   "gap": -0.137
   },
   {
    "id": "daily",
    "name": "Useful every day",
    "blurb": "Snip, voice, the window and the helpers you reach for daily.",
    "roadmap": true,
-   "cost": 36.4345,
+   "cost": 37.0168,
    "value_share": 0.495,
-   "gap": 0.166
+   "gap": 0.162
   },
   {
    "id": "reach",
@@ -125,7 +125,7 @@
    "name": "Upkeep",
    "blurb": "Bugs, releases, docs and learning. Not on the roadmap, but it keeps the lights on.",
    "roadmap": false,
-   "cost": 54.2703,
+   "cost": 60.1176,
    "value_share": null,
    "gap": null
   }
@@ -230,9 +230,9 @@
      "output": 494
     },
     "ship": {
-     "cost": 7.4768,
-     "tokens": 30147040,
-     "output": 46082
+     "cost": 13.3241,
+     "tokens": 30921977,
+     "output": 47420
     },
     "docs": {
      "cost": 12.0602,
@@ -250,23 +250,23 @@
      "output": 18989
     },
     "capture": {
-     "cost": 0.1781,
-     "tokens": 756080,
-     "output": 963
+     "cost": 0.7603,
+     "tokens": 3089585,
+     "output": 5262
     }
    }
   }
  ],
  "totals": {
-  "cost": 164.9315,
-  "tokens": 526697310,
-  "input": 2578,
-  "output": 1122585,
-  "cache_write": 4789113,
-  "cache_read": 520783034,
-  "turns": 217
+  "cost": 171.3611,
+  "tokens": 529805752,
+  "input": 2586,
+  "output": 1128222,
+  "cache_write": 5519398,
+  "cache_read": 523155546,
+  "turns": 219
  },
- "alignment": 0.671,
+ "alignment": 0.649,
  "roadmap": {
   "items": [
    {
