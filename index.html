@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coin-Op · Vox2 project expenditure</title>
+<meta name="description" content="Where Vox2's Claude tokens go, day by day and bucket by bucket, and how that lines up with the roadmap.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #16131f;
+    --panel: #201c2e;
+    --line: #342e48;
+    --ink: #f4f1ff;
+    --ink-2: #b9b2d3;
+    --ink-3: #7d7699;
+    --accent: #ffe14d;
+    --px: 'Press Start 2P', monospace;      /* the logo only */
+    --mono: 'Space Mono', ui-monospace, monospace;
+    --body: 'Space Grotesk', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.55 var(--body);
+  }
+  main { max-width: 980px; margin: 0 auto; padding: 28px 16px 64px; }
+  a { color: var(--accent); }
+
+  /* header */
+  header { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+  .coin { width: 40px; height: 40px; image-rendering: pixelated; animation: spin 1.6s steps(8) infinite; }
+  @keyframes spin { 0%,100% { transform: scaleX(1); } 50% { transform: scaleX(.15); } }
+  h1 { font: 22px/1.2 var(--px); margin: 0; letter-spacing: 1px; }
+  h1 span { color: var(--accent); }
+  .sub { color: var(--ink-2); margin: 4px 0 0; }
+  .badge {
+    margin-left: auto; font: 700 13px/1 var(--mono); padding: 8px 10px;
+    border: 2px solid var(--line); color: var(--ink-2); white-space: nowrap;
+  }
+  .badge.live { color: #3ddc84; border-color: #3ddc84; }
+  .badge.live::before { content: "● "; animation: blink 1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* HUD */
+  .hud { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+  .stat { background: var(--panel); border: 2px solid var(--line); padding: 14px 14px 12px; }
+  .stat .k { font: 700 12px/1.4 var(--mono); color: var(--ink-3); text-transform: uppercase; letter-spacing: .5px; }
+  .stat .v { font: 700 24px/1.3 var(--mono); margin-top: 10px; white-space: nowrap; }
+  .stat .n { color: var(--ink-3); font-size: 14px; margin-top: 6px; }
+  .stat.money .v { color: var(--accent); }
+
+  section { background: var(--panel); border: 2px solid var(--line); padding: 20px; margin-bottom: 20px; }
+  h2 { font: 700 15px/1.4 var(--mono); margin: 0 0 6px; text-transform: lowercase; }
+  .lede { color: var(--ink-2); margin: 0 0 16px; }
+  .row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .row h2 { margin-right: auto; }
+
+  .toggle { display: inline-flex; border: 2px solid var(--line); }
+  .toggle button {
+    font: 700 12px/1 var(--mono); background: none; color: var(--ink-2); border: 0;
+    padding: 8px 10px; cursor: pointer;
+  }
+  .toggle button[aria-pressed="true"] { background: var(--accent); color: #16131f; }
+
+  /* chart */
+  .chart-wrap { position: relative; overflow-x: auto; overflow-y: hidden; padding-bottom: 4px; }
+  canvas { display: block; image-rendering: pixelated; }
+  .tip {
+    position: absolute; pointer-events: none; background: #0e0c15; border: 2px solid var(--ink);
+    padding: 10px 12px; font-size: 14px; line-height: 1.45; min-width: 210px; display: none; z-index: 2;
+  }
+  .tip b { font: 700 12px/1.6 var(--mono); display: block; margin-bottom: 6px; }
+  .tip .l { display: grid; grid-template-columns: 10px 1fr auto; gap: 8px; align-items: center; }
+  .tip .l i, .legend i, .feed i { width: 10px; height: 10px; display: inline-block; }
+  .tip .l span:last-child { color: var(--ink-2); text-align: right; }
+  .unit { color: var(--ink-3); font-size: 14px; margin-top: 8px; }
+
+  /* leaderboard */
+  .board { display: grid; gap: 10px; }
+  .board .item { display: grid; grid-template-columns: 22px minmax(140px, 220px) 1fr 92px; gap: 12px; align-items: center; }
+  .board .rank { font: 700 12px/1 var(--mono); color: var(--ink-3); }
+  .board .name { display: flex; align-items: center; gap: 8px; }
+  .board .name i { width: 12px; height: 12px; flex: none; }
+  .bar { height: 14px; background: repeating-linear-gradient(90deg, var(--line) 0 10px, transparent 10px 12px); position: relative; }
+  .bar > span {
+    position: absolute; inset: 0 auto 0 0; width: 0;
+    -webkit-mask: repeating-linear-gradient(90deg, #000 0 10px, transparent 10px 12px);
+            mask: repeating-linear-gradient(90deg, #000 0 10px, transparent 10px 12px);
+    transition: width .9s steps(20);
+  }
+  .board .amt { text-align: right; font-variant-numeric: tabular-nums; }
+  .board .amt small { display: block; color: var(--ink-3); font-size: 13px; }
+
+  /* quest log */
+  .align { display: flex; align-items: center; gap: 14px; margin: 4px 0 20px; flex-wrap: wrap; }
+  .align .big { font: 700 32px/1 var(--mono); color: var(--accent); }
+  .align p { margin: 0; color: var(--ink-2); max-width: 560px; }
+  .themes { display: grid; gap: 18px; }
+  .theme { display: grid; grid-template-columns: minmax(150px, 210px) 1fr; gap: 14px; }
+  .theme h3 { font: 700 13px/1.5 var(--mono); margin: 0 0 4px; }
+  .theme p { margin: 0; color: var(--ink-3); font-size: 14px; line-height: 1.4; }
+  .meters { display: grid; gap: 6px; align-content: start; }
+  .meter { display: grid; grid-template-columns: 92px 1fr 44px; gap: 10px; align-items: center; font-size: 14px; color: var(--ink-2); }
+  .meter .bar { height: 10px; }
+  .meter .pct { text-align: right; font-variant-numeric: tabular-nums; }
+  .pips { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+  .pip { width: 14px; height: 14px; border: 2px solid var(--ink-3); position: relative; }
+  .pip.started { border-color: var(--accent); background: linear-gradient(90deg, var(--accent) 50%, transparent 50%); }
+  .pip.done { border-color: #3ddc84; background: #3ddc84; }
+  .pip:hover::after {
+    content: attr(data-t); position: absolute; left: 0; top: 18px; z-index: 3; white-space: nowrap;
+    background: #0e0c15; border: 2px solid var(--ink); padding: 4px 8px; font-size: 13px; color: var(--ink);
+  }
+  .key { color: var(--ink-3); font-size: 13px; display: flex; gap: 14px; flex-wrap: wrap; margin-top: 14px; }
+  .key span { display: inline-flex; align-items: center; gap: 6px; }
+  .key .pip { width: 12px; height: 12px; }
+
+  .next { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 4px; }
+  .card { border: 2px dashed var(--line); padding: 14px; }
+  .card .tag { font: 700 11px/1.6 var(--mono); color: var(--ink-3); }
+  .card h3 { font: 600 17px/1.35 var(--body); margin: 6px 0; }
+  .card p { margin: 0; font-size: 14px; color: var(--ink-2); line-height: 1.45; }
+  .card:first-child { border-color: var(--accent); }
+
+  /* feed */
+  .feed { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 15px; }
+  .feed li { display: grid; grid-template-columns: 52px 12px 1fr 70px; gap: 10px; align-items: center; }
+  .feed time { color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .feed .p { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink-2); }
+  .feed .c { text-align: right; font-variant-numeric: tabular-nums; }
+  .feed li.new { animation: flash 1.2s steps(6); }
+  @keyframes flash { 0%,50% { background: #ffe14d33; } }
+
+  footer { color: var(--ink-3); font-size: 14px; line-height: 1.55; }
+  footer p { margin: 0 0 8px; }
+  code { font-size: 13px; background: var(--panel); padding: 1px 5px; }
+
+  #coins { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
+
+  @media (max-width: 720px) {
+    .hud { grid-template-columns: repeat(2, 1fr); }
+    .stat .v { font-size: 15px; }
+    .board .item { grid-template-columns: 18px 1fr 80px; }
+    .board .item .bar { grid-column: 2 / 4; grid-row: 2; }
+    .theme { grid-template-columns: 1fr; }
+    .feed li { grid-template-columns: 44px 12px 1fr 56px; }
+    h1 { font-size: 17px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .coin, .badge.live::before { animation: none; }
+  }
+</style>
+</head>
+<body>
+<canvas id="coins"></canvas>
+<main>
+  <header>
+    <svg class="coin" viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true">
+      <path fill="#b8860b" d="M3 0h4v1h2v2h1v4h-1v2h-2v1h-4v-1h-2v-2h-1v-4h1v-2h2z"/>
+      <path fill="#ffd23f" d="M3 1h4v1h1v1h1v4h-1v1h-1v1h-4v-1h-1v-1h-1v-4h1v-1h1z"/>
+      <path fill="#fff4b0" d="M3 2h2v1h-1v2h-1z"/>
+      <path fill="#b8860b" d="M5 3h1v4h-1z"/>
+    </svg>
+    <div>
+      <h1>COIN<span>-</span>OP</h1>
+      <p class="sub">vox2 · project expenditure</p>
+    </div>
+    <div class="badge" id="badge">loading…</div>
+  </header>
+
+  <div class="hud">
+    <div class="stat money"><div class="k">credits spent</div><div class="v" id="cost">$0</div><div class="n">est. at API prices</div></div>
+    <div class="stat"><div class="k">tokens</div><div class="v" id="tokens">0</div><div class="n" id="tokens-n">&nbsp;</div></div>
+    <div class="stat"><div class="k">days</div><div class="v" id="days">0</div><div class="n" id="days-n">&nbsp;</div></div>
+    <div class="stat"><div class="k">turns</div><div class="v" id="turns">0</div><div class="n" id="turns-n">&nbsp;</div></div>
+  </div>
+
+  <section>
+    <div class="row">
+      <h2>spend by day</h2>
+      <div class="toggle" role="group" aria-label="Measure">
+        <button aria-pressed="true" data-m="cost">$</button>
+        <button aria-pressed="false" data-m="tokens">tokens</button>
+      </div>
+    </div>
+    <p class="lede">Every block is a stack of coins. Hover a day to see what it went into.</p>
+    <div class="chart-wrap" id="wrap"><canvas id="chart"></canvas><div class="tip" id="tip"></div></div>
+    <div class="unit" id="unit"></div>
+  </section>
+
+  <section>
+    <h2>high scores</h2>
+    <p class="lede">Where it all went, biggest first.</p>
+    <div class="board" id="board"></div>
+  </section>
+
+  <section>
+    <h2>quest log</h2>
+    <p class="lede">How the spend lines up with the <a href="https://github.com/chrisqtruong/vox2#roadmap">roadmap</a>. Its rule: what makes Vox2 more trustworthy and useful day to day comes first.</p>
+    <div class="align"><div class="big" id="align">0%</div><p id="align-p"></p></div>
+    <div class="themes" id="themes"></div>
+    <div class="key">
+      <span><i class="pip done"></i> done</span>
+      <span><i class="pip started"></i> started</span>
+      <span><i class="pip"></i> not started</span>
+      <span>hover a square for the roadmap item</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>next up</h2>
+    <p class="lede">Where the next coins would do the most good, by the roadmap's own value and effort tags.</p>
+    <div class="next" id="next"></div>
+  </section>
+
+  <section id="feed-sec" hidden>
+    <h2>recent turns</h2>
+    <p class="lede">The last few requests and what each one cost. Only shown on your computer.</p>
+    <ul class="feed" id="feed"></ul>
+  </section>
+
+  <footer id="foot"></footer>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+let data = null, measure = 'cost', drawn = {}, anim = null;
+
+// ---------- formatting
+const money = (v) => v >= 1000 ? '$' + Math.round(v).toLocaleString() : '$' + v.toFixed(2);
+const short = (v) => v >= 1e9 ? (v / 1e9).toFixed(2) + 'B' : v >= 1e6 ? (v / 1e6).toFixed(1) + 'M' : v >= 1e3 ? (v / 1e3).toFixed(0) + 'K' : String(Math.round(v));
+const fmt = (v) => measure === 'cost' ? money(v) : short(v);
+const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const dayLabel = (d) => new Date(d + 'T12:00').toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+
+// ---------- rolling numbers
+const shown = {};
+function roll(id, to, f) {
+  const from = shown[id] ?? 0; shown[id] = to;
+  const t0 = performance.now(), dur = from === 0 ? 1200 : 700;
+  (function step(t) {
+    const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+    $(id).textContent = f(from + (to - from) * e);
+    if (k < 1) requestAnimationFrame(step);
+  })(t0);
+}
+
+// ---------- chart: each day is a column of pixel blocks, filled bottom-up bucket by bucket
+const PX = 10, GAP = 2, COLW = 6, COLGAP = 26, TOP = 18, BASE = 30, MAXROWS = 26;
+const NICE = [0.01, 0.02, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10, 20, 50, 100, 250, 500, 1000];
+
+function allDays() {
+  if (!data.days.length) return [];
+  const out = [], byDate = Object.fromEntries(data.days.map((d) => [d.date, d.by]));
+  const d = new Date(data.days[0].date + 'T12:00'), end = new Date(data.days.at(-1).date + 'T12:00');
+  while (d <= end) {
+    const key = d.toISOString().slice(0, 10);
+    out.push({ date: key, by: byDate[key] || {} });
+    d.setDate(d.getDate() + 1);
+  }
+  return out;
+}
+
+function layout() {
+  const days = allDays();
+  const max = Math.max(1e-9, ...days.map((d) => Object.values(d.by).reduce((s, c) => s + c[measure], 0)));
+  let unit;
+  if (measure === 'cost') unit = NICE.find((u) => max / u <= MAXROWS * COLW) ?? 1000;
+  else { const raw = max / (MAXROWS * COLW), p = Math.pow(10, Math.floor(Math.log10(raw))); unit = [1, 2, 5, 10].map((m) => m * p).find((u) => u >= raw); }
+  const cols = days.map((d, i) => {
+    const blocks = []; let acc = 0, placed = 0;
+    for (const b of data.buckets) {
+      const v = d.by[b.id]?.[measure] || 0;
+      if (!v) continue;
+      acc += v;
+      const upto = Math.round(acc / unit);           // cumulative rounding keeps the total honest
+      for (; placed < upto; placed++) blocks.push(b.id);
+    }
+    return { ...d, i, blocks, total: Object.values(d.by).reduce((s, c) => s + c[measure], 0) };
+  });
+  const rows = Math.max(4, ...cols.map((c) => Math.ceil(c.blocks.length / COLW)));
+  return { cols, unit, rows };
+}
+
+const colorOf = (id) => data.buckets.find((b) => b.id === id).color;
+
+function drawChart(fresh) {
+  const L = layout(), cv = $('chart'), ctx = cv.getContext('2d');
+  const colPx = COLW * (PX + GAP) - GAP;
+  const minW = $('wrap').clientWidth;
+  const need = L.cols.length * (colPx + COLGAP) + COLGAP;
+  const w = Math.max(minW, need), h = TOP + L.rows * (PX + GAP) + BASE;
+  const dpr = window.devicePixelRatio || 1;
+  cv.width = w * dpr; cv.height = h * dpr; cv.style.width = w + 'px'; cv.style.height = h + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const offset = Math.max(COLGAP, (w - L.cols.length * (colPx + COLGAP) + COLGAP) / 2);
+  L.cols.forEach((c) => (c.x = offset + c.i * (colPx + COLGAP)));
+  cv._layout = { ...L, colPx, h };
+
+  // which blocks are new since the last draw (they fall in)
+  const key = (c) => c.date + measure;
+  const tasks = [];
+  L.cols.forEach((c) => {
+    const had = fresh ? 0 : (drawn[key(c)] || 0);
+    c.blocks.forEach((id, j) => {
+      const r = Math.floor(j / COLW), k = j % COLW;
+      const x = c.x + k * (PX + GAP), y = h - BASE - (r + 1) * (PX + GAP) + GAP;
+      tasks.push({ x, y, color: colorOf(id), old: j < had, delay: j < had ? 0 : (j - had) * (fresh ? 6 : 40) + c.i * (fresh ? 40 : 0) });
+    });
+    drawn[key(c)] = c.blocks.length;
+  });
+
+  cancelAnimationFrame(anim);
+  const t0 = performance.now(), reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  (function frame(t) {
+    ctx.clearRect(0, 0, w, h);
+    // baseline + day labels
+    ctx.fillStyle = '#342e48'; ctx.fillRect(0, h - BASE + 2, w, 2);
+    ctx.font = 'bold 12px "Space Mono"'; ctx.textAlign = 'center';
+    L.cols.forEach((c) => {
+      ctx.fillStyle = '#7d7699';
+      ctx.fillText(dayLabel(c.date).toLowerCase(), c.x + colPx / 2, h - BASE + 20);
+    });
+    let busy = false;
+    for (const b of tasks) {
+      const el = t - t0 - b.delay;
+      if (!b.old && !reduce && el < 0) { busy = true; continue; }
+      let y = b.y;
+      if (!b.old && !reduce) {
+        const k = Math.min(1, el / 380);
+        y = TOP - 20 + (b.y - TOP + 20) * (k * k);       // gravity
+        if (k < 1) busy = true;
+      }
+      ctx.fillStyle = b.color; ctx.fillRect(Math.round(b.x), Math.round(y), PX, PX);
+      ctx.fillStyle = 'rgba(255,255,255,.28)'; ctx.fillRect(Math.round(b.x), Math.round(y), PX, 2);
+    }
+    // day totals on top of each column
+    if (!busy) {
+      ctx.font = 'bold 12px "Space Mono"';
+      L.cols.forEach((c) => {
+        if (!c.total) return;
+        const top = h - BASE - Math.ceil(c.blocks.length / COLW) * (PX + GAP);
+        ctx.fillStyle = '#f4f1ff'; ctx.fillText(fmt(c.total), c.x + colPx / 2, Math.max(10, top - 6));
+      });
+    }
+    if (busy) anim = requestAnimationFrame(frame);
+  })(t0);
+
+  $('unit').textContent = `1 block = ${measure === 'cost' ? money(L.unit) : short(L.unit) + ' tokens'}`;
+}
+
+// tooltip
+$('chart').addEventListener('mousemove', (e) => {
+  const L = e.currentTarget._layout; if (!L) return;
+  const r = e.currentTarget.getBoundingClientRect(), mx = e.clientX - r.left;
+  const c = L.cols.find((c) => mx >= c.x - COLGAP / 2 && mx <= c.x + L.colPx + COLGAP / 2);
+  const tip = $('tip');
+  if (!c || !c.total) { tip.style.display = 'none'; return; }
+  const lines = data.buckets.filter((b) => c.by[b.id]?.[measure] > 0)
+    .sort((a, b) => c.by[b.id][measure] - c.by[a.id][measure])
+    .map((b) => `<div class="l"><i style="background:${b.color}"></i><span>${b.name}</span><span>${fmt(c.by[b.id][measure])}</span></div>`).join('');
+  tip.innerHTML = `<b>${dayLabel(c.date)} · ${fmt(c.total)}</b>${lines}`;
+  tip.style.display = 'block';
+  const wrap = $('wrap'), x = mx - wrap.scrollLeft + 16;
+  tip.style.left = Math.min(x, wrap.clientWidth - tip.offsetWidth - 4) + 'px';
+  tip.style.top = '8px';
+});
+$('chart').addEventListener('mouseleave', () => ($('tip').style.display = 'none'));
+
+document.querySelectorAll('.toggle button').forEach((btn) => btn.addEventListener('click', () => {
+  measure = btn.dataset.m;
+  document.querySelectorAll('.toggle button').forEach((b) => b.setAttribute('aria-pressed', b === btn));
+  drawChart(true); renderBoard();
+}));
+
+// ---------- leaderboard
+function renderBoard() {
+  const list = [...data.buckets].filter((b) => b.cost > 0).sort((a, b) => b[measure] - a[measure]);
+  const total = list.reduce((s, b) => s + b[measure], 0) || 1, top = list[0]?.[measure] || 1;
+  $('board').innerHTML = list.map((b, i) => `
+    <div class="item">
+      <span class="rank">${String(i + 1).padStart(2, '0')}</span>
+      <span class="name"><i style="background:${b.color}"></i>${b.name}</span>
+      <div class="bar"><span style="background:${b.color}" data-w="${(100 * b[measure] / top).toFixed(1)}"></span></div>
+      <span class="amt">${fmt(b[measure])}<small>${Math.round(100 * b[measure] / total)}% · ${b.turns} turns</small></span>
+    </div>`).join('');
+  requestAnimationFrame(() => document.querySelectorAll('#board .bar > span').forEach((s) => (s.style.width = s.dataset.w + '%')));
+}
+
+// ---------- quest log
+function renderQuest() {
+  const pct = Math.round(100 * data.alignment);
+  $('align').textContent = pct + '%';
+  $('align-p').textContent = `of the spend went to roadmap themes; ${100 - pct}% went to upkeep (bugs, releases, docs, learning). Some upkeep is healthy; it's when it crowds out the roadmap that it's worth a look.`;
+  const road = data.themes.filter((t) => t.roadmap), roadCost = road.reduce((s, t) => s + t.cost, 0) || 1;
+  const items = data.roadmap.items;
+  const doneByTheme = { trust: 0, daily: 0, reach: 0 };
+  data.roadmap.done.forEach((d) => { const l = d.toLowerCase(); doneByTheme[l.includes('meaning') ? 'trust' : /mac|sign|intel/.test(l) ? 'reach' : 'daily']++; });
+  const doneTitles = (id) => data.roadmap.done.filter((d) => { const l = d.toLowerCase(); return (l.includes('meaning') ? 'trust' : /mac|sign|intel/.test(l) ? 'reach' : 'daily') === id; });
+  $('themes').innerHTML = data.themes.map((t) => {
+    const colors = data.buckets.filter((b) => b.theme === t.id).map((b) => b.color);
+    const swatch = colors.length > 1 ? `linear-gradient(90deg, ${colors.map((c, i) => `${c} ${100 * i / colors.length}% ${100 * (i + 1) / colors.length}%`).join(',')})` : colors[0];
+    const its = items.filter((i) => i.theme === t.id);
+    const pips = t.roadmap ? doneTitles(t.id).map((d) => `<i class="pip done" data-t="done: ${esc(d)}"></i>`).join('') +
+      its.map((i) => `<i class="pip ${i.status}" data-t="#${i.n} ${esc(i.title)}"></i>`).join('') : '';
+    const meters = t.roadmap ? `
+        <div class="meter"><span>spend</span><div class="bar"><span style="background:${swatch}" data-w="${(100 * t.cost / roadCost).toFixed(1)}"></span></div><span class="pct">${Math.round(100 * t.cost / roadCost)}%</span></div>
+        <div class="meter"><span>roadmap value</span><div class="bar"><span style="background:#7d7699" data-w="${(100 * (t.value_share || 0)).toFixed(1)}"></span></div><span class="pct">${Math.round(100 * (t.value_share || 0))}%</span></div>
+        <div class="pips">${pips}</div>` : `
+        <div class="meter"><span>spend</span><div class="bar"><span style="background:${swatch}" data-w="${(100 * t.cost / (data.totals.cost || 1)).toFixed(1)}"></span></div><span class="pct">${Math.round(100 * t.cost / (data.totals.cost || 1))}%</span></div>
+        <p>of all spend, not just the roadmap's.</p>`;
+    return `<div class="theme"><div><h3>${t.name.toLowerCase()}</h3><p>${t.blurb}</p></div><div class="meters">${meters}</div></div>`;
+  }).join('');
+  requestAnimationFrame(() => document.querySelectorAll('#themes .bar > span').forEach((s) => (s.style.width = s.dataset.w + '%')));
+
+  const themeName = Object.fromEntries(data.themes.map((t) => [t.id, t.name]));
+  $('next').innerHTML = data.next.map((n, i) => `
+    <div class="card">
+      <div class="tag">${['keep going', 'start next', 'quick win'][i] || 'also good'} · ${themeName[n.theme].toLowerCase()}</div>
+      <h3>#${n.n} ${esc(n.title)}</h3>
+      <p>${esc(n.why)}</p>
+    </div>`).join('') || '<p class="lede">No roadmap found.</p>';
+}
+
+// ---------- feed
+let lastFeed = '';
+function renderFeed() {
+  if (!data.live || !data.recent.length) return;
+  $('feed-sec').hidden = false;
+  const items = [...data.recent].reverse();
+  const newest = items[0]?.ts;
+  $('feed').innerHTML = items.map((r) => `
+    <li class="${lastFeed && r.ts > lastFeed ? 'new' : ''}">
+      <time>${new Date(r.ts).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }).replace(/\s?[AP]M/i, (m) => m.trim()[0].toLowerCase())}</time>
+      <i style="background:${colorOf(r.bucket)}" title="${data.buckets.find((b) => b.id === r.bucket).name}"></i>
+      <span class="p">${esc(r.prompt)}</span>
+      <span class="c">${money(r.cost)}</span>
+    </li>`).join('');
+  lastFeed = newest;
+}
+
+// ---------- coins: a little burst when new spend lands
+function coinBurst(n) {
+  const cv = $('coins'), ctx = cv.getContext('2d');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  cv.width = innerWidth; cv.height = innerHeight;
+  const src = $('cost').getBoundingClientRect();
+  const coins = Array.from({ length: Math.min(40, 6 + n) }, () => ({
+    x: src.left + 30, y: src.top + 20, vx: (Math.random() - .5) * 9, vy: -Math.random() * 9 - 3, s: 6 + Math.random() * 4 | 0, life: 0,
+  }));
+  (function tick() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    let alive = 0;
+    for (const c of coins) {
+      c.life++; c.vy += .45; c.x += c.vx; c.y += c.vy;
+      if (c.y > cv.height + 20 || c.life > 90) continue;
+      alive++;
+      const w = Math.max(2, Math.abs(Math.cos(c.life / 4)) * c.s) | 0;
+      ctx.fillStyle = '#b8860b'; ctx.fillRect(c.x - w / 2 | 0, c.y | 0, w, c.s);
+      ctx.fillStyle = '#ffd23f'; ctx.fillRect((c.x - w / 2 | 0) + 1, (c.y | 0) + 1, Math.max(1, w - 2), c.s - 2);
+    }
+    if (alive) requestAnimationFrame(tick); else ctx.clearRect(0, 0, cv.width, cv.height);
+  })();
+}
+
+// ---------- load
+function badge() {
+  const b = $('badge');
+  if (data.live) { b.className = 'badge live'; b.textContent = 'live'; return; }
+  const mins = Math.max(0, Math.round((Date.now() - new Date(data.generated)) / 60000));
+  const ago = mins < 1 ? 'just now' : mins < 60 ? mins + ' min ago' : mins < 1440 ? Math.round(mins / 60) + ' h ago' : Math.round(mins / 1440) + ' d ago';
+  b.className = mins < 30 ? 'badge live' : 'badge';
+  b.textContent = 'updated ' + ago;
+}
+
+function render(prev) {
+  const t = data.totals;
+  roll('cost', t.cost, money);
+  roll('tokens', t.tokens, short);
+  roll('turns', t.turns, (v) => Math.round(v).toLocaleString());
+  const days = allDays();
+  roll('days', days.length, (v) => String(Math.round(v)));
+  $('tokens-n').textContent = `${short(t.output)} written by Claude`;
+  $('days-n').textContent = days.length ? `since ${dayLabel(days[0].date).toLowerCase()}` : '';
+  $('turns-n').textContent = `${data.sessions} session${data.sessions === 1 ? '' : 's'}`;
+  badge();
+  drawChart(!prev);
+  renderBoard(); renderQuest(); renderFeed();
+  if (prev && t.cost > prev.totals.cost + 0.005) coinBurst(Math.round((t.cost - prev.totals.cost) * 10));
+
+  const read = t.cache_read, all = t.tokens || 1;
+  $('foot').innerHTML = `
+    <p><b>How it's counted.</b> Coin-Op reads Claude Code's own transcripts on this computer and keeps the sessions that worked in the Vox2 repo. Each turn (your message plus everything Claude did for it) goes into one bucket, by the words in your message and the files Claude touched. It's a good guess, not an audit: a turn that fixes a bug <i>and</i> merges counts once, for whichever it was mostly about.</p>
+    <p><b>Credits</b> are what the same tokens would cost on the API at ${data.pricing.model} list prices ($${data.pricing.in}/M in, $${data.pricing.out}/M out, $${data.pricing.read}/M cache reads). On a Claude plan you pay a flat fee instead, so read it as "how much work", not a bill. ${Math.round(100 * read / all)}% of all tokens are Claude re-reading the conversation so far (cache reads), which are cheap; that's why tokens and credits don't move together.</p>
+    <p><b>Which computers.</b> ${data.machines || 1} so far. Each computer that runs Coin-Op with <code>--install</code> adds its own Vox2 sessions; nothing is counted twice.</p>
+    <p><b>Updates.</b> On your computer this page is live. The website version checks for new numbers every 2 minutes; computers publish every 5, and GitHub can add a few minutes of delay.</p>
+    <p>Run it: <code>python3 coinop.py</code> · keep it running from login: <code>python3 coinop.py --install</code> · <a href="https://github.com/chrisqtruong/coin-op">about Coin-Op</a></p>`;
+}
+
+// On your computer the page talks to coinop.py (live, every few seconds). On the
+// website it reads this repo's data branch, which coinop.py --publish keeps current.
+const LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
+const SOURCES = LOCAL ? ['data.json'] : [
+  'https://api.github.com/repos/chrisqtruong/coin-op/contents/data.json?ref=data',
+  'https://raw.githubusercontent.com/chrisqtruong/coin-op/data/data.json',
+];
+
+async function fetchData() {
+  for (const url of SOURCES) {
+    try {
+      const res = await fetch(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now(),
+        { cache: 'no-store', headers: url.includes('api.github.com') ? { Accept: 'application/vnd.github.raw+json' } : {} });
+      if (res.ok) return await res.json();
+    } catch (e) { /* try the next source */ }
+  }
+  throw new Error('no data');
+}
+
+async function load() {
+  try {
+    const next = await fetchData();
+    const prev = data;
+    if (prev && next.generated === prev.generated) return;
+    if (prev && JSON.stringify(next.totals) === JSON.stringify(prev.totals) && JSON.stringify(next.recent) === JSON.stringify(prev.recent)) { data = next; badge(); return; }
+    data = next;
+    render(prev);
+  } catch (e) {
+    if (!data) $('badge').textContent = 'no data yet';
+  }
+}
+
+(async () => {
+  await document.fonts.ready.catch(() => {});
+  await load();
+  setInterval(load, LOCAL ? 4000 : 120000);   // the website checks every 2 minutes
+  setInterval(() => data && badge(), 30000);
+  let rw; addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => data && drawChart(true), 150); });
+})();
+</script>
+</body>
+</html>
