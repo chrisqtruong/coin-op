@@ -52,7 +52,7 @@ cd coin-op
 python3 coinop.py --install
 ```
 
-`--install` starts Coin-Op whenever you log in (macOS: `launchd`; Windows: the Startup folder), keeps [localhost:8642](http://localhost:8642) live, and publishes to the website every 5 minutes. Do it once per computer.
+`--install` starts Swear Jar whenever you log in (macOS: `launchd`; Windows: the Startup folder), keeps [localhost:8642](http://localhost:8642) live, and publishes to the website every 5 minutes. Do it once per computer.
 
 | | |
 |---|---|
