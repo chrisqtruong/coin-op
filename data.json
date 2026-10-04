@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-04T20:20:45+00:00",
+ "generated": "2026-10-04T20:30:49+00:00",
  "live": false,
  "product": "Vox2",
  "machines": 1,
@@ -16,10 +16,10 @@
    "name": "Meaning & match score",
    "color": "#ff4d8d",
    "theme": "trust",
-   "cost": 62.871,
-   "tokens": 174885860,
-   "output": 435156,
-   "turns": 48
+   "cost": 63.5195,
+   "tokens": 177201705,
+   "output": 441493,
+   "turns": 49
   },
   {
    "id": "capture",
@@ -98,9 +98,9 @@
    "name": "Trustworthy",
    "blurb": "Can you rely on what Vox2 tells you? The meaning check and match score.",
    "roadmap": true,
-   "cost": 62.871,
+   "cost": 63.5195,
    "value_share": 0.424,
-   "gap": -0.108
+   "gap": -0.11
   },
   {
    "id": "daily",
@@ -109,7 +109,7 @@
    "roadmap": true,
    "cost": 43.5622,
    "value_share": 0.495,
-   "gap": 0.126
+   "gap": 0.128
   },
   {
    "id": "reach",
@@ -118,7 +118,7 @@
    "roadmap": true,
    "cost": 11.7447,
    "value_share": 0.081,
-   "gap": -0.019
+   "gap": -0.018
   },
   {
    "id": "upkeep",
@@ -220,9 +220,9 @@
    "date": "2026-10-04",
    "by": {
     "meaning": {
-     "cost": 35.7704,
-     "tokens": 94677026,
-     "output": 304485
+     "cost": 36.4189,
+     "tokens": 96992871,
+     "output": 310822
     },
     "learn": {
      "cost": 0.0974,
@@ -258,15 +258,15 @@
   }
  ],
  "totals": {
-  "cost": 183.1929,
-  "tokens": 563107531,
-  "input": 2706,
-  "output": 1187523,
-  "cache_write": 6031819,
-  "cache_read": 555885483,
-  "turns": 226
+  "cost": 183.8414,
+  "tokens": 565423376,
+  "input": 2714,
+  "output": 1193860,
+  "cache_write": 6039490,
+  "cache_read": 558187312,
+  "turns": 227
  },
- "alignment": 0.645,
+ "alignment": 0.646,
  "roadmap": {
   "items": [
    {
