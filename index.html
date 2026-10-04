@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Coin-Op · Vox2 project expenditure</title>
+<title>Swear Jar · Vox2 project expenditure</title>
 <meta name="description" content="Where Vox2's Claude tokens go, day by day and bucket by bucket, and how that lines up with the roadmap.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -168,7 +168,7 @@
       <path fill="#b8860b" d="M5 3h1v4h-1z"/>
     </svg>
     <div>
-      <h1>COIN<span>-</span>OP</h1>
+      <h1>SWEAR <span>JAR</span></h1>
       <p class="sub">vox2 · project expenditure</p>
     </div>
     <div class="badge" id="badge">loading…</div>
@@ -497,9 +497,9 @@ function render(prev) {
 
   const read = t.cache_read, all = t.tokens || 1;
   $('foot').innerHTML = `
-    <p><b>How it's counted.</b> Coin-Op reads Claude Code's own transcripts on this computer and keeps the sessions that worked in the Vox2 repo. Each turn (your message plus everything Claude did for it) goes into one bucket, by the words in your message and the files Claude touched. It's a good guess, not an audit: a turn that fixes a bug <i>and</i> merges counts once, for whichever it was mostly about.</p>
+    <p><b>How it's counted.</b> Swear Jar reads Claude Code's own transcripts on this computer and keeps the sessions that worked in the Vox2 repo. Each turn (your message plus everything Claude did for it) goes into one bucket, by the words in your message and the files Claude touched. It's a good guess, not an audit: a turn that fixes a bug <i>and</i> merges counts once, for whichever it was mostly about.</p>
     <p><b>Credits</b> are what the same tokens would cost on the API at ${data.pricing.model} list prices ($${data.pricing.in}/M in, $${data.pricing.out}/M out, $${data.pricing.read}/M cache reads). On a Claude plan you pay a flat fee instead, so read it as "how much work", not a bill. ${Math.round(100 * read / all)}% of all tokens are Claude re-reading the conversation so far (cache reads), which are cheap; that's why tokens and credits don't move together.</p>
-    <p><b>Which computers.</b> ${data.machines || 1} so far. Each computer that runs Coin-Op with <code>--install</code> adds its own Vox2 sessions; nothing is counted twice.</p>
+    <p><b>Which computers.</b> ${data.machines || 1} so far. Each computer that runs Swear Jar with <code>--install</code> adds its own Vox2 sessions; nothing is counted twice.</p>
     <p><b>Updates.</b> On your computer this page is live. The website version checks for new numbers every 2 minutes; computers publish every 5, and GitHub can add a few minutes of delay.</p>
     <p>Run it: <code>python3 coinop.py</code> · keep it running from login: <code>python3 coinop.py --install</code> · <a href="https://github.com/chrisqtruong/coin-op">about Coin-Op</a></p>`;
 }
