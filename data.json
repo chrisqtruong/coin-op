@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-04T21:51:24+00:00",
+ "generated": "2026-10-04T21:56:26+00:00",
  "live": false,
  "product": "Vox2",
  "machines": 1,
@@ -66,10 +66,10 @@
    "name": "Releases & GitHub",
    "color": "#3ddc84",
    "theme": "upkeep",
-   "cost": 35.6995,
-   "tokens": 110495992,
-   "output": 224023,
-   "turns": 61
+   "cost": 35.9816,
+   "tokens": 111839182,
+   "output": 224438,
+   "turns": 62
   },
   {
    "id": "docs",
@@ -125,7 +125,7 @@
    "name": "Upkeep",
    "blurb": "Bugs, releases, docs and learning. Not on the roadmap, but it keeps the lights on.",
    "roadmap": false,
-   "cost": 69.6782,
+   "cost": 69.9603,
    "value_share": null,
    "gap": null
   }
@@ -230,9 +230,9 @@
      "output": 494
     },
     "ship": {
-     "cost": 20.0102,
-     "tokens": 56221782,
-     "output": 99051
+     "cost": 20.2923,
+     "tokens": 57564972,
+     "output": 99466
     },
     "docs": {
      "cost": 14.9346,
@@ -258,15 +258,15 @@
   }
  ],
  "totals": {
-  "cost": 192.954,
-  "tokens": 601815007,
-  "input": 2838,
-  "output": 1257655,
-  "cache_write": 6112646,
-  "cache_read": 594441868,
-  "turns": 242
+  "cost": 193.2361,
+  "tokens": 603158197,
+  "input": 2844,
+  "output": 1258070,
+  "cache_write": 6113312,
+  "cache_read": 595783971,
+  "turns": 243
  },
- "alignment": 0.639,
+ "alignment": 0.638,
  "roadmap": {
   "items": [
    {
