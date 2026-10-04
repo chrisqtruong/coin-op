@@ -5,7 +5,7 @@ Day by day, by focus area, and against the product's own roadmap. Set up for <a 
 
 <p align="center"><a href="https://chrisqtruong.github.io/coin-op/"><b>Open the dashboard</b></a> · <a href="https://github.com/chrisqtruong/coin-op/releases">Releases</a></p>
 
-<p align="center"><img src="screenshots/top.png" width="820" alt="Swear Jar: $137 spent across 3 days and 204 turns, with a pixel-block chart of spend per day colored by focus area"></p>
+<p align="center"><img src="screenshots/top.png" width="820" alt="Swear Jar: $165 spent across 3 days and 217 turns, with a pixel-block chart of spend per day colored by focus area"></p>
 
 ## Why
 
