@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-04T16:41:23+00:00",
+ "generated": "2026-10-04T16:44:47+00:00",
  "live": false,
  "product": "Vox2",
  "machines": 1,
@@ -99,8 +99,8 @@
    "blurb": "Can you rely on what Vox2 tells you? The meaning check and match score.",
    "roadmap": true,
    "cost": 62.482,
-   "value_share": 0.364,
-   "gap": -0.201
+   "value_share": 0.424,
+   "gap": -0.14
   },
   {
    "id": "daily",
@@ -108,8 +108,8 @@
    "blurb": "Snip, voice, the window and the helpers you reach for daily.",
    "roadmap": true,
    "cost": 36.4345,
-   "value_share": 0.556,
-   "gap": 0.226
+   "value_share": 0.495,
+   "gap": 0.166
   },
   {
    "id": "reach",
@@ -296,7 +296,7 @@
     "effort": "small",
     "issue": 29,
     "status": "open",
-    "theme": "daily",
+    "theme": "trust",
     "score": 3.0
    },
    {
@@ -453,7 +453,7 @@
   "done": [
    {
     "title": "macOS version",
-    "theme": "daily"
+    "theme": "reach"
    },
    {
     "title": "Meaning check says \"can't check\"",
@@ -471,10 +471,10 @@
    "why": "Already started and #2 on the roadmap. Finishing it turns tokens already spent into something people can use."
   },
   {
-   "n": 3,
-   "title": "Meaning tests: more engines and an independent judge",
+   "n": 5,
+   "title": "Explain this",
    "theme": "daily",
-   "why": "\"Useful every day\" holds 56% of the roadmap's value but got 33% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
+   "why": "\"Useful every day\" holds 49% of the roadmap's value but got 33% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
   },
   {
    "n": 1,
