@@ -1,0 +1,487 @@
+{
+ "generated": "2026-10-04T16:41:23+00:00",
+ "live": false,
+ "product": "Vox2",
+ "machines": 1,
+ "pricing": {
+  "model": "claude-opus-5-5",
+  "in": 4.0,
+  "out": 20.0,
+  "read": 0.2
+ },
+ "sessions": 2,
+ "buckets": [
+  {
+   "id": "meaning",
+   "name": "Meaning & match score",
+   "color": "#ff4d8d",
+   "theme": "trust",
+   "cost": 62.482,
+   "tokens": 173263148,
+   "output": 431996,
+   "turns": 46
+  },
+  {
+   "id": "capture",
+   "name": "Snip, voice & audio",
+   "color": "#ffb000",
+   "theme": "daily",
+   "cost": 7.8713,
+   "tokens": 28648546,
+   "output": 63263,
+   "turns": 16
+  },
+  {
+   "id": "look",
+   "name": "Look, feel & features",
+   "color": "#4dd2ff",
+   "theme": "daily",
+   "cost": 28.5632,
+   "tokens": 91771949,
+   "output": 151672,
+   "turns": 43
+  },
+  {
+   "id": "mac",
+   "name": "Mac version",
+   "color": "#9b6bff",
+   "theme": "reach",
+   "cost": 11.7447,
+   "tokens": 27598042,
+   "output": 85647,
+   "turns": 21
+  },
+  {
+   "id": "bugs",
+   "name": "Bug squashing",
+   "color": "#ff6b3d",
+   "theme": "upkeep",
+   "cost": 2.5529,
+   "tokens": 10450156,
+   "output": 14329,
+   "turns": 5
+  },
+  {
+   "id": "ship",
+   "name": "Releases & GitHub",
+   "color": "#3ddc84",
+   "theme": "upkeep",
+   "cost": 23.1661,
+   "tokens": 84421250,
+   "output": 171054,
+   "turns": 54
+  },
+  {
+   "id": "docs",
+   "name": "Docs & planning",
+   "color": "#f2f2f2",
+   "theme": "upkeep",
+   "cost": 27.6814,
+   "tokens": 106729149,
+   "output": 200663,
+   "turns": 28
+  },
+  {
+   "id": "learn",
+   "name": "Learning & questions",
+   "color": "#ffe14d",
+   "theme": "upkeep",
+   "cost": 0.8699,
+   "tokens": 3815070,
+   "output": 3961,
+   "turns": 4
+  }
+ ],
+ "themes": [
+  {
+   "id": "trust",
+   "name": "Trustworthy",
+   "blurb": "Can you rely on what Vox2 tells you? The meaning check and match score.",
+   "roadmap": true,
+   "cost": 62.482,
+   "value_share": 0.364,
+   "gap": -0.201
+  },
+  {
+   "id": "daily",
+   "name": "Useful every day",
+   "blurb": "Snip, voice, the window and the helpers you reach for daily.",
+   "roadmap": true,
+   "cost": 36.4345,
+   "value_share": 0.556,
+   "gap": 0.226
+  },
+  {
+   "id": "reach",
+   "name": "Reach more people",
+   "blurb": "Mac, Intel, signed installers: Vox2 on more computers.",
+   "roadmap": true,
+   "cost": 11.7447,
+   "value_share": 0.081,
+   "gap": -0.025
+  },
+  {
+   "id": "upkeep",
+   "name": "Upkeep",
+   "blurb": "Bugs, releases, docs and learning. Not on the roadmap, but it keeps the lights on.",
+   "roadmap": false,
+   "cost": 54.2703,
+   "value_share": null,
+   "gap": null
+  }
+ ],
+ "days": [
+  {
+   "date": "2026-10-02",
+   "by": {
+    "ship": {
+     "cost": 6.8606,
+     "tokens": 21585065,
+     "output": 60600
+    },
+    "look": {
+     "cost": 3.2032,
+     "tokens": 11046810,
+     "output": 32528
+    },
+    "bugs": {
+     "cost": 0.1292,
+     "tokens": 520490,
+     "output": 1089
+    },
+    "capture": {
+     "cost": 2.2749,
+     "tokens": 8125019,
+     "output": 19984
+    },
+    "mac": {
+     "cost": 6.8652,
+     "tokens": 21867540,
+     "output": 71402
+    },
+    "learn": {
+     "cost": 0.2776,
+     "tokens": 1159405,
+     "output": 1586
+    },
+    "docs": {
+     "cost": 0.7787,
+     "tokens": 2962619,
+     "output": 6744
+    }
+   }
+  },
+  {
+   "date": "2026-10-03",
+   "by": {
+    "meaning": {
+     "cost": 27.1006,
+     "tokens": 80208834,
+     "output": 130671
+    },
+    "mac": {
+     "cost": 4.2441,
+     "tokens": 3748751,
+     "output": 6781
+    },
+    "bugs": {
+     "cost": 2.4237,
+     "tokens": 9929666,
+     "output": 13240
+    },
+    "look": {
+     "cost": 23.169,
+     "tokens": 72482300,
+     "output": 100155
+    },
+    "ship": {
+     "cost": 8.8286,
+     "tokens": 32689145,
+     "output": 64372
+    },
+    "capture": {
+     "cost": 5.4183,
+     "tokens": 19767447,
+     "output": 42316
+    },
+    "docs": {
+     "cost": 14.8425,
+     "tokens": 60938282,
+     "output": 83288
+    },
+    "learn": {
+     "cost": 0.495,
+     "tokens": 2219873,
+     "output": 1881
+    }
+   }
+  },
+  {
+   "date": "2026-10-04",
+   "by": {
+    "meaning": {
+     "cost": 35.3814,
+     "tokens": 93054314,
+     "output": 301325
+    },
+    "learn": {
+     "cost": 0.0974,
+     "tokens": 435792,
+     "output": 494
+    },
+    "ship": {
+     "cost": 7.4768,
+     "tokens": 30147040,
+     "output": 46082
+    },
+    "docs": {
+     "cost": 12.0602,
+     "tokens": 42828248,
+     "output": 110631
+    },
+    "mac": {
+     "cost": 0.6354,
+     "tokens": 1981751,
+     "output": 7464
+    },
+    "look": {
+     "cost": 2.191,
+     "tokens": 8242839,
+     "output": 18989
+    },
+    "capture": {
+     "cost": 0.1781,
+     "tokens": 756080,
+     "output": 963
+    }
+   }
+  }
+ ],
+ "totals": {
+  "cost": 164.9315,
+  "tokens": 526697310,
+  "input": 2578,
+  "output": 1122585,
+  "cache_write": 4789113,
+  "cache_read": 520783034,
+  "turns": 217
+ },
+ "alignment": 0.671,
+ "roadmap": {
+  "items": [
+   {
+    "n": 1,
+    "title": "Meaning check: sharpen the targeted checks",
+    "value": "High",
+    "effort": "small",
+    "issue": 28,
+    "status": "open",
+    "theme": "trust",
+    "score": 3.0
+   },
+   {
+    "n": 2,
+    "title": "Meaning check: show what changed",
+    "value": "High",
+    "effort": "small",
+    "issue": 27,
+    "status": "started",
+    "theme": "trust",
+    "score": 3.0
+   },
+   {
+    "n": 3,
+    "title": "Meaning tests: more engines and an independent judge",
+    "value": "High",
+    "effort": "small",
+    "issue": 29,
+    "status": "open",
+    "theme": "daily",
+    "score": 3.0
+   },
+   {
+    "n": 4,
+    "title": "Meaning check: translate back with a different engine",
+    "value": "High",
+    "effort": "small",
+    "issue": 52,
+    "status": "open",
+    "theme": "trust",
+    "score": 3.0
+   },
+   {
+    "n": 5,
+    "title": "Explain this",
+    "value": "High",
+    "effort": "small",
+    "issue": 21,
+    "status": "open",
+    "theme": "daily",
+    "score": 3.0
+   },
+   {
+    "n": 6,
+    "title": "Personal glossary",
+    "value": "Medium-high",
+    "effort": "small",
+    "issue": 23,
+    "status": "open",
+    "theme": "daily",
+    "score": 2.5
+   },
+   {
+    "n": 7,
+    "title": "More translation engines: DeepL and Microsoft Translator",
+    "value": "Medium-high",
+    "effort": "small",
+    "issue": 53,
+    "status": "open",
+    "theme": "daily",
+    "score": 2.5
+   },
+   {
+    "n": 8,
+    "title": "Reply helper",
+    "value": "High",
+    "effort": "medium",
+    "issue": 22,
+    "status": "open",
+    "theme": "daily",
+    "score": 1.5
+   },
+   {
+    "n": 9,
+    "title": "Meaning check: AI double-check",
+    "value": "High",
+    "effort": "medium",
+    "issue": 7,
+    "status": "open",
+    "theme": "trust",
+    "score": 1.5
+   },
+   {
+    "n": 10,
+    "title": "Meaning check: suggested fixes, verified",
+    "value": "High",
+    "effort": "medium",
+    "issue": 55,
+    "status": "open",
+    "theme": "trust",
+    "score": 1.5
+   },
+   {
+    "n": 11,
+    "title": "Meaning check: benchmark against research systems on the WMT test sets",
+    "value": "High",
+    "effort": "medium",
+    "issue": 50,
+    "status": "open",
+    "theme": "trust",
+    "score": 1.5
+   },
+   {
+    "n": 12,
+    "title": "Hands-free conversation",
+    "value": "Medium-high",
+    "effort": "medium",
+    "issue": 11,
+    "status": "open",
+    "theme": "daily",
+    "score": 1.25
+   },
+   {
+    "n": 13,
+    "title": "Better snip",
+    "value": "Medium",
+    "effort": "medium",
+    "issue": 8,
+    "status": "open",
+    "theme": "daily",
+    "score": 1.0
+   },
+   {
+    "n": 14,
+    "title": "Live captions: calls, videos and any audio",
+    "value": "Very high",
+    "effort": "large",
+    "issue": 24,
+    "status": "open",
+    "theme": "daily",
+    "score": 1.33
+   },
+   {
+    "n": 15,
+    "title": "Documents: drag and drop, formatting kept",
+    "value": "High",
+    "effort": "medium",
+    "issue": 53,
+    "status": "open",
+    "theme": "daily",
+    "score": 1.5
+   },
+   {
+    "n": 16,
+    "title": "Mini mode",
+    "value": "Medium",
+    "effort": "medium",
+    "issue": 6,
+    "status": "open",
+    "theme": "daily",
+    "score": 1.0
+   },
+   {
+    "n": 17,
+    "title": "Mac: Intel support and Apple notarization",
+    "value": "Medium",
+    "effort": "small + cost",
+    "issue": 5,
+    "status": "open",
+    "theme": "reach",
+    "score": 1.33
+   },
+   {
+    "n": 18,
+    "title": "Windows code signing",
+    "value": "Medium",
+    "effort": "small + cost",
+    "issue": 9,
+    "status": "open",
+    "theme": "reach",
+    "score": 1.33
+   }
+  ],
+  "done": [
+   {
+    "title": "macOS version",
+    "theme": "daily"
+   },
+   {
+    "title": "Meaning check says \"can't check\"",
+    "theme": "trust"
+   }
+  ]
+ },
+ "roadmap_link": "https://github.com/chrisqtruong/vox2#roadmap",
+ "roadmap_rule": "Its rule: what makes Vox2 more trustworthy and useful day to day comes first.",
+ "next": [
+  {
+   "n": 2,
+   "title": "Meaning check: show what changed",
+   "theme": "trust",
+   "why": "Already started and #2 on the roadmap. Finishing it turns tokens already spent into something people can use."
+  },
+  {
+   "n": 3,
+   "title": "Meaning tests: more engines and an independent judge",
+   "theme": "daily",
+   "why": "\"Useful every day\" holds 56% of the roadmap's value but got 33% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
+  },
+  {
+   "n": 1,
+   "title": "Meaning check: sharpen the targeted checks",
+   "theme": "trust",
+   "why": "Best value for effort left on the roadmap (high value, small effort)."
+  }
+ ],
+ "recent": []
+}
