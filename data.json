@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-04T20:56:01+00:00",
+ "generated": "2026-10-04T21:01:04+00:00",
  "live": false,
  "product": "Vox2",
  "machines": 1,
@@ -36,10 +36,10 @@
    "name": "Look, feel & features",
    "color": "#4dd2ff",
    "theme": "daily",
-   "cost": 38.1743,
-   "tokens": 117341573,
-   "output": 190038,
-   "turns": 51
+   "cost": 38.0219,
+   "tokens": 116724068,
+   "output": 188589,
+   "turns": 50
   },
   {
    "id": "mac",
@@ -66,10 +66,10 @@
    "name": "Releases & GitHub",
    "color": "#3ddc84",
    "theme": "upkeep",
-   "cost": 33.3262,
-   "tokens": 100915143,
-   "output": 208983,
-   "turns": 58
+   "cost": 35.0352,
+   "tokens": 107815758,
+   "output": 219505,
+   "turns": 60
   },
   {
    "id": "docs",
@@ -100,16 +100,16 @@
    "roadmap": true,
    "cost": 63.5195,
    "value_share": 0.424,
-   "gap": -0.097
+   "gap": -0.098
   },
   {
    "id": "daily",
    "name": "Useful every day",
    "blurb": "Snip, voice, the window and the helpers you reach for daily.",
    "roadmap": true,
-   "cost": 46.6279,
+   "cost": 46.4755,
    "value_share": 0.495,
-   "gap": 0.112
+   "gap": 0.113
   },
   {
    "id": "reach",
@@ -125,7 +125,7 @@
    "name": "Upkeep",
    "blurb": "Bugs, releases, docs and learning. Not on the roadmap, but it keeps the lights on.",
    "roadmap": false,
-   "cost": 65.629,
+   "cost": 67.338,
    "value_share": null,
    "gap": null
   }
@@ -230,9 +230,9 @@
      "output": 494
     },
     "ship": {
-     "cost": 17.637,
-     "tokens": 46640933,
-     "output": 84011
+     "cost": 19.3459,
+     "tokens": 53541548,
+     "output": 94533
     },
     "docs": {
      "cost": 13.2587,
@@ -240,9 +240,9 @@
      "output": 114504
     },
     "look": {
-     "cost": 11.8021,
-     "tokens": 33812463,
-     "output": 57355
+     "cost": 11.6497,
+     "tokens": 33194958,
+     "output": 55906
     },
     "mac": {
      "cost": 0.6354,
@@ -258,15 +258,15 @@
   }
  ],
  "totals": {
-  "cost": 187.5211,
-  "tokens": 580507542,
-  "input": 2768,
-  "output": 1216549,
-  "cache_write": 6066848,
-  "cache_read": 573221377,
-  "turns": 234
+  "cost": 189.0776,
+  "tokens": 586790652,
+  "input": 2790,
+  "output": 1225622,
+  "cache_write": 6082254,
+  "cache_read": 579479986,
+  "turns": 235
  },
- "alignment": 0.65,
+ "alignment": 0.644,
  "roadmap": {
   "items": [
    {
