@@ -399,8 +399,8 @@ function renderQuest() {
   const hasRoadmap = data.roadmap.items.length + data.roadmap.done.length > 0;
   $('quest-sec').hidden = $('next-sec').hidden = !hasRoadmap;
   if (!hasRoadmap) return;
-  const road = data.roadmap_link ? `<a href="${esc(data.roadmap_link)}">roadmap</a>` : 'roadmap';
-  $('quest-lede').innerHTML = `How the spend lines up with the ${road}.${data.roadmap_rule ? ' ' + esc(data.roadmap_rule) : ''}`;
+  const roadLink = data.roadmap_link ? `<a href="${esc(data.roadmap_link)}">roadmap</a>` : 'roadmap';
+  $('quest-lede').innerHTML = `How the spend lines up with the ${roadLink}.${data.roadmap_rule ? ' ' + esc(data.roadmap_rule) : ''}`;
   const pct = Math.round(100 * data.alignment);
   $('align').textContent = pct + '%';
   $('align-p').textContent = `of the spend went to roadmap themes; ${100 - pct}% went to upkeep (bugs, releases, docs, learning). Some upkeep is healthy; it's when it crowds out the roadmap that it's worth a look.`;
