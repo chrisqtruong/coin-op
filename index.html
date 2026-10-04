@@ -92,6 +92,8 @@
             mask: repeating-linear-gradient(90deg, #000 0 10px, transparent 10px 12px);
     transition: width .9s steps(20);
   }
+  .still .bar > span { transition: none;
+  }
   .board .amt { text-align: right; font-variant-numeric: tabular-nums; }
   .board .amt small { display: block; color: var(--ink-3); font-size: 13px; }
 
@@ -229,6 +231,7 @@
 <script>
 const $ = (id) => document.getElementById(id);
 let data = null, measure = 'cost', drawn = {}, anim = null;
+const STILL = new URLSearchParams(location.search).has('still');   // no animation, for screenshots
 
 // ---------- formatting
 const money = (v) => v >= 1000 ? '$' + Math.round(v).toLocaleString() : '$' + v.toFixed(2);
@@ -241,11 +244,11 @@ const dayLabel = (d) => new Date(d + 'T12:00').toLocaleDateString(undefined, { m
 const shown = {};
 function roll(id, to, f) {
   const from = shown[id] ?? 0; shown[id] = to;
-  const t0 = performance.now(), dur = from === 0 ? 1200 : 700;
+  const t0 = performance.now(), dur = STILL ? 0 : from === 0 ? 1200 : 700;
   (function step(t) {
-    const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+    const k = dur ? Math.min(1, (t - t0) / dur) : 1, e = 1 - Math.pow(1 - k, 3);
     $(id).textContent = f(from + (to - from) * e);
-    if (k < 1) requestAnimationFrame(step);
+    if (k < 1 && dur) requestAnimationFrame(step);
   })(t0);
 }
 
@@ -315,7 +318,7 @@ function drawChart(fresh) {
   });
 
   cancelAnimationFrame(anim);
-  const t0 = performance.now(), reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const t0 = performance.now(), reduce = STILL || matchMedia('(prefers-reduced-motion: reduce)').matches;
   (function frame(t) {
     ctx.clearRect(0, 0, w, h);
     // baseline + day labels
@@ -446,7 +449,7 @@ function renderFeed() {
 // ---------- coins: a little burst when new spend lands
 function coinBurst(n) {
   const cv = $('coins'), ctx = cv.getContext('2d');
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (STILL || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   cv.width = innerWidth; cv.height = innerHeight;
   const src = $('cost').getBoundingClientRect();
   const coins = Array.from({ length: Math.min(40, 6 + n) }, () => ({
@@ -534,6 +537,7 @@ async function load() {
 }
 
 (async () => {
+  if (STILL) document.body.classList.add('still');
   await document.fonts.ready.catch(() => {});
   await load();
   setInterval(load, LOCAL ? 4000 : 120000);   // the website checks every 2 minutes
