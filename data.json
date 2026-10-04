@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-04T21:36:16+00:00",
+ "generated": "2026-10-04T21:41:19+00:00",
  "live": false,
  "product": "Vox2",
  "machines": 1,
@@ -76,10 +76,10 @@
    "name": "Docs & planning",
    "color": "#f2f2f2",
    "theme": "upkeep",
-   "cost": 28.8799,
-   "tokens": 112203802,
-   "output": 204536,
-   "turns": 29
+   "cost": 30.5559,
+   "tokens": 118750790,
+   "output": 216669,
+   "turns": 31
   },
   {
    "id": "learn",
@@ -125,7 +125,7 @@
    "name": "Upkeep",
    "blurb": "Bugs, releases, docs and learning. Not on the roadmap, but it keeps the lights on.",
    "roadmap": false,
-   "cost": 67.338,
+   "cost": 69.0139,
    "value_share": null,
    "gap": null
   }
@@ -235,9 +235,9 @@
      "output": 94533
     },
     "docs": {
-     "cost": 13.2587,
-     "tokens": 48302901,
-     "output": 114504
+     "cost": 14.9346,
+     "tokens": 54849889,
+     "output": 126637
     },
     "look": {
      "cost": 12.7726,
@@ -258,15 +258,15 @@
   }
  ],
  "totals": {
-  "cost": 190.2005,
-  "tokens": 591260055,
-  "input": 2804,
-  "output": 1234740,
-  "cache_write": 6088461,
-  "cache_read": 583934050,
-  "turns": 238
+  "cost": 191.8764,
+  "tokens": 597807043,
+  "input": 2826,
+  "output": 1246873,
+  "cache_write": 6104639,
+  "cache_read": 590452705,
+  "turns": 240
  },
- "alignment": 0.646,
+ "alignment": 0.64,
  "roadmap": {
   "items": [
    {
