@@ -1,0 +1,111 @@
+{
+  "product": "Vox2",
+  "match": [
+    "vox2"
+  ],
+  "exclude": [
+    "chris-site",
+    "purrmodoro"
+  ],
+  "roadmap": "https://raw.githubusercontent.com/chrisqtruong/vox2/main/README.md",
+  "roadmap_link": "https://github.com/chrisqtruong/vox2#roadmap",
+  "roadmap_rule": "Its rule: what makes Vox2 more trustworthy and useful day to day comes first.",
+  "publish_repo": "chrisqtruong/swear-jar",
+  "default_bucket": "docs",
+  "buckets": [
+    {
+      "id": "meaning",
+      "name": "Meaning & match score",
+      "color": "#ff4d8d",
+      "theme": "trust",
+      "words": "meaning|match score|match check|back.?trans|false alarm|bench|held.?out|negation|100% match|score|phase 1|untranslated",
+      "files": "meaning|checkBack"
+    },
+    {
+      "id": "capture",
+      "name": "Snip, voice & audio",
+      "color": "#ffb000",
+      "theme": "daily",
+      "words": "snip|ocr|tesseract|dictat|screen ?text|live text|text reader|apple'?s reader|read aloud|listen|voice|audio|speed|esc\\b|conversation",
+      "files": "ocr|snip|dictation|xcap|vision|tts|speech|audio"
+    },
+    {
+      "id": "look",
+      "name": "Look, feel & features",
+      "color": "#4dd2ff",
+      "theme": "daily",
+      "words": "theme|colou?r|setting|button|hover|bubble|layout|toggle|colorblind|search|star|icon|font|fade|shortcut|tone|pronoun|glossary|explain this|mini mode",
+      "files": "\\.css|theme|settings|bubble\\.html"
+    },
+    {
+      "id": "mac",
+      "name": "Mac version",
+      "color": "#9b6bff",
+      "theme": "reach",
+      "words": "\\bmac|macos|macbook|permission|accessib|screen recording|input monitoring|signature|certificate|signing|\\.dmg|notariz",
+      "files": "permissions\\.rs|entitlements|Info\\.plist|google\\.rs|mod mac",
+      "weight": 4
+    },
+    {
+      "id": "bugs",
+      "name": "Bug squashing",
+      "color": "#ff6b3d",
+      "theme": "upkeep",
+      "words": "bug|crash|broken|not working|doesn.?t (?:seem to )?work|isn.?t working|not showing|doesn.?t show|wrong|garbl|still (?:no|not|see)|quit unexpectedly|finn?icky|404|error",
+      "files": "$^",
+      "weight": 4
+    },
+    {
+      "id": "ship",
+      "name": "Releases & GitHub",
+      "color": "#3ddc84",
+      "theme": "upkeep",
+      "words": "merge|release|\\bci\\b|workflow|github|git pull|branch|0\\.4\\.\\d+|install|download|tidy|reconcil|uninstall",
+      "files": "\\.github/workflows|tauri\\.conf|Cargo\\.(?:toml|lock)|gh (?:pr|release|workflow|run)"
+    },
+    {
+      "id": "docs",
+      "name": "Docs & planning",
+      "color": "#f2f2f2",
+      "theme": "upkeep",
+      "words": "readme|document|roadmap|handoff|report|\\bgif|docs|plan\\b|ideas?\\b|innovative|changelog|expenditure|coin.?op",
+      "files": "README|CHANGELOG|CLAUDE\\.md|docs/"
+    },
+    {
+      "id": "learn",
+      "name": "Learning & questions",
+      "color": "#ffe14d",
+      "theme": "upkeep",
+      "words": "layman|analogy|confused|confusred|what is|whats|what's|how does|why|what does|common thing|explain to me|what in|is it cause",
+      "files": "$^"
+    }
+  ],
+  "themes": [
+    {
+      "id": "trust",
+      "name": "Trustworthy",
+      "blurb": "Can you rely on what Vox2 tells you? The meaning check and match score.",
+      "roadmap": true,
+      "items": "meaning"
+    },
+    {
+      "id": "daily",
+      "name": "Useful every day",
+      "blurb": "Snip, voice, the window and the helpers you reach for daily.",
+      "roadmap": true
+    },
+    {
+      "id": "reach",
+      "name": "Reach more people",
+      "blurb": "Mac, Intel, signed installers: Vox2 on more computers.",
+      "roadmap": true,
+      "items": "\\bmac|signing|notariz|intel"
+    },
+    {
+      "id": "upkeep",
+      "name": "Upkeep",
+      "blurb": "Bugs, releases, docs and learning. Not on the roadmap, but it keeps the lights on.",
+      "roadmap": false
+    }
+  ]
+}

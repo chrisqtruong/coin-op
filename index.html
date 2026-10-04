@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Swear Jar · Vox2 project expenditure</title>
-<meta name="description" content="Where Vox2's Claude tokens go, day by day and bucket by bucket, and how that lines up with the roadmap.">
+<title>Swear Jar</title>
+<meta name="description" content="Where my Claude tokens go, day by day and bucket by bucket, and how that lines up with the roadmap.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -169,7 +169,7 @@
     </svg>
     <div>
       <h1>SWEAR <span>JAR</span></h1>
-      <p class="sub">vox2 · project expenditure</p>
+      <p class="sub" id="sub">project expenditure</p>
     </div>
     <div class="badge" id="badge">loading…</div>
   </header>
@@ -200,9 +200,9 @@
     <div class="board" id="board"></div>
   </section>
 
-  <section>
+  <section id="quest-sec">
     <h2>quest log</h2>
-    <p class="lede">How the spend lines up with the <a href="https://github.com/chrisqtruong/vox2#roadmap">roadmap</a>. Its rule: what makes Vox2 more trustworthy and useful day to day comes first.</p>
+    <p class="lede" id="quest-lede"></p>
     <div class="align"><div class="big" id="align">0%</div><p id="align-p"></p></div>
     <div class="themes" id="themes"></div>
     <div class="key">
@@ -213,7 +213,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="next-sec">
     <h2>next up</h2>
     <p class="lede">Where the next coins would do the most good, by the roadmap's own value and effort tags.</p>
     <div class="next" id="next"></div>
@@ -396,14 +396,17 @@ function renderBoard() {
 
 // ---------- quest log
 function renderQuest() {
+  const hasRoadmap = data.roadmap.items.length + data.roadmap.done.length > 0;
+  $('quest-sec').hidden = $('next-sec').hidden = !hasRoadmap;
+  if (!hasRoadmap) return;
+  const roadLink = data.roadmap_link ? `<a href="${esc(data.roadmap_link)}">roadmap</a>` : 'roadmap';
+  $('quest-lede').innerHTML = `How the spend lines up with the ${roadLink}.${data.roadmap_rule ? ' ' + esc(data.roadmap_rule) : ''}`;
   const pct = Math.round(100 * data.alignment);
   $('align').textContent = pct + '%';
   $('align-p').textContent = `of the spend went to roadmap themes; ${100 - pct}% went to upkeep (bugs, releases, docs, learning). Some upkeep is healthy; it's when it crowds out the roadmap that it's worth a look.`;
   const road = data.themes.filter((t) => t.roadmap), roadCost = road.reduce((s, t) => s + t.cost, 0) || 1;
   const items = data.roadmap.items;
-  const doneByTheme = { trust: 0, daily: 0, reach: 0 };
-  data.roadmap.done.forEach((d) => { const l = d.toLowerCase(); doneByTheme[l.includes('meaning') ? 'trust' : /mac|sign|intel/.test(l) ? 'reach' : 'daily']++; });
-  const doneTitles = (id) => data.roadmap.done.filter((d) => { const l = d.toLowerCase(); return (l.includes('meaning') ? 'trust' : /mac|sign|intel/.test(l) ? 'reach' : 'daily') === id; });
+  const doneTitles = (id) => data.roadmap.done.filter((d) => d.theme === id).map((d) => d.title);
   $('themes').innerHTML = data.themes.map((t) => {
     const colors = data.buckets.filter((b) => b.theme === t.id).map((b) => b.color);
     const swatch = colors.length > 1 ? `linear-gradient(90deg, ${colors.map((c, i) => `${c} ${100 * i / colors.length}% ${100 * (i + 1) / colors.length}%`).join(',')})` : colors[0];
@@ -481,6 +484,8 @@ function badge() {
 }
 
 function render(prev) {
+  $('sub').textContent = `${data.product.toLowerCase()} · project expenditure`;
+  document.title = `Swear Jar · ${data.product}`;
   const t = data.totals;
   roll('cost', t.cost, money);
   roll('tokens', t.tokens, short);
@@ -497,20 +502,18 @@ function render(prev) {
 
   const read = t.cache_read, all = t.tokens || 1;
   $('foot').innerHTML = `
-    <p><b>How it's counted.</b> Swear Jar reads Claude Code's own transcripts on this computer and keeps the sessions that worked in the Vox2 repo. Each turn (your message plus everything Claude did for it) goes into one bucket, by the words in your message and the files Claude touched. It's a good guess, not an audit: a turn that fixes a bug <i>and</i> merges counts once, for whichever it was mostly about.</p>
+    <p><b>How it's counted.</b> Swear Jar reads Claude Code's own transcripts and keeps the sessions that worked on ${esc(data.product)}. Each turn (your message plus everything Claude did for it) goes into one bucket, by the words in your message and the files Claude touched. It's a good guess, not an audit: a turn that fixes a bug <i>and</i> merges counts once, for whichever it was mostly about.</p>
     <p><b>Credits</b> are what the same tokens would cost on the API at ${data.pricing.model} list prices ($${data.pricing.in}/M in, $${data.pricing.out}/M out, $${data.pricing.read}/M cache reads). On a Claude plan you pay a flat fee instead, so read it as "how much work", not a bill. ${Math.round(100 * read / all)}% of all tokens are Claude re-reading the conversation so far (cache reads), which are cheap; that's why tokens and credits don't move together.</p>
-    <p><b>Which computers.</b> ${data.machines || 1} so far. Each computer that runs Swear Jar with <code>--install</code> adds its own Vox2 sessions; nothing is counted twice.</p>
+    <p><b>Which computers.</b> ${data.machines || 1} so far. Each computer that runs Swear Jar with <code>--install</code> adds its own ${esc(data.product)} sessions; nothing is counted twice.</p>
     <p><b>Updates.</b> On your computer this page is live. The website version checks for new numbers every 2 minutes; computers publish every 5, and GitHub can add a few minutes of delay.</p>
-    <p>Run it: <code>python3 coinop.py</code> · keep it running from login: <code>python3 coinop.py --install</code> · <a href="https://github.com/chrisqtruong/coin-op">about Coin-Op</a></p>`;
+    <p><a href="https://github.com/chrisqtruong/swear-jar">Make your own Swear Jar</a>: download it, run <code>python3 swearjar.py setup</code>, pick your project.</p>`;
 }
 
-// On your computer the page talks to coinop.py (live, every few seconds). On the
-// website it reads this repo's data branch, which coinop.py --publish keeps current.
+// On your computer the page talks to swearjar.py (live, every few seconds). On the
+// web, data.json sits next to this page on the swear-jar branch, which
+// swearjar.py --publish keeps current.
 const LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
-const SOURCES = LOCAL ? ['data.json'] : [
-  'https://api.github.com/repos/chrisqtruong/coin-op/contents/data.json?ref=data',
-  'https://raw.githubusercontent.com/chrisqtruong/coin-op/data/data.json',
-];
+const SOURCES = ['data.json'];
 
 async function fetchData() {
   for (const url of SOURCES) {
