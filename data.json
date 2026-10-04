@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-04T22:06:30+00:00",
+ "generated": "2026-10-04T22:11:33+00:00",
  "live": false,
  "product": "Vox2",
  "machines": 1,
@@ -36,10 +36,10 @@
    "name": "Look, feel & features",
    "color": "#4dd2ff",
    "theme": "daily",
-   "cost": 42.0805,
-   "tokens": 132783358,
-   "output": 219299,
-   "turns": 55
+   "cost": 42.3853,
+   "tokens": 134175752,
+   "output": 220216,
+   "turns": 56
   },
   {
    "id": "mac",
@@ -100,16 +100,16 @@
    "roadmap": true,
    "cost": 63.5195,
    "value_share": 0.424,
-   "gap": -0.081
+   "gap": -0.079
   },
   {
    "id": "daily",
    "name": "Useful every day",
    "blurb": "Snip, voice, the window and the helpers you reach for daily.",
    "roadmap": true,
-   "cost": 50.5341,
+   "cost": 50.8389,
    "value_share": 0.495,
-   "gap": 0.093
+   "gap": 0.092
   },
   {
    "id": "reach",
@@ -118,7 +118,7 @@
    "roadmap": true,
    "cost": 11.7447,
    "value_share": 0.081,
-   "gap": -0.013
+   "gap": -0.012
   },
   {
    "id": "upkeep",
@@ -240,9 +240,9 @@
      "output": 126637
     },
     "look": {
-     "cost": 15.7083,
-     "tokens": 49254248,
-     "output": 86616
+     "cost": 16.0131,
+     "tokens": 50646642,
+     "output": 87533
     },
     "mac": {
      "cost": 0.6354,
@@ -258,13 +258,13 @@
   }
  ],
  "totals": {
-  "cost": 195.7586,
-  "tokens": 613420354,
-  "input": 2874,
-  "output": 1273398,
-  "cache_write": 6134651,
-  "cache_read": 606009431,
-  "turns": 244
+  "cost": 196.0633,
+  "tokens": 614812748,
+  "input": 2880,
+  "output": 1274315,
+  "cache_write": 6135694,
+  "cache_read": 607399859,
+  "turns": 245
  },
  "alignment": 0.643,
  "roadmap": {
