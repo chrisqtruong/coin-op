@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-04T21:56:26+00:00",
+ "generated": "2026-10-04T22:06:30+00:00",
  "live": false,
  "product": "Vox2",
  "machines": 1,
@@ -36,10 +36,10 @@
    "name": "Look, feel & features",
    "color": "#4dd2ff",
    "theme": "daily",
-   "cost": 39.558,
-   "tokens": 122521201,
-   "output": 203971,
-   "turns": 54
+   "cost": 42.0805,
+   "tokens": 132783358,
+   "output": 219299,
+   "turns": 55
   },
   {
    "id": "mac",
@@ -100,16 +100,16 @@
    "roadmap": true,
    "cost": 63.5195,
    "value_share": 0.424,
-   "gap": -0.091
+   "gap": -0.081
   },
   {
    "id": "daily",
    "name": "Useful every day",
    "blurb": "Snip, voice, the window and the helpers you reach for daily.",
    "roadmap": true,
-   "cost": 48.0116,
+   "cost": 50.5341,
    "value_share": 0.495,
-   "gap": 0.105
+   "gap": 0.093
   },
   {
    "id": "reach",
@@ -118,7 +118,7 @@
    "roadmap": true,
    "cost": 11.7447,
    "value_share": 0.081,
-   "gap": -0.014
+   "gap": -0.013
   },
   {
    "id": "upkeep",
@@ -240,9 +240,9 @@
      "output": 126637
     },
     "look": {
-     "cost": 13.1858,
-     "tokens": 38992091,
-     "output": 71288
+     "cost": 15.7083,
+     "tokens": 49254248,
+     "output": 86616
     },
     "mac": {
      "cost": 0.6354,
@@ -258,15 +258,15 @@
   }
  ],
  "totals": {
-  "cost": 193.2361,
-  "tokens": 603158197,
-  "input": 2844,
-  "output": 1258070,
-  "cache_write": 6113312,
-  "cache_read": 595783971,
-  "turns": 243
+  "cost": 195.7586,
+  "tokens": 613420354,
+  "input": 2874,
+  "output": 1273398,
+  "cache_write": 6134651,
+  "cache_read": 606009431,
+  "turns": 244
  },
- "alignment": 0.638,
+ "alignment": 0.643,
  "roadmap": {
   "items": [
    {
@@ -474,7 +474,7 @@
    "n": 5,
    "title": "Explain this",
    "theme": "daily",
-   "why": "\"Useful every day\" holds 49% of the roadmap's value but got 39% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
+   "why": "\"Useful every day\" holds 49% of the roadmap's value but got 40% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
   },
   {
    "n": 1,
