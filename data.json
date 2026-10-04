@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-04T20:35:52+00:00",
+ "generated": "2026-10-04T20:40:55+00:00",
  "live": false,
  "product": "Vox2",
  "machines": 1,
@@ -36,10 +36,10 @@
    "name": "Look, feel & features",
    "color": "#4dd2ff",
    "theme": "daily",
-   "cost": 35.1086,
-   "tokens": 104678664,
-   "output": 171497,
-   "turns": 45
+   "cost": 36.8974,
+   "tokens": 111822324,
+   "output": 183238,
+   "turns": 47
   },
   {
    "id": "mac",
@@ -86,10 +86,10 @@
    "name": "Learning & questions",
    "color": "#ffe14d",
    "theme": "upkeep",
-   "cost": 1.0291,
-   "tokens": 4401775,
-   "output": 5523,
-   "turns": 5
+   "cost": 0.8699,
+   "tokens": 3815070,
+   "output": 3961,
+   "turns": 4
   }
  ],
  "themes": [
@@ -100,16 +100,16 @@
    "roadmap": true,
    "cost": 63.5195,
    "value_share": 0.424,
-   "gap": -0.11
+   "gap": -0.102
   },
   {
    "id": "daily",
    "name": "Useful every day",
    "blurb": "Snip, voice, the window and the helpers you reach for daily.",
    "roadmap": true,
-   "cost": 43.5622,
+   "cost": 45.351,
    "value_share": 0.495,
-   "gap": 0.128
+   "gap": 0.119
   },
   {
    "id": "reach",
@@ -118,14 +118,14 @@
    "roadmap": true,
    "cost": 11.7447,
    "value_share": 0.081,
-   "gap": -0.018
+   "gap": -0.017
   },
   {
    "id": "upkeep",
    "name": "Upkeep",
    "blurb": "Bugs, releases, docs and learning. Not on the roadmap, but it keeps the lights on.",
    "roadmap": false,
-   "cost": 65.1743,
+   "cost": 65.0151,
    "value_share": null,
    "gap": null
   }
@@ -225,9 +225,9 @@
      "output": 310822
     },
     "learn": {
-     "cost": 0.2566,
-     "tokens": 1022497,
-     "output": 2056
+     "cost": 0.0974,
+     "tokens": 435792,
+     "output": 494
     },
     "ship": {
      "cost": 17.023,
@@ -240,9 +240,9 @@
      "output": 114504
     },
     "look": {
-     "cost": 8.7364,
-     "tokens": 21149554,
-     "output": 38814
+     "cost": 10.5252,
+     "tokens": 28293214,
+     "output": 50555
     },
     "mac": {
      "cost": 0.6354,
@@ -258,15 +258,15 @@
   }
  ],
  "totals": {
-  "cost": 184.0007,
-  "tokens": 566010081,
-  "input": 2716,
-  "output": 1195422,
-  "cache_write": 6040893,
-  "cache_read": 558771050,
-  "turns": 228
+  "cost": 185.6303,
+  "tokens": 572567036,
+  "input": 2740,
+  "output": 1205601,
+  "cache_write": 6055839,
+  "cache_read": 565302856,
+  "turns": 229
  },
- "alignment": 0.646,
+ "alignment": 0.65,
  "roadmap": {
   "items": [
    {
@@ -474,7 +474,7 @@
    "n": 5,
    "title": "Explain this",
    "theme": "daily",
-   "why": "\"Useful every day\" holds 49% of the roadmap's value but got 37% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
+   "why": "\"Useful every day\" holds 49% of the roadmap's value but got 38% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
   },
   {
    "n": 1,
