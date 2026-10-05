@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-05T01:04:49+00:00",
+ "generated": "2026-10-05T19:59:35+00:00",
  "live": false,
  "product": "Vox2",
  "machines": 1,
@@ -99,8 +99,8 @@
    "blurb": "Can you rely on what Vox2 tells you? The meaning check and match score.",
    "roadmap": true,
    "cost": 63.5195,
-   "value_share": 0.424,
-   "gap": -0.004
+   "value_share": 0.0,
+   "gap": -0.429
   },
   {
    "id": "daily",
@@ -108,8 +108,8 @@
    "blurb": "Snip, voice, the window and the helpers you reach for daily.",
    "roadmap": true,
    "cost": 72.9248,
-   "value_share": 0.495,
-   "gap": 0.003
+   "value_share": 0.0,
+   "gap": -0.492
   },
   {
    "id": "reach",
@@ -117,8 +117,8 @@
    "blurb": "Mac, Intel, signed installers: Vox2 on more computers.",
    "roadmap": true,
    "cost": 11.7447,
-   "value_share": 0.081,
-   "gap": 0.002
+   "value_share": 0.0,
+   "gap": -0.079
   },
   {
    "id": "upkeep",
@@ -281,220 +281,11 @@
  ],
  "alignment": 0.651,
  "roadmap": {
-  "items": [
-   {
-    "n": 1,
-    "title": "Meaning check: sharpen the targeted checks",
-    "value": "High",
-    "effort": "small",
-    "issue": 28,
-    "status": "open",
-    "theme": "trust",
-    "score": 3.0
-   },
-   {
-    "n": 2,
-    "title": "Meaning check: show what changed",
-    "value": "High",
-    "effort": "small",
-    "issue": 27,
-    "status": "started",
-    "theme": "trust",
-    "score": 3.0
-   },
-   {
-    "n": 3,
-    "title": "Meaning tests: more engines and an independent judge",
-    "value": "High",
-    "effort": "small",
-    "issue": 29,
-    "status": "open",
-    "theme": "trust",
-    "score": 3.0
-   },
-   {
-    "n": 4,
-    "title": "Meaning check: translate back with a different engine",
-    "value": "High",
-    "effort": "small",
-    "issue": 52,
-    "status": "open",
-    "theme": "trust",
-    "score": 3.0
-   },
-   {
-    "n": 5,
-    "title": "Explain this",
-    "value": "High",
-    "effort": "small",
-    "issue": 21,
-    "status": "open",
-    "theme": "daily",
-    "score": 3.0
-   },
-   {
-    "n": 6,
-    "title": "Personal glossary",
-    "value": "Medium-high",
-    "effort": "small",
-    "issue": 23,
-    "status": "open",
-    "theme": "daily",
-    "score": 2.5
-   },
-   {
-    "n": 7,
-    "title": "More translation engines: DeepL and Microsoft Translator",
-    "value": "Medium-high",
-    "effort": "small",
-    "issue": 53,
-    "status": "open",
-    "theme": "daily",
-    "score": 2.5
-   },
-   {
-    "n": 8,
-    "title": "Reply helper",
-    "value": "High",
-    "effort": "medium",
-    "issue": 22,
-    "status": "open",
-    "theme": "daily",
-    "score": 1.5
-   },
-   {
-    "n": 9,
-    "title": "Meaning check: AI double-check",
-    "value": "High",
-    "effort": "medium",
-    "issue": 7,
-    "status": "open",
-    "theme": "trust",
-    "score": 1.5
-   },
-   {
-    "n": 10,
-    "title": "Meaning check: suggested fixes, verified",
-    "value": "High",
-    "effort": "medium",
-    "issue": 55,
-    "status": "open",
-    "theme": "trust",
-    "score": 1.5
-   },
-   {
-    "n": 11,
-    "title": "Meaning check: benchmark against research systems on the WMT test sets",
-    "value": "High",
-    "effort": "medium",
-    "issue": 50,
-    "status": "open",
-    "theme": "trust",
-    "score": 1.5
-   },
-   {
-    "n": 12,
-    "title": "Hands-free conversation",
-    "value": "Medium-high",
-    "effort": "medium",
-    "issue": 11,
-    "status": "open",
-    "theme": "daily",
-    "score": 1.25
-   },
-   {
-    "n": 13,
-    "title": "Better snip",
-    "value": "Medium",
-    "effort": "medium",
-    "issue": 8,
-    "status": "open",
-    "theme": "daily",
-    "score": 1.0
-   },
-   {
-    "n": 14,
-    "title": "Live captions: calls, videos and any audio",
-    "value": "Very high",
-    "effort": "large",
-    "issue": 24,
-    "status": "open",
-    "theme": "daily",
-    "score": 1.33
-   },
-   {
-    "n": 15,
-    "title": "Documents: drag and drop, formatting kept",
-    "value": "High",
-    "effort": "medium",
-    "issue": 53,
-    "status": "open",
-    "theme": "daily",
-    "score": 1.5
-   },
-   {
-    "n": 16,
-    "title": "Mini mode",
-    "value": "Medium",
-    "effort": "medium",
-    "issue": 6,
-    "status": "open",
-    "theme": "daily",
-    "score": 1.0
-   },
-   {
-    "n": 17,
-    "title": "Mac: Intel support and Apple notarization",
-    "value": "Medium",
-    "effort": "small + cost",
-    "issue": 5,
-    "status": "open",
-    "theme": "reach",
-    "score": 1.33
-   },
-   {
-    "n": 18,
-    "title": "Windows code signing",
-    "value": "Medium",
-    "effort": "small + cost",
-    "issue": 9,
-    "status": "open",
-    "theme": "reach",
-    "score": 1.33
-   }
-  ],
-  "done": [
-   {
-    "title": "macOS version",
-    "theme": "reach"
-   },
-   {
-    "title": "Meaning check says \"can't check\"",
-    "theme": "trust"
-   }
-  ]
+  "items": [],
+  "done": []
  },
  "roadmap_link": "https://github.com/chrisqtruong/vox2#roadmap",
  "roadmap_rule": "Its rule: what makes Vox2 more trustworthy and useful day to day comes first.",
- "next": [
-  {
-   "n": 2,
-   "title": "Meaning check: show what changed",
-   "theme": "trust",
-   "why": "Already started and #2 on the roadmap. Finishing it turns tokens already spent into something people can use."
-  },
-  {
-   "n": 5,
-   "title": "Explain this",
-   "theme": "daily",
-   "why": "\"Useful every day\" holds 49% of the roadmap's value but got 49% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
-  },
-  {
-   "n": 1,
-   "title": "Meaning check: sharpen the targeted checks",
-   "theme": "trust",
-   "why": "Best value for effort left on the roadmap (high value, small effort)."
-  }
- ],
+ "next": [],
  "recent": []
 }
