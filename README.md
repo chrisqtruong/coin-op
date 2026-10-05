@@ -5,7 +5,7 @@ Day by day, by focus area, and against your product's own roadmap. Track anythin
 
 <p align="center"><a href="#make-your-own"><b>Make your own</b></a> · <a href="https://github.com/chrisqtruong/swear-jar/releases/latest/download/swear-jar.zip">Download</a></p>
 
-<p align="center"><img src="screenshots/top.png" width="820" alt="Swear Jar: spend per day and turns, with a pixel-block chart of spend per day colored by focus area"></p>
+<p align="center"><img src="screenshots/top.png" width="820" alt="Swear Jar for a sample project, Recipe Box (made-up numbers): $130 spent across 9 days and 132 turns, with a pixel-block chart of spend per day colored by focus area"></p>
 
 ## Why
 
@@ -15,7 +15,9 @@ It's a small personal project. The sorting is a good guess, not an audit. But it
 
 ## What it shows
 
-<p align="center"><img src="screenshots/full.png" width="560" alt="The full dashboard: spend by day, high scores per bucket, quest log comparing spend with roadmap themes, and next-up recommendations"></p>
+<sub>Screenshots use a made-up sample project, Recipe Box.</sub>
+
+<p align="center"><img src="screenshots/full.png" width="560" alt="The full dashboard for the sample project: spend by day, high scores per bucket, a donut of models, the quest log comparing spend with the roadmap, and next-up picks"></p>
 
 - **Score row.** Estimated cost, tokens, days and turns.
 - **Spend by day.** Each day is a column of pixel blocks (1 block = $1), colored by bucket. Hover a day for the breakdown; switch between dollars and tokens.
