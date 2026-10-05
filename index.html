@@ -97,6 +97,21 @@
   .board .amt { text-align: right; font-variant-numeric: tabular-nums; }
   .board .amt small { display: block; color: var(--ink-3); font-size: 13px; }
 
+  /* models */
+  .models { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; }
+  .donut { position: relative; width: 200px; height: 200px; }
+  .donut canvas { width: 200px; height: 200px; }
+  .donut .mid { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; pointer-events: none; }
+  .donut .mid b { font: 700 24px/1.1 var(--mono); }
+  .donut .mid span { color: var(--ink-3); font-size: 13px; max-width: 110px; line-height: 1.3; margin-top: 4px; }
+  .mlist { display: grid; gap: 10px; min-width: 0; }
+  .mlist .item { display: grid; grid-template-columns: 12px 1fr auto; gap: 10px 12px; align-items: center; }
+  .mlist i { width: 12px; height: 12px; }
+  .mlist .nm { min-width: 0; }
+  .mlist .nm small { display: block; color: var(--ink-3); font-size: 13px; }
+  .mlist .amt { text-align: right; font-variant-numeric: tabular-nums; }
+  .mlist .amt small { display: block; color: var(--ink-3); font-size: 13px; }
+
   /* quest log */
   .align { display: flex; align-items: center; gap: 14px; margin: 4px 0 20px; flex-wrap: wrap; }
   .align .big { font: 700 32px/1 var(--mono); color: var(--accent); }
@@ -144,6 +159,8 @@
   #coins { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
 
   @media (max-width: 720px) {
+    .models { grid-template-columns: 1fr; justify-items: center; }
+    .mlist { width: 100%; }
     .hud { grid-template-columns: repeat(2, 1fr); }
     .stat .v { font-size: 15px; }
     .board .item { grid-template-columns: 18px 1fr 80px; }
@@ -198,6 +215,15 @@
     <h2>high scores</h2>
     <p class="lede">Where it all went, biggest first.</p>
     <div class="board" id="board"></div>
+  </section>
+
+  <section>
+    <h2>models</h2>
+    <p class="lede">Which models did the work.</p>
+    <div class="models">
+      <div class="donut"><canvas id="donut" width="400" height="400"></canvas><div class="mid" id="donut-mid"></div></div>
+      <div class="mlist" id="mlist"></div>
+    </div>
   </section>
 
   <section id="quest-sec">
@@ -377,7 +403,7 @@ $('chart').addEventListener('mouseleave', () => ($('tip').style.display = 'none'
 document.querySelectorAll('.toggle button').forEach((btn) => btn.addEventListener('click', () => {
   measure = btn.dataset.m;
   document.querySelectorAll('.toggle button').forEach((b) => b.setAttribute('aria-pressed', b === btn));
-  drawChart(true); renderBoard();
+  drawChart(true); renderBoard(); renderModels();
 }));
 
 // ---------- leaderboard
@@ -392,6 +418,60 @@ function renderBoard() {
       <span class="amt">${fmt(b[measure])}<small>${Math.round(100 * b[measure] / total)}% · ${b.turns} turns</small></span>
     </div>`).join('');
   requestAnimationFrame(() => document.querySelectorAll('#board .bar > span').forEach((s) => (s.style.width = s.dataset.w + '%')));
+}
+
+// ---------- models: a pixel donut, one color per model family
+const FAMILY = { opus: '#ff9f43', sonnet: '#4dd2ff', haiku: '#3ddc84', fable: '#9b6bff', mythos: '#ff4d8d',
+  gpt: '#f2f2f2', gemini: '#ffe14d', llama: '#5b8cff', mistral: '#ff6b3d', deepseek: '#2ec4b6', grok: '#b9b2d3', qwen: '#c77dff', other: '#7d7699' };
+// Two models of one family (Opus 5 and Opus 5.5) get lighter and darker steps of its color.
+function modelColors(models) {
+  const seen = {};
+  return models.map((m) => {
+    const n = (seen[m.family] = (seen[m.family] || 0) + 1) - 1, base = FAMILY[m.family] || FAMILY.other;
+    return n === 0 ? base : mix(base, n % 2 ? '#16131f' : '#ffffff', Math.min(0.6, 0.25 * n));
+  });
+}
+function mix(a, b, k) {   // blend two #rrggbb colors; canvas can't take CSS color-mix() everywhere
+  const p = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const [x, y] = [p(a), p(b)];
+  return '#' + x.map((v, i) => Math.round(v + (y[i] - v) * k).toString(16).padStart(2, '0')).join('');
+}
+let donutAnim = null;
+function renderModels() {
+  const list = (data.models || []).filter((m) => m[measure] > 0);
+  const total = list.reduce((s, m) => s + m[measure], 0) || 1;
+  const colors = modelColors(list);
+  const top = list[0];
+  $('donut-mid').innerHTML = top ? `<b>${Math.round(100 * top[measure] / total)}%</b><span>${esc(top.name)}</span>` : '<span>no data yet</span>';
+  $('mlist').innerHTML = list.map((m, i) => `
+    <div class="item">
+      <i style="background:${colors[i]}"></i>
+      <span class="nm">${esc(m.name)}<small>${esc(m.maker)} · ${m.replies.toLocaleString()} replies${m.priced ? '' : ' · cost is a rough guess'}</small></span>
+      <span class="amt">${fmt(m[measure])}<small>${Math.round(100 * m[measure] / total)}%</small></span>
+    </div>`).join('') || '<p class="lede">No replies counted yet.</p>';
+
+  // ring of pixels; each pixel takes the color of the model whose slice its angle falls in
+  const cv = $('donut'), ctx = cv.getContext('2d'), S = cv.width, P = 16, R = S / 2, inner = R * 0.62;
+  const cells = [];
+  for (let y = 0; y < S; y += P) for (let x = 0; x < S; x += P) {
+    const dx = x + P / 2 - R, dy = y + P / 2 - R, d = Math.hypot(dx, dy);
+    if (d > R - 2 || d < inner) continue;
+    cells.push({ x, y, a: (Math.atan2(dx, -dy) + 2 * Math.PI) % (2 * Math.PI) / (2 * Math.PI) });
+  }
+  const edges = []; let acc = 0;
+  list.forEach((m) => { acc += m[measure] / total; edges.push(acc); });
+  const colorAt = (a) => colors[Math.min(edges.findIndex((e) => a <= e + 1e-9), colors.length - 1)] || '#342e48';
+  cancelAnimationFrame(donutAnim);
+  const t0 = performance.now(), reduce = STILL || matchMedia('(prefers-reduced-motion: reduce)').matches;
+  (function frame(t) {
+    const sweep = reduce ? 1 : Math.min(1, (t - t0) / 700);
+    ctx.clearRect(0, 0, S, S);
+    for (const c of cells) {
+      ctx.fillStyle = c.a <= sweep && list.length ? colorAt(c.a) : '#342e48';
+      ctx.fillRect(c.x + 1, c.y + 1, P - 3, P - 3);
+    }
+    if (sweep < 1) donutAnim = requestAnimationFrame(frame);
+  })(t0);
 }
 
 // ---------- quest log
@@ -497,7 +577,7 @@ function render(prev) {
   $('turns-n').textContent = `${data.sessions} session${data.sessions === 1 ? '' : 's'}`;
   badge();
   drawChart(!prev);
-  renderBoard(); renderQuest(); renderFeed();
+  renderBoard(); renderModels(); renderQuest(); renderFeed();
   if (prev && t.cost > prev.totals.cost + 0.005) coinBurst(Math.round((t.cost - prev.totals.cost) * 10));
 
   const read = t.cache_read, all = t.tokens || 1;

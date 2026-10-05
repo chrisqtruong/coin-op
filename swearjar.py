@@ -472,6 +472,40 @@ def plan_next(roadmap, theme_cost):
 
 # ---------------------------------------------------------------- report
 
+def model_family(m):
+    """opus, sonnet, gpt, gemini... used for the model's color on the page."""
+    m = m.lower()
+    for fam in ("opus", "sonnet", "haiku", "fable", "mythos"):
+        if fam in m:
+            return fam
+    for fam, pat in (("gpt", r"^(?:gpt|o\d|codex|chatgpt)"), ("gemini", r"^gemini"), ("llama", r"llama"),
+                     ("mistral", r"mistral|codestral"), ("deepseek", r"deepseek"), ("grok", r"grok"), ("qwen", r"qwen")):
+        if re.search(pat, m):
+            return fam
+    return "other"
+
+
+def model_maker(m):
+    return {"opus": "Anthropic", "sonnet": "Anthropic", "haiku": "Anthropic", "fable": "Anthropic", "mythos": "Anthropic",
+            "gpt": "OpenAI", "gemini": "Google", "llama": "Meta", "mistral": "Mistral", "deepseek": "DeepSeek",
+            "grok": "xAI", "qwen": "Alibaba"}.get(model_family(m), "Other")
+
+
+def model_name(m):
+    """claude-opus-5-5 -> Claude Opus 5.5, claude-3-5-sonnet-20241022 -> Claude Sonnet 3.5, gpt-5-codex -> GPT-5 Codex."""
+    base = re.sub(r"-\d{8}$|@\d{8}$", "", m)
+    c = re.match(r"^claude-(opus|sonnet|haiku|fable|mythos)-(\d+)(?:-(\d+))?$", base)
+    if c:
+        return f"Claude {c.group(1).title()} {c.group(2)}" + (f".{c.group(3)}" if c.group(3) else "")
+    c = re.match(r"^claude-(\d+)(?:-(\d+))?-(opus|sonnet|haiku)$", base)
+    if c:
+        return f"Claude {c.group(3).title()} {c.group(1)}" + (f".{c.group(2)}" if c.group(2) else "")
+    if base.lower().startswith("gpt-"):
+        head, *rest = base[4:].split("-")
+        return "GPT-" + head + "".join(" " + w.title() for w in rest)
+    return " ".join(w if any(ch.isdigit() for ch in w) else w.title() for w in base.replace("_", "-").split("-"))
+
+
 def local_day(ts):
     return datetime.fromisoformat(ts.replace("Z", "+00:00")).astimezone().strftime("%Y-%m-%d")
 
@@ -486,6 +520,7 @@ def collect(roots, live):
             continue
         days = defaultdict(lambda: defaultdict(lambda: {"cost": 0.0, "tokens": 0, "output": 0}))
         buckets = defaultdict(lambda: {"cost": 0.0, "tokens": 0, "turns": 0})
+        models = defaultdict(lambda: {"cost": 0.0, "tokens": 0, "output": 0, "replies": 0})
         totals = {"cost": 0.0, "tokens": 0, "input": 0, "output": 0, "cache_write": 0, "cache_read": 0, "turns": 0}
         prev = default
         for t in turns:
@@ -504,6 +539,11 @@ def collect(roots, live):
                 cell["cost"] += dollars
                 cell["tokens"] += tok
                 cell["output"] += parts["output"]
+                mod = models[r["model"]]
+                mod["cost"] += dollars
+                mod["tokens"] += tok
+                mod["output"] += parts["output"]
+                mod["replies"] += 1
                 for k, v in parts.items():
                     totals[k] += v
                 totals["cost"] += dollars
@@ -519,7 +559,7 @@ def collect(roots, live):
             b["turns"] += 1
             if live and not t["cont"]:
                 recent.append({"ts": t["ts"], "bucket": bucket, "prompt": t["prompt"][:120], "cost": round(tcost, 2), "tokens": ttok})
-        out[sid] = {"days": days, "buckets": buckets, "totals": totals}
+        out[sid] = {"days": days, "buckets": buckets, "models": models, "totals": totals}
     return out, recent
 
 
@@ -536,7 +576,11 @@ def combine(sessions, live, recent=(), machines=1):
     days = defaultdict(lambda: defaultdict(lambda: {"cost": 0.0, "tokens": 0, "output": 0}))
     by_bucket = defaultdict(lambda: {"cost": 0.0, "tokens": 0, "output": 0, "turns": 0})
     totals = defaultdict(float, {k: 0.0 for k in ("cost", "tokens", "input", "output", "cache_write", "cache_read", "turns")})
+    models = defaultdict(lambda: {"cost": 0.0, "tokens": 0, "output": 0, "replies": 0})
     for s in sessions.values():
+        for m, v in s.get("models", {}).items():   # computers on older versions don't send this
+            for k in models[m]:
+                models[m][k] += v.get(k, 0)
         for d, cells in s["days"].items():
             for bid, c in cells.items():
                 for k in ("cost", "tokens", "output"):
@@ -577,6 +621,9 @@ def combine(sessions, live, recent=(), machines=1):
         "themes": [{k: t.get(k) for k in ("id", "name", "blurb", "roadmap")} | {"cost": round(theme_cost[t["id"]], 4), "value_share": value_share.get(t["id"]), "gap": gaps.get(t["id"])} for t in CFG["themes"]],
         "days": [{"date": d, "by": rounded({b: dict(c) for b, c in days[d].items()})} for d in sorted(days)],
         "totals": rounded(dict(totals)),
+        "models": [{"id": m, "name": model_name(m), "maker": model_maker(m), "family": model_family(m), "priced": m in PRICES}
+                   | rounded(dict(v)) | {"tokens": int(v["tokens"]), "output": int(v["output"]), "replies": int(v["replies"])}
+                   for m, v in sorted(models.items(), key=lambda kv: -kv[1]["cost"])],
         "alignment": round(on_road / (sum(theme_cost.values()) or 1), 3),
         "roadmap": roadmap,
         "roadmap_link": link,

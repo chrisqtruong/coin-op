@@ -20,6 +20,7 @@ It's a small personal project. The sorting is a good guess, not an audit. But it
 - **Score row.** Estimated cost, tokens, days and turns.
 - **Spend by day.** Each day is a column of pixel blocks (1 block = $1), colored by bucket. Hover a day for the breakdown; switch between dollars and tokens.
 - **High scores.** The buckets, biggest first. Mine are Vox2's (meaning & match score, look & features, Mac version...); yours start as general ones (features & UI, bugs, tests, releases, docs, setup, learning) that you can rename and tune.
+- **Models.** A pixel donut of which models did the work, by cost or tokens, grouped by maker. Each family keeps its color (Opus orange, Sonnet blue, GPT white, Gemini yellow...), so a change in the mix stands out.
 - **Quest log** (if you point it at a roadmap). Buckets roll up into themes, and each theme's share of spend sits next to its share of the roadmap's value, with its items as done / started / not started.
 - **Next up** (with a roadmap). What to aim at next: finish what's started, then the best value-for-effort item in the theme that's furthest behind, then the best quick win.
 - **Recent turns** (on your own computer only). Your last few requests and what each cost.
@@ -95,6 +96,7 @@ Everything is read on your own computer. What gets published is only totals per 
 - The buckets are keyword rules: good enough to see the shape, not exact. A turn that fixes a bug *and* merges counts once, for whichever it was mostly about.
 - It only knows what Claude Code saved on the computers that run it.
 - One project per setup.
+- It reads Claude Code's history. The model chart already names and groups other makers' models (GPT, Gemini, Llama...), but reading other tools' history (Codex CLI, Gemini CLI, Cursor) isn't built yet. Models without a known price are priced like Claude Opus 5.5 and marked as a rough guess.
 - Start-at-login is built in for macOS and Windows; on Linux, run it from your own startup.
 
 ## License
