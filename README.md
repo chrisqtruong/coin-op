@@ -1,9 +1,9 @@
 <h1 align="center">🫙 Swear Jar</h1>
 
 <p align="center">A tiny pixel dashboard of where your Claude tokens go.<br>
-Day by day, by focus area, and against your product's own roadmap. Mine tracks <a href="https://github.com/chrisqtruong/vox2">Vox2</a>; yours can track anything you build with Claude Code.</p>
+Day by day, by focus area, and against your product's own roadmap. Track anything you build with Claude Code.</p>
 
-<p align="center"><a href="https://chrisqtruong.github.io/swear-jar/"><b>See mine</b></a> · <a href="#make-your-own"><b>Make your own</b></a> · <a href="https://github.com/chrisqtruong/swear-jar/releases/latest/download/swear-jar.zip">Download</a></p>
+<p align="center"><a href="#make-your-own"><b>Make your own</b></a> · <a href="https://github.com/chrisqtruong/swear-jar/releases/latest/download/swear-jar.zip">Download</a></p>
 
 <p align="center"><img src="screenshots/top.png" width="820" alt="Swear Jar: spend per day and turns, with a pixel-block chart of spend per day colored by focus area"></p>
 
