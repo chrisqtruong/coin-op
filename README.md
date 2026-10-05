@@ -5,7 +5,7 @@ Day by day, by focus area, and against your product's own roadmap. Mine tracks <
 
 <p align="center"><a href="https://chrisqtruong.github.io/swear-jar/"><b>See mine</b></a> · <a href="#make-your-own"><b>Make your own</b></a> · <a href="https://github.com/chrisqtruong/swear-jar/releases/latest/download/swear-jar.zip">Download</a></p>
 
-<p align="center"><img src="screenshots/top.png" width="820" alt="Swear Jar: $165 spent across 3 days and 217 turns, with a pixel-block chart of spend per day colored by focus area"></p>
+<p align="center"><img src="screenshots/top.png" width="820" alt="Swear Jar: spend per day and turns, with a pixel-block chart of spend per day colored by focus area"></p>
 
 ## Why
 
