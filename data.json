@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-05T00:02:18+00:00",
+ "generated": "2026-10-05T00:07:20+00:00",
  "live": false,
  "product": "Vox2",
  "machines": 1,
@@ -66,9 +66,9 @@
    "name": "Releases & GitHub",
    "color": "#3ddc84",
    "theme": "upkeep",
-   "cost": 39.9128,
-   "tokens": 128827305,
-   "output": 242148,
+   "cost": 39.2776,
+   "tokens": 126643996,
+   "output": 236033,
    "turns": 66
   },
   {
@@ -76,10 +76,10 @@
    "name": "Docs & planning",
    "color": "#f2f2f2",
    "theme": "upkeep",
-   "cost": 30.5559,
-   "tokens": 118750790,
-   "output": 216669,
-   "turns": 31
+   "cost": 33.0089,
+   "tokens": 129210159,
+   "output": 228180,
+   "turns": 33
   },
   {
    "id": "learn",
@@ -125,7 +125,7 @@
    "name": "Upkeep",
    "blurb": "Bugs, releases, docs and learning. Not on the roadmap, but it keeps the lights on.",
    "roadmap": false,
-   "cost": 73.8915,
+   "cost": 75.7093,
    "value_share": null,
    "gap": null
   }
@@ -230,14 +230,14 @@
      "output": 494
     },
     "ship": {
-     "cost": 24.2235,
-     "tokens": 74553095,
-     "output": 117176
+     "cost": 23.5883,
+     "tokens": 72369786,
+     "output": 111061
     },
     "docs": {
-     "cost": 14.9346,
-     "tokens": 54849889,
-     "output": 126637
+     "cost": 17.3877,
+     "tokens": 65309258,
+     "output": 138148
     },
     "look": {
      "cost": 37.3182,
@@ -258,15 +258,15 @@
   }
  ],
  "totals": {
-  "cost": 221.2996,
-  "tokens": 673572108,
-  "input": 3036,
-  "output": 1335857,
-  "cache_write": 7708169,
-  "cache_read": 664525046,
-  "turns": 258
+  "cost": 223.1175,
+  "tokens": 681848168,
+  "input": 3060,
+  "output": 1341253,
+  "cache_write": 7715311,
+  "cache_read": 672788544,
+  "turns": 260
  },
- "alignment": 0.666,
+ "alignment": 0.661,
  "roadmap": {
   "items": [
    {
