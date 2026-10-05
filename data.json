@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-05T00:12:23+00:00",
+ "generated": "2026-10-05T00:33:33+00:00",
  "live": false,
  "product": "Vox2",
  "machines": 1,
@@ -266,6 +266,19 @@
   "cache_read": 681923014,
   "turns": 261
  },
+ "models": [
+  {
+   "id": "claude-opus-5-5",
+   "name": "Claude Opus 5.5",
+   "maker": "Anthropic",
+   "family": "opus",
+   "priced": true,
+   "cost": 225.2268,
+   "tokens": 691004441,
+   "output": 1350257,
+   "replies": 1464
+  }
+ ],
  "alignment": 0.654,
  "roadmap": {
   "items": [
