@@ -428,8 +428,13 @@ function modelColors(models) {
   const seen = {};
   return models.map((m) => {
     const n = (seen[m.family] = (seen[m.family] || 0) + 1) - 1, base = FAMILY[m.family] || FAMILY.other;
-    return n === 0 ? base : `color-mix(in srgb, ${base} ${100 - 25 * n}%, ${n % 2 ? '#16131f' : '#ffffff'})`;
+    return n === 0 ? base : mix(base, n % 2 ? '#16131f' : '#ffffff', Math.min(0.6, 0.25 * n));
   });
+}
+function mix(a, b, k) {   // blend two #rrggbb colors; canvas can't take CSS color-mix() everywhere
+  const p = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const [x, y] = [p(a), p(b)];
+  return '#' + x.map((v, i) => Math.round(v + (y[i] - v) * k).toString(16).padStart(2, '0')).join('');
 }
 let donutAnim = null;
 function renderModels() {
@@ -441,7 +446,7 @@ function renderModels() {
   $('mlist').innerHTML = list.map((m, i) => `
     <div class="item">
       <i style="background:${colors[i]}"></i>
-      <span class="nm">${esc(m.name)}<small>${esc(m.maker)} · ${m.replies.toLocaleString()} replies${m.priced ? '' : ' · priced as ' + esc(data.pricing.model)}</small></span>
+      <span class="nm">${esc(m.name)}<small>${esc(m.maker)} · ${m.replies.toLocaleString()} replies${m.priced ? '' : ' · cost is a rough guess'}</small></span>
       <span class="amt">${fmt(m[measure])}<small>${Math.round(100 * m[measure] / total)}%</small></span>
     </div>`).join('') || '<p class="lede">No replies counted yet.</p>';
 
