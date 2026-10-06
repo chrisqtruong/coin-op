@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-06T16:43:24+00:00",
+ "generated": "2026-10-06T16:48:27+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -40,10 +40,10 @@
     "name": "Personal site",
     "color": "#ff4d8d",
     "theme": "",
-    "cost": 201.4887,
-    "tokens": 622148514,
-    "output": 1204713,
-    "turns": 171
+    "cost": 202.5034,
+    "tokens": 626523024,
+    "output": 1208586,
+    "turns": 173
    },
    {
     "id": "swear-jar",
@@ -292,9 +292,9 @@
       "output": 166804
      },
      "personal-site": {
-      "cost": 65.5965,
-      "tokens": 208445579,
-      "output": 484908
+      "cost": 66.6111,
+      "tokens": 212820089,
+      "output": 488781
      },
      "weather-in-dots": {
       "cost": 4.5102,
@@ -305,13 +305,13 @@
    }
   ],
   "totals": {
-   "cost": 675.0963,
-   "tokens": 1932792189,
-   "input": 9512,
-   "output": 4423304,
-   "cache_write": 26754527,
-   "cache_read": 1901604846,
-   "turns": 701
+   "cost": 676.1109,
+   "tokens": 1937166699,
+   "input": 9526,
+   "output": 4427177,
+   "cache_write": 26762601,
+   "cache_read": 1905967395,
+   "turns": 703
   },
   "models": [
    {
@@ -320,10 +320,10 @@
     "maker": "Anthropic",
     "family": "opus",
     "priced": true,
-    "cost": 644.5279,
-    "tokens": 1869515446,
-    "output": 3871223,
-    "replies": 4216
+    "cost": 645.5426,
+    "tokens": 1873889956,
+    "output": 3875096,
+    "replies": 4223
    },
    {
     "id": "claude-sonnet-5",
@@ -1196,20 +1196,20 @@
      "name": "Releases & Git",
      "color": "#3ddc84",
      "theme": "upkeep",
-     "cost": 21.7863,
-     "tokens": 47474907,
-     "output": 55582,
-     "turns": 13
+     "cost": 21.6325,
+     "tokens": 46856017,
+     "output": 54091,
+     "turns": 12
     },
     {
      "id": "docs",
      "name": "Docs & planning",
      "color": "#f2f2f2",
      "theme": "upkeep",
-     "cost": 16.7455,
-     "tokens": 51778966,
-     "output": 74805,
-     "turns": 17
+     "cost": 17.3718,
+     "tokens": 54267247,
+     "output": 78519,
+     "turns": 18
     },
     {
      "id": "setup",
@@ -1226,10 +1226,10 @@
      "name": "Learning & questions",
      "color": "#ffe14d",
      "theme": "upkeep",
-     "cost": 0.3315,
-     "tokens": 1450219,
-     "output": 2056,
-     "turns": 2
+     "cost": 0.8737,
+     "tokens": 3955338,
+     "output": 3706,
+     "turns": 4
     }
    ],
    "themes": [
@@ -1247,7 +1247,7 @@
      "name": "Upkeep",
      "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
      "roadmap": false,
-     "cost": 45.0216,
+     "cost": 46.0362,
      "value_share": null,
      "gap": null
     }
@@ -1332,9 +1332,9 @@
        "output": 422926
       },
       "ship": {
-       "cost": 1.3405,
-       "tokens": 4465139,
-       "output": 9290
+       "cost": 1.1867,
+       "tokens": 3846249,
+       "output": 7799
       },
       "bugs": {
        "cost": 2.5713,
@@ -1342,26 +1342,26 @@
        "output": 21049
       },
       "docs": {
-       "cost": 5.5602,
-       "tokens": 20600295,
-       "output": 29943
+       "cost": 6.1865,
+       "tokens": 23088576,
+       "output": 33657
       },
       "learn": {
-       "cost": 0.1515,
-       "tokens": 587085,
-       "output": 1700
+       "cost": 0.6936,
+       "tokens": 3092204,
+       "output": 3350
       }
      }
     }
    ],
    "totals": {
-    "cost": 201.4887,
-    "tokens": 622148514,
-    "input": 2816,
-    "output": 1204713,
-    "cache_write": 6829906,
-    "cache_read": 614111079,
-    "turns": 171
+    "cost": 202.5034,
+    "tokens": 626523024,
+    "input": 2830,
+    "output": 1208586,
+    "cache_write": 6837980,
+    "cache_read": 618473628,
+    "turns": 173
    },
    "models": [
     {
@@ -1370,13 +1370,13 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 201.4887,
-     "tokens": 622148514,
-     "output": 1204713,
-     "replies": 1401
+     "cost": 202.5034,
+     "tokens": 626523024,
+     "output": 1208586,
+     "replies": 1408
     }
    ],
-   "alignment": 0.777,
+   "alignment": 0.773,
    "roadmap": {
     "items": [],
     "done": []
