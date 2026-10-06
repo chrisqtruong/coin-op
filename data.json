@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-06T14:16:27+00:00",
+ "generated": "2026-10-06T14:21:31+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -20,10 +20,10 @@
     "name": "Vox2",
     "color": "#4dd2ff",
     "theme": "",
-    "cost": 268.5162,
-    "tokens": 847299311,
-    "output": 1628787,
-    "turns": 314
+    "cost": 277.231,
+    "tokens": 853777850,
+    "output": 1636126,
+    "turns": 316
    },
    {
     "id": "purrmodoro",
@@ -40,9 +40,9 @@
     "name": "Personal site",
     "color": "#ff4d8d",
     "theme": "",
-    "cost": 174.5532,
-    "tokens": 537534099,
-    "output": 926427,
+    "cost": 174.7062,
+    "tokens": 538149996,
+    "output": 927349,
     "turns": 154
    },
    {
@@ -287,14 +287,14 @@
     "date": "2026-10-06",
     "by": {
      "vox2": {
-      "cost": 0.3088,
-      "tokens": 1171067,
-      "output": 2385
+      "cost": 9.0237,
+      "tokens": 7649606,
+      "output": 9724
      },
      "personal-site": {
-      "cost": 38.6609,
-      "tokens": 123831164,
-      "output": 206622
+      "cost": 38.8139,
+      "tokens": 124447061,
+      "output": 207544
      },
      "weather-in-dots": {
       "cost": 4.5102,
@@ -305,13 +305,13 @@
    }
   ],
   "totals": {
-   "cost": 617.1217,
-   "tokens": 1780187455,
-   "input": 8654,
-   "output": 3980599,
-   "cache_write": 24359037,
-   "cache_read": 1751839165,
-   "turns": 669
+   "cost": 625.9896,
+   "tokens": 1787281891,
+   "input": 8672,
+   "output": 3988860,
+   "cache_write": 25293059,
+   "cache_read": 1757991300,
+   "turns": 671
   },
   "models": [
    {
@@ -320,10 +320,10 @@
     "maker": "Anthropic",
     "family": "opus",
     "priced": true,
-    "cost": 586.5534,
-    "tokens": 1716910712,
-    "output": 3428518,
-    "replies": 3791
+    "cost": 595.4212,
+    "tokens": 1724005148,
+    "output": 3436779,
+    "replies": 3800
    },
    {
     "id": "claude-sonnet-5",
@@ -392,10 +392,10 @@
      "name": "Snip, voice & audio",
      "color": "#ffb000",
      "theme": "daily",
-     "cost": 9.1997,
-     "tokens": 34053826,
-     "output": 73156,
-     "turns": 19
+     "cost": 17.9145,
+     "tokens": 40532365,
+     "output": 80495,
+     "turns": 21
     },
     {
      "id": "look",
@@ -466,16 +466,16 @@
      "roadmap": true,
      "cost": 66.8409,
      "value_share": 0.424,
-     "gap": 0.016
+     "gap": 0.037
     },
     {
      "id": "daily",
      "name": "Useful every day",
      "blurb": "Snip, voice, the window and the helpers you reach for daily.",
      "roadmap": true,
-     "cost": 81.9445,
+     "cost": 90.6594,
      "value_share": 0.495,
-     "gap": -0.005
+     "gap": -0.03
     },
     {
      "id": "reach",
@@ -484,7 +484,7 @@
      "roadmap": true,
      "cost": 15.1125,
      "value_share": 0.081,
-     "gap": -0.011
+     "gap": -0.007
     },
     {
      "id": "upkeep",
@@ -644,18 +644,23 @@
        "cost": 0.3088,
        "tokens": 1171067,
        "output": 2385
+      },
+      "capture": {
+       "cost": 8.7148,
+       "tokens": 6478539,
+       "output": 7339
       }
      }
     }
    ],
    "totals": {
-    "cost": 268.5162,
-    "tokens": 847299311,
-    "input": 3894,
-    "output": 1628787,
-    "cache_write": 8690051,
-    "cache_read": 836976579,
-    "turns": 314
+    "cost": 277.231,
+    "tokens": 853777850,
+    "input": 3908,
+    "output": 1636126,
+    "cache_write": 9622584,
+    "cache_read": 842515232,
+    "turns": 316
    },
    "models": [
     {
@@ -664,10 +669,10 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 267.8132,
-     "tokens": 845223660,
-     "output": 1628345,
-     "replies": 1843
+     "cost": 276.528,
+     "tokens": 851702199,
+     "output": 1635684,
+     "replies": 1850
     },
     {
      "id": "claude-sonnet-5-5",
@@ -681,7 +686,7 @@
      "replies": 22
     }
    ],
-   "alignment": 0.61,
+   "alignment": 0.623,
    "roadmap": {
     "items": [
      {
@@ -889,7 +894,7 @@
      "n": 1,
      "title": "Meaning check: sharpen the targeted checks",
      "theme": "trust",
-     "why": "\"Trustworthy\" holds 42% of the roadmap's value but got 41% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
+     "why": "\"Trustworthy\" holds 42% of the roadmap's value but got 39% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
     },
     {
      "n": 3,
@@ -1157,9 +1162,9 @@
      "name": "Bug squashing",
      "color": "#ff6b3d",
      "theme": "upkeep",
-     "cost": 1.7895,
-     "tokens": 6874998,
-     "output": 12571,
+     "cost": 1.9426,
+     "tokens": 7490895,
+     "output": 13493,
      "turns": 4
     },
     {
@@ -1228,7 +1233,7 @@
      "name": "Upkeep",
      "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
      "roadmap": false,
-     "cost": 37.3748,
+     "cost": 37.5279,
      "value_share": null,
      "gap": null
     }
@@ -1318,20 +1323,20 @@
        "output": 4633
       },
       "bugs": {
-       "cost": 1.0967,
-       "tokens": 3935009,
-       "output": 9104
+       "cost": 1.2497,
+       "tokens": 4550906,
+       "output": 10026
       }
      }
     }
    ],
    "totals": {
-    "cost": 174.5532,
-    "tokens": 537534099,
-    "input": 2326,
-    "output": 926427,
-    "cache_write": 6252884,
-    "cache_read": 530352462,
+    "cost": 174.7062,
+    "tokens": 538149996,
+    "input": 2330,
+    "output": 927349,
+    "cache_write": 6254373,
+    "cache_read": 530965944,
     "turns": 154
    },
    "models": [
@@ -1341,13 +1346,13 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 174.5532,
-     "tokens": 537534099,
-     "output": 926427,
-     "replies": 1156
+     "cost": 174.7062,
+     "tokens": 538149996,
+     "output": 927349,
+     "replies": 1158
     }
    ],
-   "alignment": 0.786,
+   "alignment": 0.785,
    "roadmap": {
     "items": [],
     "done": []
