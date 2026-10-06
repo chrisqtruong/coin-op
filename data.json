@@ -1,7 +1,6 @@
 {
- "generated": "2026-10-05T20:34:47+00:00",
+ "generated": "2026-10-06T03:35:29+00:00",
  "live": false,
- "product": "Vox2",
  "machines": 1,
  "pricing": {
   "model": "claude-opus-5-5",
@@ -9,502 +8,1793 @@
   "out": 20.0,
   "read": 0.2
  },
- "sessions": 2,
- "buckets": [
-  {
-   "id": "meaning",
-   "name": "Meaning & match score",
-   "color": "#ff4d8d",
-   "theme": "trust",
-   "cost": 63.5195,
-   "tokens": 177201705,
-   "output": 441493,
-   "turns": 49
-  },
-  {
-   "id": "capture",
-   "name": "Snip, voice & audio",
-   "color": "#ffb000",
-   "theme": "daily",
-   "cost": 8.4536,
-   "tokens": 30982051,
-   "output": 67562,
-   "turns": 17
-  },
-  {
-   "id": "look",
-   "name": "Look, feel & features",
-   "color": "#4dd2ff",
-   "theme": "daily",
-   "cost": 64.4712,
-   "tokens": 179054004,
-   "output": 269487,
-   "turns": 66
-  },
-  {
-   "id": "mac",
-   "name": "Mac version",
-   "color": "#9b6bff",
-   "theme": "reach",
-   "cost": 11.7447,
-   "tokens": 27598042,
-   "output": 85647,
-   "turns": 21
-  },
-  {
-   "id": "bugs",
-   "name": "Bug squashing",
-   "color": "#ff6b3d",
-   "theme": "upkeep",
-   "cost": 2.5529,
-   "tokens": 10450156,
-   "output": 14329,
-   "turns": 5
-  },
-  {
-   "id": "ship",
-   "name": "Releases & GitHub",
-   "color": "#3ddc84",
-   "theme": "upkeep",
-   "cost": 49.815,
-   "tokens": 143650857,
-   "output": 248131,
-   "turns": 71
-  },
-  {
-   "id": "docs",
-   "name": "Docs & planning",
-   "color": "#f2f2f2",
-   "theme": "upkeep",
-   "cost": 33.0089,
-   "tokens": 129210159,
-   "output": 228180,
-   "turns": 33
-  },
-  {
-   "id": "learn",
-   "name": "Learning & questions",
-   "color": "#ffe14d",
-   "theme": "upkeep",
-   "cost": 0.8699,
-   "tokens": 3815070,
-   "output": 3961,
-   "turns": 4
-  }
- ],
- "themes": [
-  {
-   "id": "trust",
-   "name": "Trustworthy",
-   "blurb": "Can you rely on what Vox2 tells you? The meaning check and match score.",
-   "roadmap": true,
-   "cost": 63.5195,
-   "value_share": 0.424,
-   "gap": -0.004
-  },
-  {
-   "id": "daily",
-   "name": "Useful every day",
-   "blurb": "Snip, voice, the window and the helpers you reach for daily.",
-   "roadmap": true,
-   "cost": 72.9248,
-   "value_share": 0.495,
-   "gap": 0.003
-  },
-  {
-   "id": "reach",
-   "name": "Reach more people",
-   "blurb": "Mac, Intel, signed installers: Vox2 on more computers.",
-   "roadmap": true,
-   "cost": 11.7447,
-   "value_share": 0.081,
-   "gap": 0.002
-  },
-  {
-   "id": "upkeep",
-   "name": "Upkeep",
-   "blurb": "Bugs, releases, docs and learning. Not on the roadmap, but it keeps the lights on.",
-   "roadmap": false,
-   "cost": 86.2467,
-   "value_share": null,
-   "gap": null
-  }
- ],
- "days": [
-  {
-   "date": "2026-10-02",
-   "by": {
-    "ship": {
-     "cost": 6.8606,
-     "tokens": 21585065,
-     "output": 60600
-    },
-    "look": {
-     "cost": 3.2032,
-     "tokens": 11046810,
-     "output": 32528
-    },
-    "bugs": {
-     "cost": 0.1292,
-     "tokens": 520490,
-     "output": 1089
-    },
-    "capture": {
-     "cost": 2.2749,
-     "tokens": 8125019,
-     "output": 19984
-    },
-    "mac": {
-     "cost": 6.8652,
-     "tokens": 21867540,
-     "output": 71402
-    },
-    "learn": {
-     "cost": 0.2776,
-     "tokens": 1159405,
-     "output": 1586
-    },
-    "docs": {
-     "cost": 0.7787,
-     "tokens": 2962619,
-     "output": 6744
-    }
-   }
-  },
-  {
-   "date": "2026-10-03",
-   "by": {
-    "meaning": {
-     "cost": 27.1006,
-     "tokens": 80208834,
-     "output": 130671
-    },
-    "mac": {
-     "cost": 4.2441,
-     "tokens": 3748751,
-     "output": 6781
-    },
-    "bugs": {
-     "cost": 2.4237,
-     "tokens": 9929666,
-     "output": 13240
-    },
-    "look": {
-     "cost": 23.169,
-     "tokens": 72482300,
-     "output": 100155
-    },
-    "ship": {
-     "cost": 8.8286,
-     "tokens": 32689145,
-     "output": 64372
-    },
-    "capture": {
-     "cost": 5.4183,
-     "tokens": 19767447,
-     "output": 42316
-    },
-    "docs": {
-     "cost": 14.8425,
-     "tokens": 60938282,
-     "output": 83288
-    },
-    "learn": {
-     "cost": 0.495,
-     "tokens": 2219873,
-     "output": 1881
-    }
-   }
-  },
-  {
-   "date": "2026-10-04",
-   "by": {
-    "meaning": {
-     "cost": 36.4189,
-     "tokens": 96992871,
-     "output": 310822
-    },
-    "learn": {
-     "cost": 0.0974,
-     "tokens": 435792,
-     "output": 494
-    },
-    "ship": {
-     "cost": 27.1592,
-     "tokens": 88460942,
-     "output": 122395
-    },
-    "docs": {
-     "cost": 17.3877,
-     "tokens": 65309258,
-     "output": 138148
-    },
-    "look": {
-     "cost": 38.099,
-     "tokens": 95524894,
-     "output": 136804
-    },
-    "mac": {
-     "cost": 0.6354,
-     "tokens": 1981751,
-     "output": 7464
-    },
-    "capture": {
-     "cost": 0.7603,
-     "tokens": 3089585,
-     "output": 5262
-    }
-   }
-  },
-  {
-   "date": "2026-10-05",
-   "by": {
-    "ship": {
-     "cost": 6.9666,
-     "tokens": 915705,
-     "output": 764
-    }
-   }
-  }
- ],
- "totals": {
-  "cost": 234.4357,
-  "tokens": 701962044,
-  "input": 3116,
-  "output": 1358790,
-  "cache_write": 8606079,
-  "cache_read": 691994059,
-  "turns": 266
- },
- "models": [
-  {
-   "id": "claude-opus-5-5",
-   "name": "Claude Opus 5.5",
-   "maker": "Anthropic",
-   "family": "opus",
-   "priced": true,
-   "cost": 234.4357,
-   "tokens": 701962044,
-   "output": 1358790,
-   "replies": 1478
-  }
- ],
- "alignment": 0.632,
- "roadmap": {
-  "items": [
+ "mode": "all",
+ "overview": {
+  "id": "all",
+  "product": "All projects",
+  "overview": true,
+  "sessions": 19,
+  "buckets": [
    {
-    "n": 1,
-    "title": "Meaning check: sharpen the targeted checks",
-    "value": "High",
-    "effort": "small",
-    "issue": 28,
-    "status": "open",
-    "theme": "trust",
-    "score": 3.0
+    "id": "vox2",
+    "name": "Vox2",
+    "color": "#4dd2ff",
+    "theme": "",
+    "cost": 268.2073,
+    "tokens": 846128244,
+    "output": 1626402,
+    "turns": 313
    },
    {
-    "n": 2,
-    "title": "Meaning check: show what changed",
-    "value": "High",
-    "effort": "small",
-    "issue": 27,
-    "status": "started",
-    "theme": "trust",
-    "score": 3.0
+    "id": "purrmodoro",
+    "name": "Purrmodoro",
+    "color": "#ff9f43",
+    "theme": "",
+    "cost": 89.7029,
+    "tokens": 214007826,
+    "output": 534445,
+    "turns": 74
    },
    {
-    "n": 3,
-    "title": "Meaning tests: more engines and an independent judge",
-    "value": "High",
-    "effort": "small",
-    "issue": 29,
-    "status": "open",
-    "theme": "trust",
-    "score": 3.0
+    "id": "personal-site",
+    "name": "Personal site",
+    "color": "#ff4d8d",
+    "theme": "",
+    "cost": 135.8923,
+    "tokens": 413702935,
+    "output": 719805,
+    "turns": 129
    },
    {
-    "n": 4,
-    "title": "Meaning check: translate back with a different engine",
-    "value": "High",
-    "effort": "small",
-    "issue": 52,
-    "status": "open",
-    "theme": "trust",
-    "score": 3.0
+    "id": "swear-jar",
+    "name": "Swear Jar",
+    "color": "#ffe14d",
+    "theme": "",
+    "cost": 22.0587,
+    "tokens": 38747311,
+    "output": 117241,
+    "turns": 8
    },
    {
-    "n": 5,
-    "title": "Explain this",
-    "value": "High",
-    "effort": "small",
-    "issue": 21,
-    "status": "open",
-    "theme": "daily",
-    "score": 3.0
+    "id": "weather-in-dots",
+    "name": "Weather in dots",
+    "color": "#3ddc84",
+    "theme": "",
+    "cost": 17.1559,
+    "tokens": 19701838,
+    "output": 166001,
+    "turns": 5
    },
    {
-    "n": 6,
-    "title": "Personal glossary",
-    "value": "Medium-high",
-    "effort": "small",
-    "issue": 23,
-    "status": "open",
-    "theme": "daily",
-    "score": 2.5
+    "id": "bankrolled",
+    "name": "Bankrolled",
+    "color": "#9b6bff",
+    "theme": "",
+    "cost": 7.5925,
+    "tokens": 14015947,
+    "output": 14662,
+    "turns": 2
    },
    {
-    "n": 7,
-    "title": "More translation engines: DeepL and Microsoft Translator",
-    "value": "Medium-high",
-    "effort": "small",
-    "issue": 53,
-    "status": "open",
-    "theme": "daily",
-    "score": 2.5
+    "id": "simplebar",
+    "name": "Simplebar",
+    "color": "#f2f2f2",
+    "theme": "",
+    "cost": 0.0,
+    "tokens": 0,
+    "output": 0,
+    "turns": 0
    },
    {
-    "n": 8,
-    "title": "Reply helper",
-    "value": "High",
-    "effort": "medium",
-    "issue": 22,
-    "status": "open",
-    "theme": "daily",
-    "score": 1.5
+    "id": "tracewire",
+    "name": "Tracewire",
+    "color": "#2ec4b6",
+    "theme": "",
+    "cost": 0.0,
+    "tokens": 0,
+    "output": 0,
+    "turns": 0
    },
    {
-    "n": 9,
-    "title": "Meaning check: AI double-check",
-    "value": "High",
-    "effort": "medium",
-    "issue": 7,
-    "status": "open",
-    "theme": "trust",
-    "score": 1.5
+    "id": "ai-product-ops-academy",
+    "name": "AI product ops academy",
+    "color": "#c77dff",
+    "theme": "",
+    "cost": 0.0,
+    "tokens": 0,
+    "output": 0,
+    "turns": 0
    },
    {
-    "n": 10,
-    "title": "Meaning check: suggested fixes, verified",
-    "value": "High",
-    "effort": "medium",
-    "issue": 55,
-    "status": "open",
-    "theme": "trust",
-    "score": 1.5
-   },
-   {
-    "n": 11,
-    "title": "Meaning check: benchmark against research systems on the WMT test sets",
-    "value": "High",
-    "effort": "medium",
-    "issue": 50,
-    "status": "open",
-    "theme": "trust",
-    "score": 1.5
-   },
-   {
-    "n": 12,
-    "title": "Hands-free conversation",
-    "value": "Medium-high",
-    "effort": "medium",
-    "issue": 11,
-    "status": "open",
-    "theme": "daily",
-    "score": 1.25
-   },
-   {
-    "n": 13,
-    "title": "Better snip",
-    "value": "Medium",
-    "effort": "medium",
-    "issue": 8,
-    "status": "open",
-    "theme": "daily",
-    "score": 1.0
-   },
-   {
-    "n": 14,
-    "title": "Live captions: calls, videos and any audio",
-    "value": "Very high",
-    "effort": "large",
-    "issue": 24,
-    "status": "open",
-    "theme": "daily",
-    "score": 1.33
-   },
-   {
-    "n": 15,
-    "title": "Documents: drag and drop, formatting kept",
-    "value": "High",
-    "effort": "medium",
-    "issue": 53,
-    "status": "open",
-    "theme": "daily",
-    "score": 1.5
-   },
-   {
-    "n": 16,
-    "title": "Mini mode",
-    "value": "Medium",
-    "effort": "medium",
-    "issue": 6,
-    "status": "open",
-    "theme": "daily",
-    "score": 1.0
-   },
-   {
-    "n": 17,
-    "title": "Mac: Intel support and Apple notarization",
-    "value": "Medium",
-    "effort": "small + cost",
-    "issue": 5,
-    "status": "open",
-    "theme": "reach",
-    "score": 1.33
-   },
-   {
-    "n": 18,
-    "title": "Windows code signing",
-    "value": "Medium",
-    "effort": "small + cost",
-    "issue": 9,
-    "status": "open",
-    "theme": "reach",
-    "score": 1.33
+    "id": "other",
+    "name": "Everything else",
+    "color": "#7d7699",
+    "theme": "",
+    "cost": 24.2734,
+    "tokens": 59814313,
+    "output": 491658,
+    "turns": 104
    }
   ],
-  "done": [
+  "themes": [],
+  "days": [
    {
-    "title": "macOS version",
-    "theme": "reach"
+    "date": "2026-09-20",
+    "by": {
+     "other": {
+      "cost": 11.976,
+      "tokens": 29898731,
+      "output": 311447
+     }
+    }
    },
    {
-    "title": "Meaning check says \"can't check\"",
-    "theme": "trust"
+    "date": "2026-09-21",
+    "by": {
+     "other": {
+      "cost": 1.7257,
+      "tokens": 4059911,
+      "output": 32905
+     }
+    }
+   },
+   {
+    "date": "2026-09-23",
+    "by": {
+     "other": {
+      "cost": 0.3204,
+      "tokens": 183582,
+      "output": 5881
+     }
+    }
+   },
+   {
+    "date": "2026-09-24",
+    "by": {
+     "other": {
+      "cost": 9.3969,
+      "tokens": 25412238,
+      "output": 139693
+     }
+    }
+   },
+   {
+    "date": "2026-09-25",
+    "by": {
+     "purrmodoro": {
+      "cost": 37.9572,
+      "tokens": 110975151,
+      "output": 379408
+     },
+     "other": {
+      "cost": 0.8544,
+      "tokens": 259851,
+      "output": 1732
+     }
+    }
+   },
+   {
+    "date": "2026-09-26",
+    "by": {
+     "purrmodoro": {
+      "cost": 22.6549,
+      "tokens": 52406322,
+      "output": 75223
+     }
+    }
+   },
+   {
+    "date": "2026-10-02",
+    "by": {
+     "vox2": {
+      "cost": 20.3894,
+      "tokens": 67266948,
+      "output": 193933
+     }
+    }
+   },
+   {
+    "date": "2026-10-03",
+    "by": {
+     "purrmodoro": {
+      "cost": 20.8613,
+      "tokens": 42893533,
+      "output": 59706
+     },
+     "vox2": {
+      "cost": 91.7579,
+      "tokens": 300029448,
+      "output": 491109
+     },
+     "personal-site": {
+      "cost": 19.212,
+      "tokens": 61426592,
+      "output": 202178
+     }
+    }
+   },
+   {
+    "date": "2026-10-04",
+    "by": {
+     "purrmodoro": {
+      "cost": 7.2576,
+      "tokens": 6516677,
+      "output": 13168
+     },
+     "vox2": {
+      "cost": 152.3187,
+      "tokens": 469077385,
+      "output": 912075
+     },
+     "personal-site": {
+      "cost": 90.4557,
+      "tokens": 312743707,
+      "output": 476538
+     },
+     "weather-in-dots": {
+      "cost": 12.1368,
+      "tokens": 12289645,
+      "output": 121586
+     },
+     "swear-jar": {
+      "cost": 13.4857,
+      "tokens": 30132359,
+      "output": 91683
+     },
+     "bankrolled": {
+      "cost": 2.0323,
+      "tokens": 8629301,
+      "output": 7949
+     }
+    }
+   },
+   {
+    "date": "2026-10-05",
+    "by": {
+     "purrmodoro": {
+      "cost": 0.9719,
+      "tokens": 1216143,
+      "output": 6940
+     },
+     "vox2": {
+      "cost": 3.7414,
+      "tokens": 9754463,
+      "output": 29285
+     },
+     "personal-site": {
+      "cost": 26.2245,
+      "tokens": 39532636,
+      "output": 41089
+     },
+     "weather-in-dots": {
+      "cost": 5.0191,
+      "tokens": 7412193,
+      "output": 44415
+     },
+     "swear-jar": {
+      "cost": 8.573,
+      "tokens": 8614952,
+      "output": 25558
+     },
+     "bankrolled": {
+      "cost": 5.5602,
+      "tokens": 5386646,
+      "output": 6713
+     }
+    }
    }
-  ]
+  ],
+  "totals": {
+   "cost": 564.8831,
+   "tokens": 1606118414,
+   "input": 7874,
+   "output": 3670214,
+   "cache_write": 22913377,
+   "cache_read": 1579526949,
+   "turns": 635
+  },
+  "models": [
+   {
+    "id": "claude-opus-5-5",
+    "name": "Claude Opus 5.5",
+    "maker": "Anthropic",
+    "family": "opus",
+    "priced": true,
+    "cost": 534.3148,
+    "tokens": 1542841671,
+    "output": 3118133,
+    "replies": 3401
+   },
+   {
+    "id": "claude-sonnet-5",
+    "name": "Claude Sonnet 5",
+    "maker": "Anthropic",
+    "family": "sonnet",
+    "priced": true,
+    "cost": 22.3227,
+    "tokens": 58674829,
+    "output": 481060,
+    "replies": 332
+   },
+   {
+    "id": "claude-fable-5-1",
+    "name": "Claude Fable 5.1",
+    "maker": "Anthropic",
+    "family": "fable",
+    "priced": true,
+    "cost": 7.5426,
+    "tokens": 2526263,
+    "output": 70579,
+    "replies": 18
+   },
+   {
+    "id": "claude-sonnet-5-5",
+    "name": "Claude Sonnet 5.5",
+    "maker": "Anthropic",
+    "family": "sonnet",
+    "priced": true,
+    "cost": 0.703,
+    "tokens": 2075651,
+    "output": 442,
+    "replies": 22
+   }
+  ],
+  "alignment": 0,
+  "roadmap": {
+   "items": [],
+   "done": []
+  },
+  "roadmap_link": "",
+  "roadmap_rule": "",
+  "next": [],
+  "recent": [],
+  "other_blurb": "Claude Code work that didn't touch any of your projects: chats, planning, one-offs."
  },
- "roadmap_link": "https://github.com/chrisqtruong/vox2#roadmap",
- "roadmap_rule": "Its rule: what makes Vox2 more trustworthy and useful day to day comes first.",
- "next": [
+ "projects": [
   {
-   "n": 2,
-   "title": "Meaning check: show what changed",
-   "theme": "trust",
-   "why": "Already started and #2 on the roadmap. Finishing it turns tokens already spent into something people can use."
+   "id": "vox2",
+   "color": "#4dd2ff",
+   "product": "Vox2",
+   "sessions": 5,
+   "buckets": [
+    {
+     "id": "meaning",
+     "name": "Meaning & match score",
+     "color": "#ff4d8d",
+     "theme": "trust",
+     "cost": 66.8409,
+     "tokens": 190370769,
+     "output": 461153,
+     "turns": 54
+    },
+    {
+     "id": "capture",
+     "name": "Snip, voice & audio",
+     "color": "#ffb000",
+     "theme": "daily",
+     "cost": 9.1997,
+     "tokens": 34053826,
+     "output": 73156,
+     "turns": 19
+    },
+    {
+     "id": "look",
+     "name": "Look, feel & features",
+     "color": "#4dd2ff",
+     "theme": "daily",
+     "cost": 72.436,
+     "tokens": 209674270,
+     "output": 324706,
+     "turns": 78
+    },
+    {
+     "id": "mac",
+     "name": "Mac version",
+     "color": "#9b6bff",
+     "theme": "reach",
+     "cost": 15.1125,
+     "tokens": 41465299,
+     "output": 102197,
+     "turns": 24
+    },
+    {
+     "id": "bugs",
+     "name": "Bug squashing",
+     "color": "#ff6b3d",
+     "theme": "upkeep",
+     "cost": 3.2287,
+     "tokens": 13663486,
+     "output": 15437,
+     "turns": 7
+    },
+    {
+     "id": "ship",
+     "name": "Releases & GitHub",
+     "color": "#3ddc84",
+     "theme": "upkeep",
+     "cost": 47.6408,
+     "tokens": 160731040,
+     "output": 284314,
+     "turns": 76
+    },
+    {
+     "id": "docs",
+     "name": "Docs & planning",
+     "color": "#f2f2f2",
+     "theme": "upkeep",
+     "cost": 51.7454,
+     "tokens": 188272085,
+     "output": 351967,
+     "turns": 49
+    },
+    {
+     "id": "learn",
+     "name": "Learning & questions",
+     "color": "#ffe14d",
+     "theme": "upkeep",
+     "cost": 2.0034,
+     "tokens": 7897469,
+     "output": 13472,
+     "turns": 6
+    }
+   ],
+   "themes": [
+    {
+     "id": "trust",
+     "name": "Trustworthy",
+     "blurb": "Can you rely on what Vox2 tells you? The meaning check and match score.",
+     "roadmap": true,
+     "cost": 66.8409,
+     "value_share": 0.424,
+     "gap": 0.016
+    },
+    {
+     "id": "daily",
+     "name": "Useful every day",
+     "blurb": "Snip, voice, the window and the helpers you reach for daily.",
+     "roadmap": true,
+     "cost": 81.6357,
+     "value_share": 0.495,
+     "gap": -0.004
+    },
+    {
+     "id": "reach",
+     "name": "Reach more people",
+     "blurb": "Mac, Intel, signed installers: Vox2 on more computers.",
+     "roadmap": true,
+     "cost": 15.1125,
+     "value_share": 0.081,
+     "gap": -0.012
+    },
+    {
+     "id": "upkeep",
+     "name": "Upkeep",
+     "blurb": "Bugs, releases, docs and learning. Not on the roadmap, but it keeps the lights on.",
+     "roadmap": false,
+     "cost": 104.6182,
+     "value_share": null,
+     "gap": null
+    }
+   ],
+   "days": [
+    {
+     "date": "2026-10-02",
+     "by": {
+      "ship": {
+       "cost": 6.8606,
+       "tokens": 21585065,
+       "output": 60600
+      },
+      "look": {
+       "cost": 3.2032,
+       "tokens": 11046810,
+       "output": 32528
+      },
+      "bugs": {
+       "cost": 0.1292,
+       "tokens": 520490,
+       "output": 1089
+      },
+      "capture": {
+       "cost": 2.2749,
+       "tokens": 8125019,
+       "output": 19984
+      },
+      "mac": {
+       "cost": 6.8652,
+       "tokens": 21867540,
+       "output": 71402
+      },
+      "learn": {
+       "cost": 0.2776,
+       "tokens": 1159405,
+       "output": 1586
+      },
+      "docs": {
+       "cost": 0.7787,
+       "tokens": 2962619,
+       "output": 6744
+      }
+     }
+    },
+    {
+     "date": "2026-10-03",
+     "by": {
+      "meaning": {
+       "cost": 27.8359,
+       "tokens": 82216030,
+       "output": 139808
+      },
+      "look": {
+       "cost": 27.6697,
+       "tokens": 88520254,
+       "output": 139423
+      },
+      "mac": {
+       "cost": 4.2441,
+       "tokens": 3748751,
+       "output": 6781
+      },
+      "bugs": {
+       "cost": 2.4237,
+       "tokens": 9929666,
+       "output": 13240
+      },
+      "ship": {
+       "cost": 8.8286,
+       "tokens": 32689145,
+       "output": 64372
+      },
+      "capture": {
+       "cost": 5.4183,
+       "tokens": 19767447,
+       "output": 42316
+      },
+      "docs": {
+       "cost": 14.8425,
+       "tokens": 60938282,
+       "output": 83288
+      },
+      "learn": {
+       "cost": 0.495,
+       "tokens": 2219873,
+       "output": 1881
+      }
+     }
+    },
+    {
+     "date": "2026-10-04",
+     "by": {
+      "look": {
+       "cost": 41.5632,
+       "tokens": 110107206,
+       "output": 152755
+      },
+      "learn": {
+       "cost": 1.2308,
+       "tokens": 4518191,
+       "output": 10005
+      },
+      "meaning": {
+       "cost": 39.005,
+       "tokens": 108154739,
+       "output": 321345
+      },
+      "docs": {
+       "cost": 32.3827,
+       "tokens": 114616721,
+       "output": 232650
+      },
+      "mac": {
+       "cost": 4.0032,
+       "tokens": 15849008,
+       "output": 24014
+      },
+      "bugs": {
+       "cost": 0.6758,
+       "tokens": 3213330,
+       "output": 1108
+      },
+      "ship": {
+       "cost": 31.9516,
+       "tokens": 106456830,
+       "output": 159342
+      },
+      "capture": {
+       "cost": 1.5064,
+       "tokens": 6161360,
+       "output": 10856
+      }
+     }
+    },
+    {
+     "date": "2026-10-05",
+     "by": {
+      "docs": {
+       "cost": 3.7414,
+       "tokens": 9754463,
+       "output": 29285
+      }
+     }
+    }
+   ],
+   "totals": {
+    "cost": 268.2073,
+    "tokens": 846128244,
+    "input": 3886,
+    "output": 1626402,
+    "cache_write": 8686543,
+    "cache_read": 835811413,
+    "turns": 313
+   },
+   "models": [
+    {
+     "id": "claude-opus-5-5",
+     "name": "Claude Opus 5.5",
+     "maker": "Anthropic",
+     "family": "opus",
+     "priced": true,
+     "cost": 267.5043,
+     "tokens": 844052593,
+     "output": 1625960,
+     "replies": 1839
+    },
+    {
+     "id": "claude-sonnet-5-5",
+     "name": "Claude Sonnet 5.5",
+     "maker": "Anthropic",
+     "family": "sonnet",
+     "priced": true,
+     "cost": 0.703,
+     "tokens": 2075651,
+     "output": 442,
+     "replies": 22
+    }
+   ],
+   "alignment": 0.61,
+   "roadmap": {
+    "items": [
+     {
+      "n": 1,
+      "title": "Meaning check: sharpen the targeted checks",
+      "value": "High",
+      "effort": "small",
+      "issue": 28,
+      "status": "open",
+      "theme": "trust",
+      "score": 3.0
+     },
+     {
+      "n": 2,
+      "title": "Meaning check: show what changed",
+      "value": "High",
+      "effort": "small",
+      "issue": 27,
+      "status": "started",
+      "theme": "trust",
+      "score": 3.0
+     },
+     {
+      "n": 3,
+      "title": "Meaning tests: more engines and an independent judge",
+      "value": "High",
+      "effort": "small",
+      "issue": 29,
+      "status": "open",
+      "theme": "trust",
+      "score": 3.0
+     },
+     {
+      "n": 4,
+      "title": "Meaning check: translate back with a different engine",
+      "value": "High",
+      "effort": "small",
+      "issue": 52,
+      "status": "open",
+      "theme": "trust",
+      "score": 3.0
+     },
+     {
+      "n": 5,
+      "title": "Explain this",
+      "value": "High",
+      "effort": "small",
+      "issue": 21,
+      "status": "open",
+      "theme": "daily",
+      "score": 3.0
+     },
+     {
+      "n": 6,
+      "title": "Personal glossary",
+      "value": "Medium-high",
+      "effort": "small",
+      "issue": 23,
+      "status": "open",
+      "theme": "daily",
+      "score": 2.5
+     },
+     {
+      "n": 7,
+      "title": "More translation engines: DeepL and Microsoft Translator",
+      "value": "Medium-high",
+      "effort": "small",
+      "issue": 53,
+      "status": "open",
+      "theme": "daily",
+      "score": 2.5
+     },
+     {
+      "n": 8,
+      "title": "Reply helper",
+      "value": "High",
+      "effort": "medium",
+      "issue": 22,
+      "status": "open",
+      "theme": "daily",
+      "score": 1.5
+     },
+     {
+      "n": 9,
+      "title": "Meaning check: AI double-check",
+      "value": "High",
+      "effort": "medium",
+      "issue": 7,
+      "status": "open",
+      "theme": "trust",
+      "score": 1.5
+     },
+     {
+      "n": 10,
+      "title": "Meaning check: suggested fixes, verified",
+      "value": "High",
+      "effort": "medium",
+      "issue": 55,
+      "status": "open",
+      "theme": "trust",
+      "score": 1.5
+     },
+     {
+      "n": 11,
+      "title": "Meaning check: benchmark against research systems on the WMT test sets",
+      "value": "High",
+      "effort": "medium",
+      "issue": 50,
+      "status": "open",
+      "theme": "trust",
+      "score": 1.5
+     },
+     {
+      "n": 12,
+      "title": "Hands-free conversation",
+      "value": "Medium-high",
+      "effort": "medium",
+      "issue": 11,
+      "status": "open",
+      "theme": "daily",
+      "score": 1.25
+     },
+     {
+      "n": 13,
+      "title": "Better snip",
+      "value": "Medium",
+      "effort": "medium",
+      "issue": 8,
+      "status": "open",
+      "theme": "daily",
+      "score": 1.0
+     },
+     {
+      "n": 14,
+      "title": "Live captions: calls, videos and any audio",
+      "value": "Very high",
+      "effort": "large",
+      "issue": 24,
+      "status": "open",
+      "theme": "daily",
+      "score": 1.33
+     },
+     {
+      "n": 15,
+      "title": "Documents: drag and drop, formatting kept",
+      "value": "High",
+      "effort": "medium",
+      "issue": 53,
+      "status": "open",
+      "theme": "daily",
+      "score": 1.5
+     },
+     {
+      "n": 16,
+      "title": "Mini mode",
+      "value": "Medium",
+      "effort": "medium",
+      "issue": 6,
+      "status": "open",
+      "theme": "daily",
+      "score": 1.0
+     },
+     {
+      "n": 17,
+      "title": "Mac: Intel support and Apple notarization",
+      "value": "Medium",
+      "effort": "small + cost",
+      "issue": 5,
+      "status": "open",
+      "theme": "reach",
+      "score": 1.33
+     },
+     {
+      "n": 18,
+      "title": "Windows code signing",
+      "value": "Medium",
+      "effort": "small + cost",
+      "issue": 9,
+      "status": "open",
+      "theme": "reach",
+      "score": 1.33
+     }
+    ],
+    "done": [
+     {
+      "title": "macOS version",
+      "theme": "reach"
+     },
+     {
+      "title": "Meaning check says \"can't check\"",
+      "theme": "trust"
+     }
+    ]
+   },
+   "roadmap_link": "https://github.com/chrisqtruong/vox2#roadmap",
+   "roadmap_rule": "Its rule: what makes Vox2 more trustworthy and useful day to day comes first.",
+   "next": [
+    {
+     "n": 2,
+     "title": "Meaning check: show what changed",
+     "theme": "trust",
+     "why": "Already started and #2 on the roadmap. Finishing it turns tokens already spent into something people can use."
+    },
+    {
+     "n": 1,
+     "title": "Meaning check: sharpen the targeted checks",
+     "theme": "trust",
+     "why": "\"Trustworthy\" holds 42% of the roadmap's value but got 41% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
+    },
+    {
+     "n": 3,
+     "title": "Meaning tests: more engines and an independent judge",
+     "theme": "trust",
+     "why": "Best value for effort left on the roadmap (high value, small effort)."
+    }
+   ],
+   "recent": []
   },
   {
-   "n": 5,
-   "title": "Explain this",
-   "theme": "daily",
-   "why": "\"Useful every day\" holds 49% of the roadmap's value but got 49% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
+   "id": "purrmodoro",
+   "color": "#ff9f43",
+   "product": "Purrmodoro",
+   "sessions": 4,
+   "buckets": [
+    {
+     "id": "features",
+     "name": "Features & UI",
+     "color": "#4dd2ff",
+     "theme": "build",
+     "cost": 67.3215,
+     "tokens": 150361324,
+     "output": 427573,
+     "turns": 44
+    },
+    {
+     "id": "bugs",
+     "name": "Bug squashing",
+     "color": "#ff6b3d",
+     "theme": "upkeep",
+     "cost": 0.2978,
+     "tokens": 1284810,
+     "output": 647,
+     "turns": 2
+    },
+    {
+     "id": "quality",
+     "name": "Tests & quality",
+     "color": "#ff4d8d",
+     "theme": "build",
+     "cost": 0.4379,
+     "tokens": 2032530,
+     "output": 940,
+     "turns": 1
+    },
+    {
+     "id": "ship",
+     "name": "Releases & Git",
+     "color": "#3ddc84",
+     "theme": "upkeep",
+     "cost": 2.0848,
+     "tokens": 6147068,
+     "output": 16178,
+     "turns": 4
+    },
+    {
+     "id": "docs",
+     "name": "Docs & planning",
+     "color": "#f2f2f2",
+     "theme": "upkeep",
+     "cost": 17.1003,
+     "tokens": 44624576,
+     "output": 72811,
+     "turns": 15
+    },
+    {
+     "id": "setup",
+     "name": "Setup & tooling",
+     "color": "#9b6bff",
+     "theme": "upkeep",
+     "cost": 1.4387,
+     "tokens": 5455963,
+     "output": 9846,
+     "turns": 6
+    },
+    {
+     "id": "learn",
+     "name": "Learning & questions",
+     "color": "#ffe14d",
+     "theme": "upkeep",
+     "cost": 1.022,
+     "tokens": 4101555,
+     "output": 6450,
+     "turns": 2
+    }
+   ],
+   "themes": [
+    {
+     "id": "build",
+     "name": "Building the product",
+     "blurb": "New features and making them better.",
+     "roadmap": true,
+     "cost": 67.7593,
+     "value_share": 0.0,
+     "gap": -1.0
+    },
+    {
+     "id": "upkeep",
+     "name": "Upkeep",
+     "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
+     "roadmap": false,
+     "cost": 21.9436,
+     "value_share": null,
+     "gap": null
+    }
+   ],
+   "days": [
+    {
+     "date": "2026-09-25",
+     "by": {
+      "features": {
+       "cost": 30.4695,
+       "tokens": 81793423,
+       "output": 327065
+      },
+      "docs": {
+       "cost": 4.1773,
+       "tokens": 16048169,
+       "output": 33032
+      },
+      "setup": {
+       "cost": 1.2555,
+       "tokens": 4802349,
+       "output": 9494
+      },
+      "ship": {
+       "cost": 1.3193,
+       "tokens": 5013870,
+       "output": 8230
+      },
+      "bugs": {
+       "cost": 0.2978,
+       "tokens": 1284810,
+       "output": 647
+      },
+      "quality": {
+       "cost": 0.4379,
+       "tokens": 2032530,
+       "output": 940
+      }
+     }
+    },
+    {
+     "date": "2026-09-26",
+     "by": {
+      "features": {
+       "cost": 20.8278,
+       "tokens": 45324484,
+       "output": 64916
+      },
+      "learn": {
+       "cost": 1.022,
+       "tokens": 4101555,
+       "output": 6450
+      },
+      "docs": {
+       "cost": 0.6219,
+       "tokens": 2326669,
+       "output": 3505
+      },
+      "setup": {
+       "cost": 0.1833,
+       "tokens": 653614,
+       "output": 352
+      }
+     }
+    },
+    {
+     "date": "2026-10-03",
+     "by": {
+      "features": {
+       "cost": 9.6645,
+       "tokens": 18149899,
+       "output": 33115
+      },
+      "docs": {
+       "cost": 11.1968,
+       "tokens": 24743634,
+       "output": 26591
+      }
+     }
+    },
+    {
+     "date": "2026-10-04",
+     "by": {
+      "ship": {
+       "cost": 0.7655,
+       "tokens": 1133198,
+       "output": 7948
+      },
+      "docs": {
+       "cost": 0.1325,
+       "tokens": 289961,
+       "output": 2743
+      },
+      "features": {
+       "cost": 6.3596,
+       "tokens": 5093518,
+       "output": 2477
+      }
+     }
+    },
+    {
+     "date": "2026-10-05",
+     "by": {
+      "docs": {
+       "cost": 0.9719,
+       "tokens": 1216143,
+       "output": 6940
+      }
+     }
+    }
+   ],
+   "totals": {
+    "cost": 89.7029,
+    "tokens": 214007826,
+    "input": 922,
+    "output": 534445,
+    "cache_write": 4655874,
+    "cache_read": 208816585,
+    "turns": 74
+   },
+   "models": [
+    {
+     "id": "claude-opus-5-5",
+     "name": "Claude Opus 5.5",
+     "maker": "Anthropic",
+     "family": "opus",
+     "priced": true,
+     "cost": 89.7029,
+     "tokens": 214007826,
+     "output": 534445,
+     "replies": 461
+    }
+   ],
+   "alignment": 0.755,
+   "roadmap": {
+    "items": [],
+    "done": []
+   },
+   "roadmap_link": "",
+   "roadmap_rule": "",
+   "next": [],
+   "recent": []
   },
   {
-   "n": 1,
-   "title": "Meaning check: sharpen the targeted checks",
-   "theme": "trust",
-   "why": "Best value for effort left on the roadmap (high value, small effort)."
+   "id": "personal-site",
+   "color": "#ff4d8d",
+   "product": "Personal site",
+   "sessions": 6,
+   "buckets": [
+    {
+     "id": "features",
+     "name": "Features & UI",
+     "color": "#4dd2ff",
+     "theme": "build",
+     "cost": 94.8011,
+     "tokens": 300743050,
+     "output": 573370,
+     "turns": 94
+    },
+    {
+     "id": "bugs",
+     "name": "Bug squashing",
+     "color": "#ff6b3d",
+     "theme": "upkeep",
+     "cost": 0.6929,
+     "tokens": 2939989,
+     "output": 3467,
+     "turns": 2
+    },
+    {
+     "id": "quality",
+     "name": "Tests & quality",
+     "color": "#ff4d8d",
+     "theme": "build",
+     "cost": 5.6931,
+     "tokens": 21779302,
+     "output": 43057,
+     "turns": 6
+    },
+    {
+     "id": "ship",
+     "name": "Releases & Git",
+     "color": "#3ddc84",
+     "theme": "upkeep",
+     "cost": 20.4458,
+     "tokens": 43009768,
+     "output": 46292,
+     "turns": 9
+    },
+    {
+     "id": "docs",
+     "name": "Docs & planning",
+     "color": "#f2f2f2",
+     "theme": "upkeep",
+     "cost": 11.1853,
+     "tokens": 31178671,
+     "output": 44862,
+     "turns": 15
+    },
+    {
+     "id": "setup",
+     "name": "Setup & tooling",
+     "color": "#9b6bff",
+     "theme": "upkeep",
+     "cost": 2.894,
+     "tokens": 13189021,
+     "output": 8401,
+     "turns": 2
+    },
+    {
+     "id": "learn",
+     "name": "Learning & questions",
+     "color": "#ffe14d",
+     "theme": "upkeep",
+     "cost": 0.18,
+     "tokens": 863134,
+     "output": 356,
+     "turns": 1
+    }
+   ],
+   "themes": [
+    {
+     "id": "build",
+     "name": "Building the product",
+     "blurb": "New features and making them better.",
+     "roadmap": true,
+     "cost": 100.4943,
+     "value_share": 0.0,
+     "gap": -1.0
+    },
+    {
+     "id": "upkeep",
+     "name": "Upkeep",
+     "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
+     "roadmap": false,
+     "cost": 35.398,
+     "value_share": null,
+     "gap": null
+    }
+   ],
+   "days": [
+    {
+     "date": "2026-10-03",
+     "by": {
+      "features": {
+       "cost": 17.8859,
+       "tokens": 56730851,
+       "output": 188328
+      },
+      "quality": {
+       "cost": 1.3261,
+       "tokens": 4695741,
+       "output": 13850
+      }
+     }
+    },
+    {
+     "date": "2026-10-04",
+     "by": {
+      "features": {
+       "cost": 69.4219,
+       "tokens": 241658748,
+       "output": 381759
+      },
+      "docs": {
+       "cost": 11.1853,
+       "tokens": 31178671,
+       "output": 44862
+      },
+      "ship": {
+       "cost": 1.7146,
+       "tokens": 5830583,
+       "output": 8486
+      },
+      "quality": {
+       "cost": 4.367,
+       "tokens": 17083561,
+       "output": 29207
+      },
+      "bugs": {
+       "cost": 0.6929,
+       "tokens": 2939989,
+       "output": 3467
+      },
+      "setup": {
+       "cost": 2.894,
+       "tokens": 13189021,
+       "output": 8401
+      },
+      "learn": {
+       "cost": 0.18,
+       "tokens": 863134,
+       "output": 356
+      }
+     }
+    },
+    {
+     "date": "2026-10-05",
+     "by": {
+      "features": {
+       "cost": 7.4934,
+       "tokens": 2353451,
+       "output": 3283
+      },
+      "ship": {
+       "cost": 18.7312,
+       "tokens": 37179185,
+       "output": 37806
+      }
+     }
+    }
+   ],
+   "totals": {
+    "cost": 135.8923,
+    "tokens": 413702935,
+    "input": 1786,
+    "output": 719805,
+    "cache_write": 4996284,
+    "cache_read": 407985060,
+    "turns": 129
+   },
+   "models": [
+    {
+     "id": "claude-opus-5-5",
+     "name": "Claude Opus 5.5",
+     "maker": "Anthropic",
+     "family": "opus",
+     "priced": true,
+     "cost": 135.8923,
+     "tokens": 413702935,
+     "output": 719805,
+     "replies": 886
+    }
+   ],
+   "alignment": 0.74,
+   "roadmap": {
+    "items": [],
+    "done": []
+   },
+   "roadmap_link": "",
+   "roadmap_rule": "",
+   "next": [],
+   "recent": []
+  },
+  {
+   "id": "swear-jar",
+   "color": "#ffe14d",
+   "product": "Swear Jar",
+   "sessions": 2,
+   "buckets": [
+    {
+     "id": "features",
+     "name": "Features & UI",
+     "color": "#4dd2ff",
+     "theme": "build",
+     "cost": 15.2528,
+     "tokens": 25963354,
+     "output": 87615,
+     "turns": 4
+    },
+    {
+     "id": "bugs",
+     "name": "Bug squashing",
+     "color": "#ff6b3d",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "quality",
+     "name": "Tests & quality",
+     "color": "#ff4d8d",
+     "theme": "build",
+     "cost": 0.9305,
+     "tokens": 3725223,
+     "output": 5565,
+     "turns": 1
+    },
+    {
+     "id": "ship",
+     "name": "Releases & Git",
+     "color": "#3ddc84",
+     "theme": "upkeep",
+     "cost": 1.5556,
+     "tokens": 4593384,
+     "output": 17437,
+     "turns": 1
+    },
+    {
+     "id": "docs",
+     "name": "Docs & planning",
+     "color": "#f2f2f2",
+     "theme": "upkeep",
+     "cost": 4.3198,
+     "tokens": 4465350,
+     "output": 6624,
+     "turns": 2
+    },
+    {
+     "id": "setup",
+     "name": "Setup & tooling",
+     "color": "#9b6bff",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "learn",
+     "name": "Learning & questions",
+     "color": "#ffe14d",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    }
+   ],
+   "themes": [
+    {
+     "id": "build",
+     "name": "Building the product",
+     "blurb": "New features and making them better.",
+     "roadmap": true,
+     "cost": 16.1833,
+     "value_share": 0.0,
+     "gap": -1.0
+    },
+    {
+     "id": "upkeep",
+     "name": "Upkeep",
+     "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
+     "roadmap": false,
+     "cost": 5.8754,
+     "value_share": null,
+     "gap": null
+    }
+   ],
+   "days": [
+    {
+     "date": "2026-10-04",
+     "by": {
+      "quality": {
+       "cost": 0.9305,
+       "tokens": 3725223,
+       "output": 5565
+      },
+      "ship": {
+       "cost": 1.5556,
+       "tokens": 4593384,
+       "output": 17437
+      },
+      "features": {
+       "cost": 10.2481,
+       "tokens": 18990428,
+       "output": 63543
+      },
+      "docs": {
+       "cost": 0.7515,
+       "tokens": 2823324,
+       "output": 5138
+      }
+     }
+    },
+    {
+     "date": "2026-10-05",
+     "by": {
+      "docs": {
+       "cost": 3.5684,
+       "tokens": 1642026,
+       "output": 1486
+      },
+      "features": {
+       "cost": 5.0046,
+       "tokens": 6972926,
+       "output": 24072
+      }
+     }
+    }
+   ],
+   "totals": {
+    "cost": 22.0587,
+    "tokens": 38747311,
+    "input": 210,
+    "output": 117241,
+    "cache_write": 1536810,
+    "cache_read": 37093050,
+    "turns": 8
+   },
+   "models": [
+    {
+     "id": "claude-opus-5-5",
+     "name": "Claude Opus 5.5",
+     "maker": "Anthropic",
+     "family": "opus",
+     "priced": true,
+     "cost": 22.0587,
+     "tokens": 38747311,
+     "output": 117241,
+     "replies": 105
+    }
+   ],
+   "alignment": 0.734,
+   "roadmap": {
+    "items": [],
+    "done": []
+   },
+   "roadmap_link": "",
+   "roadmap_rule": "",
+   "next": [],
+   "recent": []
+  },
+  {
+   "id": "weather-in-dots",
+   "color": "#3ddc84",
+   "product": "Weather in dots",
+   "sessions": 1,
+   "buckets": [
+    {
+     "id": "features",
+     "name": "Features & UI",
+     "color": "#4dd2ff",
+     "theme": "build",
+     "cost": 16.9076,
+     "tokens": 18690670,
+     "output": 164701,
+     "turns": 3
+    },
+    {
+     "id": "bugs",
+     "name": "Bug squashing",
+     "color": "#ff6b3d",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "quality",
+     "name": "Tests & quality",
+     "color": "#ff4d8d",
+     "theme": "build",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "ship",
+     "name": "Releases & Git",
+     "color": "#3ddc84",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "docs",
+     "name": "Docs & planning",
+     "color": "#f2f2f2",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "setup",
+     "name": "Setup & tooling",
+     "color": "#9b6bff",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "learn",
+     "name": "Learning & questions",
+     "color": "#ffe14d",
+     "theme": "upkeep",
+     "cost": 0.2483,
+     "tokens": 1011168,
+     "output": 1300,
+     "turns": 2
+    }
+   ],
+   "themes": [
+    {
+     "id": "build",
+     "name": "Building the product",
+     "blurb": "New features and making them better.",
+     "roadmap": true,
+     "cost": 16.9076,
+     "value_share": 0.0,
+     "gap": -1.0
+    },
+    {
+     "id": "upkeep",
+     "name": "Upkeep",
+     "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
+     "roadmap": false,
+     "cost": 0.2483,
+     "value_share": null,
+     "gap": null
+    }
+   ],
+   "days": [
+    {
+     "date": "2026-10-04",
+     "by": {
+      "features": {
+       "cost": 11.8885,
+       "tokens": 11278477,
+       "output": 120286
+      },
+      "learn": {
+       "cost": 0.2483,
+       "tokens": 1011168,
+       "output": 1300
+      }
+     }
+    },
+    {
+     "date": "2026-10-05",
+     "by": {
+      "features": {
+       "cost": 5.0191,
+       "tokens": 7412193,
+       "output": 44415
+      }
+     }
+    }
+   ],
+   "totals": {
+    "cost": 17.1559,
+    "tokens": 19701838,
+    "input": 178,
+    "output": 166001,
+    "cache_write": 721898,
+    "cache_read": 18813761,
+    "turns": 5
+   },
+   "models": [
+    {
+     "id": "claude-opus-5-5",
+     "name": "Claude Opus 5.5",
+     "maker": "Anthropic",
+     "family": "opus",
+     "priced": true,
+     "cost": 9.6133,
+     "tokens": 17175575,
+     "output": 95422,
+     "replies": 71
+    },
+    {
+     "id": "claude-fable-5-1",
+     "name": "Claude Fable 5.1",
+     "maker": "Anthropic",
+     "family": "fable",
+     "priced": true,
+     "cost": 7.5426,
+     "tokens": 2526263,
+     "output": 70579,
+     "replies": 18
+    }
+   ],
+   "alignment": 0.986,
+   "roadmap": {
+    "items": [],
+    "done": []
+   },
+   "roadmap_link": "",
+   "roadmap_rule": "",
+   "next": [],
+   "recent": []
+  },
+  {
+   "id": "bankrolled",
+   "color": "#9b6bff",
+   "product": "Bankrolled",
+   "sessions": 1,
+   "buckets": [
+    {
+     "id": "features",
+     "name": "Features & UI",
+     "color": "#4dd2ff",
+     "theme": "build",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "bugs",
+     "name": "Bug squashing",
+     "color": "#ff6b3d",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "quality",
+     "name": "Tests & quality",
+     "color": "#ff4d8d",
+     "theme": "build",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "ship",
+     "name": "Releases & Git",
+     "color": "#3ddc84",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "docs",
+     "name": "Docs & planning",
+     "color": "#f2f2f2",
+     "theme": "upkeep",
+     "cost": 7.5925,
+     "tokens": 14015947,
+     "output": 14662,
+     "turns": 2
+    },
+    {
+     "id": "setup",
+     "name": "Setup & tooling",
+     "color": "#9b6bff",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "learn",
+     "name": "Learning & questions",
+     "color": "#ffe14d",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    }
+   ],
+   "themes": [
+    {
+     "id": "build",
+     "name": "Building the product",
+     "blurb": "New features and making them better.",
+     "roadmap": true,
+     "cost": 0.0,
+     "value_share": 0.0,
+     "gap": 0.0
+    },
+    {
+     "id": "upkeep",
+     "name": "Upkeep",
+     "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
+     "roadmap": false,
+     "cost": 7.5925,
+     "value_share": null,
+     "gap": null
+    }
+   ],
+   "days": [
+    {
+     "date": "2026-10-04",
+     "by": {
+      "docs": {
+       "cost": 2.0323,
+       "tokens": 8629301,
+       "output": 7949
+      }
+     }
+    },
+    {
+     "date": "2026-10-05",
+     "by": {
+      "docs": {
+       "cost": 5.5602,
+       "tokens": 5386646,
+       "output": 6713
+      }
+     }
+    }
+   ],
+   "totals": {
+    "cost": 7.5925,
+    "tokens": 14015947,
+    "input": 48,
+    "output": 14662,
+    "cache_write": 576776,
+    "cache_read": 13424461,
+    "turns": 2
+   },
+   "models": [
+    {
+     "id": "claude-opus-5-5",
+     "name": "Claude Opus 5.5",
+     "maker": "Anthropic",
+     "family": "opus",
+     "priced": true,
+     "cost": 7.5925,
+     "tokens": 14015947,
+     "output": 14662,
+     "replies": 24
+    }
+   ],
+   "alignment": 0.0,
+   "roadmap": {
+    "items": [],
+    "done": []
+   },
+   "roadmap_link": "",
+   "roadmap_rule": "",
+   "next": [],
+   "recent": []
   }
- ],
- "recent": []
+ ]
 }
