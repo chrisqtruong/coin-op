@@ -95,7 +95,7 @@
 
   /* leaderboard */
   .board { display: grid; gap: 10px; }
-  .board .item { display: grid; grid-template-columns: 22px minmax(140px, 220px) 1fr 92px; gap: 12px; align-items: center; }
+  .board .item { display: grid; grid-template-columns: 22px minmax(140px, 220px) 1fr 120px; gap: 12px; align-items: center; }
   .board .rank { font: 700 12px/1 var(--mono); color: var(--ink-3); }
   .board .name { display: flex; align-items: center; gap: 8px; }
   .board .name i { width: 12px; height: 12px; flex: none; }
@@ -295,7 +295,8 @@ function roll(id, to, f) {
 }
 
 // ---------- chart: each day is a column of pixel blocks, filled bottom-up bucket by bucket
-const PX = 10, GAP = 2, COLW = 6, COLGAP = 26, TOP = 18, BASE = 30, MAXROWS = 26;
+const PX = 10, GAP = 2, TOP = 18, BASE = 30, MAXROWS = 26;
+let COLW = 6, COLGAP = 26;   // narrowed in layout() so every day fits across
 const NICE = [0.01, 0.02, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10, 20, 50, 100, 250, 500, 1000];
 
 function allDays() {
@@ -312,6 +313,10 @@ function allDays() {
 
 function layout() {
   const days = allDays();
+  // fit the days across: thinner columns and gaps as the history grows (scrolls only past ~80 days)
+  const avail = Math.max(280, $('wrap').clientWidth - 8);
+  COLGAP = days.length > 10 ? 10 : 26;
+  COLW = Math.max(1, Math.min(6, Math.floor(((avail - COLGAP) / Math.max(1, days.length) - COLGAP + GAP) / (PX + GAP))));
   const max = Math.max(1e-9, ...days.map((d) => Object.values(d.by).reduce((s, c) => s + c[measure], 0)));
   let unit;
   if (measure === 'cost') unit = NICE.find((u) => max / u <= MAXROWS * COLW) ?? 1000;
@@ -364,11 +369,12 @@ function drawChart(fresh) {
   (function frame(t) {
     ctx.clearRect(0, 0, w, h);
     // baseline + day labels
+    const labelEvery = Math.max(1, Math.ceil(64 / (colPx + COLGAP)));
     ctx.fillStyle = '#342e48'; ctx.fillRect(0, h - BASE + 2, w, 2);
     ctx.font = 'bold 12px "Space Mono"'; ctx.textAlign = 'center';
     L.cols.forEach((c) => {
       ctx.fillStyle = '#7d7699';
-      ctx.fillText(dayLabel(c.date).toLowerCase(), c.x + colPx / 2, h - BASE + 20);
+      if (c.i % labelEvery === 0) ctx.fillText(dayLabel(c.date).toLowerCase(), c.x + colPx / 2, h - BASE + 20);
     });
     let busy = false;
     for (const b of tasks) {
@@ -387,7 +393,7 @@ function drawChart(fresh) {
     if (!busy) {
       ctx.font = 'bold 12px "Space Mono"';
       L.cols.forEach((c) => {
-        if (!c.total) return;
+        if (!c.total || colPx + COLGAP < 64) return;   // too narrow for a label; hover shows it
         const top = h - BASE - Math.ceil(c.blocks.length / COLW) * (PX + GAP);
         ctx.fillStyle = '#f4f1ff'; ctx.fillText(fmt(c.total), c.x + colPx / 2, Math.max(10, top - 6));
       });
