@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-06T04:04:55+00:00",
+ "generated": "2026-10-06T04:09:58+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -60,10 +60,10 @@
     "name": "Weather in dots",
     "color": "#3ddc84",
     "theme": "",
-    "cost": 24.0187,
-    "tokens": 44888618,
-    "output": 219059,
-    "turns": 8
+    "cost": 25.3902,
+    "tokens": 49895265,
+    "output": 230184,
+    "turns": 9
    },
    {
     "id": "bankrolled",
@@ -287,21 +287,21 @@
     "date": "2026-10-06",
     "by": {
      "weather-in-dots": {
-      "cost": 0.701,
-      "tokens": 2636039,
-      "output": 4445
+      "cost": 2.0725,
+      "tokens": 7642686,
+      "output": 15570
      }
     }
    }
   ],
   "totals": {
-   "cost": 574.3428,
-   "tokens": 1641109138,
-   "input": 8046,
-   "output": 3742461,
-   "cache_write": 23045476,
-   "cache_read": 1614313155,
-   "turns": 639
+   "cost": 575.7143,
+   "tokens": 1646115785,
+   "input": 8068,
+   "output": 3753586,
+   "cache_write": 23064680,
+   "cache_read": 1619289451,
+   "turns": 640
   },
   "models": [
    {
@@ -310,10 +310,10 @@
     "maker": "Anthropic",
     "family": "opus",
     "priced": true,
-    "cost": 543.7745,
-    "tokens": 1577832395,
-    "output": 3190380,
-    "replies": 3487
+    "cost": 545.1459,
+    "tokens": 1582839042,
+    "output": 3201505,
+    "replies": 3498
    },
    {
     "id": "claude-sonnet-5",
@@ -1509,10 +1509,10 @@
      "name": "Bug squashing",
      "color": "#ff6b3d",
      "theme": "upkeep",
-     "cost": 0.0,
-     "tokens": 0,
-     "output": 0,
-     "turns": 0
+     "cost": 1.3715,
+     "tokens": 5006647,
+     "output": 11125,
+     "turns": 1
     },
     {
      "id": "quality",
@@ -1580,7 +1580,7 @@
      "name": "Upkeep",
      "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
      "roadmap": false,
-     "cost": 0.2483,
+     "cost": 1.6197,
      "value_share": null,
      "gap": null
     }
@@ -1618,18 +1618,23 @@
        "cost": 0.701,
        "tokens": 2636039,
        "output": 4445
+      },
+      "bugs": {
+       "cost": 1.3715,
+       "tokens": 5006647,
+       "output": 11125
       }
      }
     }
    ],
    "totals": {
-    "cost": 24.0187,
-    "tokens": 44888618,
-    "input": 308,
-    "output": 219059,
-    "cache_write": 821180,
-    "cache_read": 43848071,
-    "turns": 8
+    "cost": 25.3902,
+    "tokens": 49895265,
+    "input": 330,
+    "output": 230184,
+    "cache_write": 840384,
+    "cache_read": 48824367,
+    "turns": 9
    },
    "models": [
     {
@@ -1638,10 +1643,10 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 16.4761,
-     "tokens": 42362355,
-     "output": 148480,
-     "replies": 136
+     "cost": 17.8475,
+     "tokens": 47369002,
+     "output": 159605,
+     "replies": 147
     },
     {
      "id": "claude-fable-5-1",
@@ -1655,7 +1660,7 @@
      "replies": 18
     }
    ],
-   "alignment": 0.99,
+   "alignment": 0.936,
    "roadmap": {
     "items": [],
     "done": []
