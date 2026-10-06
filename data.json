@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-06T14:21:31+00:00",
+ "generated": "2026-10-06T14:26:34+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -20,10 +20,10 @@
     "name": "Vox2",
     "color": "#4dd2ff",
     "theme": "",
-    "cost": 277.231,
-    "tokens": 853777850,
-    "output": 1636126,
-    "turns": 316
+    "cost": 279.9942,
+    "tokens": 864857959,
+    "output": 1649129,
+    "turns": 317
    },
    {
     "id": "purrmodoro",
@@ -40,10 +40,10 @@
     "name": "Personal site",
     "color": "#ff4d8d",
     "theme": "",
-    "cost": 174.7062,
-    "tokens": 538149996,
-    "output": 927349,
-    "turns": 154
+    "cost": 175.0226,
+    "tokens": 539396077,
+    "output": 929262,
+    "turns": 155
    },
    {
     "id": "swear-jar",
@@ -287,14 +287,14 @@
     "date": "2026-10-06",
     "by": {
      "vox2": {
-      "cost": 9.0237,
-      "tokens": 7649606,
-      "output": 9724
+      "cost": 11.7869,
+      "tokens": 18729715,
+      "output": 22727
      },
      "personal-site": {
-      "cost": 38.8139,
-      "tokens": 124447061,
-      "output": 207544
+      "cost": 39.1303,
+      "tokens": 125693142,
+      "output": 209457
      },
      "weather-in-dots": {
       "cost": 4.5102,
@@ -305,13 +305,13 @@
    }
   ],
   "totals": {
-   "cost": 625.9896,
-   "tokens": 1787281891,
-   "input": 8672,
-   "output": 3988860,
-   "cache_write": 25293059,
-   "cache_read": 1757991300,
-   "turns": 671
+   "cost": 629.0692,
+   "tokens": 1799608081,
+   "input": 8714,
+   "output": 4003776,
+   "cache_write": 25333941,
+   "cache_read": 1770261650,
+   "turns": 673
   },
   "models": [
    {
@@ -320,10 +320,10 @@
     "maker": "Anthropic",
     "family": "opus",
     "priced": true,
-    "cost": 595.4212,
-    "tokens": 1724005148,
-    "output": 3436779,
-    "replies": 3800
+    "cost": 598.5009,
+    "tokens": 1736331338,
+    "output": 3451695,
+    "replies": 3821
    },
    {
     "id": "claude-sonnet-5",
@@ -392,20 +392,20 @@
      "name": "Snip, voice & audio",
      "color": "#ffb000",
      "theme": "daily",
-     "cost": 17.9145,
-     "tokens": 40532365,
-     "output": 80495,
-     "turns": 21
+     "cost": 17.1835,
+     "tokens": 37733733,
+     "output": 76445,
+     "turns": 20
     },
     {
      "id": "look",
      "name": "Look, feel & features",
      "color": "#4dd2ff",
      "theme": "daily",
-     "cost": 72.7449,
-     "tokens": 210845337,
-     "output": 327091,
-     "turns": 79
+     "cost": 75.4531,
+     "tokens": 222140829,
+     "output": 338332,
+     "turns": 80
     },
     {
      "id": "mac",
@@ -432,10 +432,10 @@
      "name": "Releases & GitHub",
      "color": "#3ddc84",
      "theme": "upkeep",
-     "cost": 47.6408,
-     "tokens": 160731040,
-     "output": 284314,
-     "turns": 76
+     "cost": 48.4269,
+     "tokens": 163314289,
+     "output": 290126,
+     "turns": 77
     },
     {
      "id": "docs",
@@ -466,16 +466,16 @@
      "roadmap": true,
      "cost": 66.8409,
      "value_share": 0.424,
-     "gap": 0.037
+     "gap": 0.041
     },
     {
      "id": "daily",
      "name": "Useful every day",
      "blurb": "Snip, voice, the window and the helpers you reach for daily.",
      "roadmap": true,
-     "cost": 90.6594,
+     "cost": 92.6365,
      "value_share": 0.495,
-     "gap": -0.03
+     "gap": -0.036
     },
     {
      "id": "reach",
@@ -484,14 +484,14 @@
      "roadmap": true,
      "cost": 15.1125,
      "value_share": 0.081,
-     "gap": -0.007
+     "gap": -0.006
     },
     {
      "id": "upkeep",
      "name": "Upkeep",
      "blurb": "Bugs, releases, docs and learning. Not on the roadmap, but it keeps the lights on.",
      "roadmap": false,
-     "cost": 104.6182,
+     "cost": 105.4043,
      "value_share": null,
      "gap": null
     }
@@ -641,26 +641,31 @@
      "date": "2026-10-06",
      "by": {
       "look": {
-       "cost": 0.3088,
-       "tokens": 1171067,
-       "output": 2385
+       "cost": 3.0171,
+       "tokens": 12466559,
+       "output": 13626
+      },
+      "ship": {
+       "cost": 0.786,
+       "tokens": 2583249,
+       "output": 5812
       },
       "capture": {
-       "cost": 8.7148,
-       "tokens": 6478539,
-       "output": 7339
+       "cost": 7.9838,
+       "tokens": 3679907,
+       "output": 3289
       }
      }
     }
    ],
    "totals": {
-    "cost": 277.231,
-    "tokens": 853777850,
-    "input": 3908,
-    "output": 1636126,
-    "cache_write": 9622584,
-    "cache_read": 842515232,
-    "turns": 316
+    "cost": 279.9942,
+    "tokens": 864857959,
+    "input": 3942,
+    "output": 1649129,
+    "cache_write": 9659714,
+    "cache_read": 853545174,
+    "turns": 317
    },
    "models": [
     {
@@ -669,10 +674,10 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 276.528,
-     "tokens": 851702199,
-     "output": 1635684,
-     "replies": 1850
+     "cost": 279.2912,
+     "tokens": 862782308,
+     "output": 1648687,
+     "replies": 1867
     },
     {
      "id": "claude-sonnet-5-5",
@@ -686,7 +691,7 @@
      "replies": 22
     }
    ],
-   "alignment": 0.623,
+   "alignment": 0.624,
    "roadmap": {
     "items": [
      {
@@ -894,7 +899,7 @@
      "n": 1,
      "title": "Meaning check: sharpen the targeted checks",
      "theme": "trust",
-     "why": "\"Trustworthy\" holds 42% of the roadmap's value but got 39% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
+     "why": "\"Trustworthy\" holds 42% of the roadmap's value but got 38% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
     },
     {
      "n": 3,
@@ -1162,10 +1167,10 @@
      "name": "Bug squashing",
      "color": "#ff6b3d",
      "theme": "upkeep",
-     "cost": 1.9426,
-     "tokens": 7490895,
-     "output": 13493,
-     "turns": 4
+     "cost": 2.259,
+     "tokens": 8736976,
+     "output": 15406,
+     "turns": 5
     },
     {
      "id": "quality",
@@ -1233,7 +1238,7 @@
      "name": "Upkeep",
      "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
      "roadmap": false,
-     "cost": 37.5279,
+     "cost": 37.8442,
      "value_share": null,
      "gap": null
     }
@@ -1323,21 +1328,21 @@
        "output": 4633
       },
       "bugs": {
-       "cost": 1.2497,
-       "tokens": 4550906,
-       "output": 10026
+       "cost": 1.5661,
+       "tokens": 5796987,
+       "output": 11939
       }
      }
     }
    ],
    "totals": {
-    "cost": 174.7062,
-    "tokens": 538149996,
-    "input": 2330,
-    "output": 927349,
-    "cache_write": 6254373,
-    "cache_read": 530965944,
-    "turns": 154
+    "cost": 175.0226,
+    "tokens": 539396077,
+    "input": 2338,
+    "output": 929262,
+    "cache_write": 6258125,
+    "cache_read": 532206352,
+    "turns": 155
    },
    "models": [
     {
@@ -1346,13 +1351,13 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 174.7062,
-     "tokens": 538149996,
-     "output": 927349,
-     "replies": 1158
+     "cost": 175.0226,
+     "tokens": 539396077,
+     "output": 929262,
+     "replies": 1162
     }
    ],
-   "alignment": 0.785,
+   "alignment": 0.784,
    "roadmap": {
     "items": [],
     "done": []
