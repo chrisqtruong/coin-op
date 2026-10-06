@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-06T15:22:09+00:00",
+ "generated": "2026-10-06T15:27:35+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -20,10 +20,10 @@
     "name": "Vox2",
     "color": "#4dd2ff",
     "theme": "",
-    "cost": 299.9596,
-    "tokens": 910593223,
-    "output": 1823900,
-    "turns": 327
+    "cost": 302.6673,
+    "tokens": 919943988,
+    "output": 1848912,
+    "turns": 329
    },
    {
     "id": "purrmodoro",
@@ -40,10 +40,10 @@
     "name": "Personal site",
     "color": "#ff4d8d",
     "theme": "",
-    "cost": 175.0226,
-    "tokens": 539396077,
-    "output": 929262,
-    "turns": 155
+    "cost": 175.7357,
+    "tokens": 541986672,
+    "output": 935985,
+    "turns": 156
    },
    {
     "id": "swear-jar",
@@ -287,14 +287,14 @@
     "date": "2026-10-06",
     "by": {
      "vox2": {
-      "cost": 31.7523,
-      "tokens": 64464979,
-      "output": 197498
+      "cost": 34.46,
+      "tokens": 73815744,
+      "output": 222510
      },
      "personal-site": {
-      "cost": 39.1303,
-      "tokens": 125693142,
-      "output": 209457
+      "cost": 39.8434,
+      "tokens": 128283737,
+      "output": 216180
      },
      "weather-in-dots": {
       "cost": 4.5102,
@@ -305,13 +305,13 @@
    }
   ],
   "totals": {
-   "cost": 649.0346,
-   "tokens": 1845343345,
-   "input": 9052,
-   "output": 4178547,
-   "cache_write": 26277095,
-   "cache_read": 1814878651,
-   "turns": 683
+   "cost": 652.4554,
+   "tokens": 1857284705,
+   "input": 9136,
+   "output": 4210282,
+   "cache_write": 26328870,
+   "cache_read": 1826736417,
+   "turns": 686
   },
   "models": [
    {
@@ -320,10 +320,10 @@
     "maker": "Anthropic",
     "family": "opus",
     "priced": true,
-    "cost": 618.4663,
-    "tokens": 1782066602,
-    "output": 3626466,
-    "replies": 3988
+    "cost": 621.8871,
+    "tokens": 1794007962,
+    "output": 3658201,
+    "replies": 4029
    },
    {
     "id": "claude-sonnet-5",
@@ -402,9 +402,9 @@
      "name": "Look, feel & features",
      "color": "#4dd2ff",
      "theme": "daily",
-     "cost": 89.2695,
-     "tokens": 258382478,
-     "output": 495083,
+     "cost": 90.3642,
+     "tokens": 260879013,
+     "output": 514244,
      "turns": 85
     },
     {
@@ -442,10 +442,10 @@
      "name": "Docs & planning",
      "color": "#f2f2f2",
      "theme": "upkeep",
-     "cost": 52.4127,
-     "tokens": 190686258,
-     "output": 358349,
-     "turns": 50
+     "cost": 54.0257,
+     "tokens": 197540488,
+     "output": 364200,
+     "turns": 52
     },
     {
      "id": "learn",
@@ -466,16 +466,16 @@
      "roadmap": true,
      "cost": 66.8409,
      "value_share": 0.4,
-     "gap": 0.045
+     "gap": 0.047
     },
     {
      "id": "daily",
      "name": "Useful every day",
      "blurb": "Snip, voice, the window and the helpers you reach for daily.",
      "roadmap": true,
-     "cost": 106.453,
+     "cost": 107.5477,
      "value_share": 0.524,
-     "gap": -0.041
+     "gap": -0.044
     },
     {
      "id": "reach",
@@ -491,7 +491,7 @@
      "name": "Upkeep",
      "blurb": "Bugs, releases, docs and learning. Not on the roadmap, but it keeps the lights on.",
      "roadmap": false,
-     "cost": 111.5532,
+     "cost": 113.1662,
      "value_share": null,
      "gap": null
     }
@@ -646,14 +646,14 @@
        "output": 17450
       },
       "look": {
-       "cost": 16.8335,
-       "tokens": 48708208,
-       "output": 170377
+       "cost": 17.9282,
+       "tokens": 51204743,
+       "output": 189538
       },
       "docs": {
-       "cost": 0.6673,
-       "tokens": 2414173,
-       "output": 6382
+       "cost": 2.2803,
+       "tokens": 9268403,
+       "output": 12233
       },
       "capture": {
        "cost": 7.9838,
@@ -664,13 +664,13 @@
     }
    ],
    "totals": {
-    "cost": 299.9596,
-    "tokens": 910593223,
-    "input": 4280,
-    "output": 1823900,
-    "cache_write": 10602868,
-    "cache_read": 898162175,
-    "turns": 327
+    "cost": 302.6673,
+    "tokens": 919943988,
+    "input": 4350,
+    "output": 1848912,
+    "cache_write": 10646722,
+    "cache_read": 907444004,
+    "turns": 329
    },
    "models": [
     {
@@ -679,10 +679,10 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 299.2566,
-     "tokens": 908517572,
-     "output": 1823458,
-     "replies": 2034
+     "cost": 301.9643,
+     "tokens": 917868337,
+     "output": 1848470,
+     "replies": 2068
     },
     {
      "id": "claude-sonnet-5-5",
@@ -696,7 +696,7 @@
      "replies": 22
     }
    ],
-   "alignment": 0.628,
+   "alignment": 0.626,
    "roadmap": {
     "items": [
      {
@@ -1182,10 +1182,10 @@
      "name": "Bug squashing",
      "color": "#ff6b3d",
      "theme": "upkeep",
-     "cost": 2.259,
-     "tokens": 8736976,
-     "output": 15406,
-     "turns": 5
+     "cost": 2.9721,
+     "tokens": 11327571,
+     "output": 22129,
+     "turns": 6
     },
     {
      "id": "quality",
@@ -1253,7 +1253,7 @@
      "name": "Upkeep",
      "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
      "roadmap": false,
-     "cost": 37.8442,
+     "cost": 38.5573,
      "value_share": null,
      "gap": null
     }
@@ -1343,21 +1343,21 @@
        "output": 4633
       },
       "bugs": {
-       "cost": 1.5661,
-       "tokens": 5796987,
-       "output": 11939
+       "cost": 2.2792,
+       "tokens": 8387582,
+       "output": 18662
       }
      }
     }
    ],
    "totals": {
-    "cost": 175.0226,
-    "tokens": 539396077,
-    "input": 2338,
-    "output": 929262,
-    "cache_write": 6258125,
-    "cache_read": 532206352,
-    "turns": 155
+    "cost": 175.7357,
+    "tokens": 541986672,
+    "input": 2352,
+    "output": 935985,
+    "cache_write": 6266046,
+    "cache_read": 534782289,
+    "turns": 156
    },
    "models": [
     {
@@ -1366,13 +1366,13 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 175.0226,
-     "tokens": 539396077,
-     "output": 929262,
-     "replies": 1162
+     "cost": 175.7357,
+     "tokens": 541986672,
+     "output": 935985,
+     "replies": 1169
     }
    ],
-   "alignment": 0.784,
+   "alignment": 0.781,
    "roadmap": {
     "items": [],
     "done": []
