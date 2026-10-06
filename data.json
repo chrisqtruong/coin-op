@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-06T15:27:35+00:00",
+ "generated": "2026-10-06T15:32:40+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -20,10 +20,10 @@
     "name": "Vox2",
     "color": "#4dd2ff",
     "theme": "",
-    "cost": 302.6673,
-    "tokens": 919943988,
-    "output": 1848912,
-    "turns": 329
+    "cost": 299.3944,
+    "tokens": 914588212,
+    "output": 1792461,
+    "turns": 328
    },
    {
     "id": "purrmodoro",
@@ -40,10 +40,10 @@
     "name": "Personal site",
     "color": "#ff4d8d",
     "theme": "",
-    "cost": 175.7357,
-    "tokens": 541986672,
-    "output": 935985,
-    "turns": 156
+    "cost": 181.1085,
+    "tokens": 554553793,
+    "output": 1012264,
+    "turns": 159
    },
    {
     "id": "swear-jar",
@@ -287,14 +287,14 @@
     "date": "2026-10-06",
     "by": {
      "vox2": {
-      "cost": 34.46,
-      "tokens": 73815744,
-      "output": 222510
+      "cost": 31.1871,
+      "tokens": 68459968,
+      "output": 166059
      },
      "personal-site": {
-      "cost": 39.8434,
-      "tokens": 128283737,
-      "output": 216180
+      "cost": 45.2163,
+      "tokens": 140850858,
+      "output": 292459
      },
      "weather-in-dots": {
       "cost": 4.5102,
@@ -305,13 +305,13 @@
    }
   ],
   "totals": {
-   "cost": 652.4554,
-   "tokens": 1857284705,
-   "input": 9136,
-   "output": 4210282,
-   "cache_write": 26328870,
-   "cache_read": 1826736417,
-   "turns": 686
+   "cost": 654.5553,
+   "tokens": 1864496050,
+   "input": 9186,
+   "output": 4230110,
+   "cache_write": 26362830,
+   "cache_read": 1833893924,
+   "turns": 688
   },
   "models": [
    {
@@ -320,10 +320,10 @@
     "maker": "Anthropic",
     "family": "opus",
     "priced": true,
-    "cost": 621.8871,
-    "tokens": 1794007962,
-    "output": 3658201,
-    "replies": 4029
+    "cost": 623.987,
+    "tokens": 1801219307,
+    "output": 3678029,
+    "replies": 4054
    },
    {
     "id": "claude-sonnet-5",
@@ -375,7 +375,7 @@
    "id": "vox2",
    "color": "#4dd2ff",
    "product": "Vox2",
-   "sessions": 7,
+   "sessions": 6,
    "buckets": [
     {
      "id": "meaning",
@@ -402,10 +402,10 @@
      "name": "Look, feel & features",
      "color": "#4dd2ff",
      "theme": "daily",
-     "cost": 90.3642,
-     "tokens": 260879013,
-     "output": 514244,
-     "turns": 85
+     "cost": 87.0603,
+     "tokens": 254219215,
+     "output": 459752,
+     "turns": 84
     },
     {
      "id": "mac",
@@ -432,9 +432,9 @@
      "name": "Releases & GitHub",
      "color": "#3ddc84",
      "theme": "upkeep",
-     "cost": 53.9085,
-     "tokens": 170393731,
-     "output": 301764,
+     "cost": 53.9396,
+     "tokens": 171697753,
+     "output": 299805,
      "turns": 81
     },
     {
@@ -465,17 +465,17 @@
      "blurb": "Can you rely on what Vox2 tells you? The meaning check and match score.",
      "roadmap": true,
      "cost": 66.8409,
-     "value_share": 0.4,
-     "gap": 0.047
+     "value_share": 0.424,
+     "gap": 0.065
     },
     {
      "id": "daily",
      "name": "Useful every day",
      "blurb": "Snip, voice, the window and the helpers you reach for daily.",
      "roadmap": true,
-     "cost": 107.5477,
-     "value_share": 0.524,
-     "gap": -0.044
+     "cost": 104.2438,
+     "value_share": 0.495,
+     "gap": -0.065
     },
     {
      "id": "reach",
@@ -483,15 +483,15 @@
      "blurb": "Mac, Intel, signed installers: Vox2 on more computers.",
      "roadmap": true,
      "cost": 15.1125,
-     "value_share": 0.076,
-     "gap": -0.004
+     "value_share": 0.081,
+     "gap": -0.0
     },
     {
      "id": "upkeep",
      "name": "Upkeep",
      "blurb": "Bugs, releases, docs and learning. Not on the roadmap, but it keeps the lights on.",
      "roadmap": false,
-     "cost": 113.1662,
+     "cost": 113.1973,
      "value_share": null,
      "gap": null
     }
@@ -641,14 +641,14 @@
      "date": "2026-10-06",
      "by": {
       "ship": {
-       "cost": 6.2677,
-       "tokens": 9662691,
-       "output": 17450
+       "cost": 6.2987,
+       "tokens": 10966713,
+       "output": 15491
       },
       "look": {
-       "cost": 17.9282,
-       "tokens": 51204743,
-       "output": 189538
+       "cost": 14.6243,
+       "tokens": 44544945,
+       "output": 135046
       },
       "docs": {
        "cost": 2.2803,
@@ -664,13 +664,13 @@
     }
    ],
    "totals": {
-    "cost": 302.6673,
-    "tokens": 919943988,
-    "input": 4350,
-    "output": 1848912,
-    "cache_write": 10646722,
-    "cache_read": 907444004,
-    "turns": 329
+    "cost": 299.3944,
+    "tokens": 914588212,
+    "input": 4256,
+    "output": 1792461,
+    "cache_write": 10507790,
+    "cache_read": 902283705,
+    "turns": 328
    },
    "models": [
     {
@@ -679,10 +679,10 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 301.9643,
-     "tokens": 917868337,
-     "output": 1848470,
-     "replies": 2068
+     "cost": 298.6914,
+     "tokens": 912512561,
+     "output": 1792019,
+     "replies": 2021
     },
     {
      "id": "claude-sonnet-5-5",
@@ -696,7 +696,7 @@
      "replies": 22
     }
    ],
-   "alignment": 0.626,
+   "alignment": 0.622,
    "roadmap": {
     "items": [
      {
@@ -741,16 +741,6 @@
      },
      {
       "n": 5,
-      "title": "Vox2 in your language",
-      "value": "High",
-      "effort": "medium",
-      "issue": null,
-      "status": "open",
-      "theme": "daily",
-      "score": 1.5
-     },
-     {
-      "n": 6,
       "title": "Explain this",
       "value": "High",
       "effort": "small",
@@ -760,7 +750,7 @@
       "score": 3.0
      },
      {
-      "n": 7,
+      "n": 6,
       "title": "Personal glossary",
       "value": "Medium-high",
       "effort": "small",
@@ -770,7 +760,7 @@
       "score": 2.5
      },
      {
-      "n": 8,
+      "n": 7,
       "title": "More translation engines: DeepL and Microsoft Translator",
       "value": "Medium-high",
       "effort": "small",
@@ -780,7 +770,7 @@
       "score": 2.5
      },
      {
-      "n": 9,
+      "n": 8,
       "title": "Reply helper",
       "value": "High",
       "effort": "medium",
@@ -790,7 +780,7 @@
       "score": 1.5
      },
      {
-      "n": 10,
+      "n": 9,
       "title": "Meaning check: AI double-check",
       "value": "High",
       "effort": "medium",
@@ -800,7 +790,7 @@
       "score": 1.5
      },
      {
-      "n": 11,
+      "n": 10,
       "title": "Meaning check: suggested fixes, verified",
       "value": "High",
       "effort": "medium",
@@ -810,7 +800,7 @@
       "score": 1.5
      },
      {
-      "n": 12,
+      "n": 11,
       "title": "Meaning check: benchmark against research systems on the WMT test sets",
       "value": "High",
       "effort": "medium",
@@ -820,7 +810,7 @@
       "score": 1.5
      },
      {
-      "n": 13,
+      "n": 12,
       "title": "Hands-free conversation",
       "value": "Medium-high",
       "effort": "medium",
@@ -830,7 +820,7 @@
       "score": 1.25
      },
      {
-      "n": 14,
+      "n": 13,
       "title": "Better snip",
       "value": "Medium",
       "effort": "medium",
@@ -840,7 +830,7 @@
       "score": 1.0
      },
      {
-      "n": 15,
+      "n": 14,
       "title": "Live captions: calls, videos and any audio",
       "value": "Very high",
       "effort": "large",
@@ -850,7 +840,7 @@
       "score": 1.33
      },
      {
-      "n": 16,
+      "n": 15,
       "title": "Documents: drag and drop, formatting kept",
       "value": "High",
       "effort": "medium",
@@ -860,7 +850,7 @@
       "score": 1.5
      },
      {
-      "n": 17,
+      "n": 16,
       "title": "Mini mode",
       "value": "Medium",
       "effort": "medium",
@@ -870,7 +860,7 @@
       "score": 1.0
      },
      {
-      "n": 18,
+      "n": 17,
       "title": "Mac: Intel support and Apple notarization",
       "value": "Medium",
       "effort": "small + cost",
@@ -880,7 +870,7 @@
       "score": 1.33
      },
      {
-      "n": 19,
+      "n": 18,
       "title": "Windows code signing",
       "value": "Medium",
       "effort": "small + cost",
@@ -891,6 +881,10 @@
      }
     ],
     "done": [
+     {
+      "title": "Vox2 in your language",
+      "theme": "daily"
+     },
      {
       "title": "macOS version",
       "theme": "reach"
@@ -914,7 +908,7 @@
      "n": 1,
      "title": "Meaning check: sharpen the targeted checks",
      "theme": "trust",
-     "why": "\"Trustworthy\" holds 40% of the roadmap's value but got 35% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
+     "why": "\"Trustworthy\" holds 42% of the roadmap's value but got 36% of roadmap spend. This is its best value-for-effort item (high value, small effort)."
     },
     {
      "n": 3,
@@ -1165,26 +1159,26 @@
    "id": "personal-site",
    "color": "#ff4d8d",
    "product": "Personal site",
-   "sessions": 6,
+   "sessions": 7,
    "buckets": [
     {
      "id": "features",
      "name": "Features & UI",
      "color": "#4dd2ff",
      "theme": "build",
-     "cost": 131.4852,
-     "tokens": 417007836,
-     "output": 766255,
-     "turns": 115
+     "cost": 136.2593,
+     "tokens": 428234676,
+     "output": 836981,
+     "turns": 117
     },
     {
      "id": "bugs",
      "name": "Bug squashing",
      "color": "#ff6b3d",
      "theme": "upkeep",
-     "cost": 2.9721,
-     "tokens": 11327571,
-     "output": 22129,
+     "cost": 3.2642,
+     "tokens": 12452972,
+     "output": 24516,
      "turns": 6
     },
     {
@@ -1202,10 +1196,10 @@
      "name": "Releases & Git",
      "color": "#3ddc84",
      "theme": "upkeep",
-     "cost": 21.3259,
-     "tokens": 46641137,
-     "output": 50925,
-     "turns": 11
+     "cost": 21.6325,
+     "tokens": 46856017,
+     "output": 54091,
+     "turns": 12
     },
     {
      "id": "docs",
@@ -1244,7 +1238,7 @@
      "name": "Building the product",
      "blurb": "New features and making them better.",
      "roadmap": true,
-     "cost": 137.1784,
+     "cost": 141.9525,
      "value_share": 0.0,
      "gap": -1.0
     },
@@ -1253,7 +1247,7 @@
      "name": "Upkeep",
      "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
      "roadmap": false,
-     "cost": 38.5573,
+     "cost": 39.1561,
      "value_share": null,
      "gap": null
     }
@@ -1333,31 +1327,31 @@
      "date": "2026-10-06",
      "by": {
       "features": {
-       "cost": 36.6841,
-       "tokens": 116264786,
-       "output": 192885
+       "cost": 41.4582,
+       "tokens": 127491626,
+       "output": 263611
       },
       "ship": {
-       "cost": 0.8801,
-       "tokens": 3631369,
-       "output": 4633
+       "cost": 1.1867,
+       "tokens": 3846249,
+       "output": 7799
       },
       "bugs": {
-       "cost": 2.2792,
-       "tokens": 8387582,
-       "output": 18662
+       "cost": 2.5713,
+       "tokens": 9512983,
+       "output": 21049
       }
      }
     }
    ],
    "totals": {
-    "cost": 175.7357,
-    "tokens": 541986672,
-    "input": 2352,
-    "output": 935985,
-    "cache_write": 6266046,
-    "cache_read": 534782289,
-    "turns": 156
+    "cost": 181.1085,
+    "tokens": 554553793,
+    "input": 2496,
+    "output": 1012264,
+    "cache_write": 6438938,
+    "cache_read": 547100095,
+    "turns": 159
    },
    "models": [
     {
@@ -1366,13 +1360,13 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 175.7357,
-     "tokens": 541986672,
-     "output": 935985,
-     "replies": 1169
+     "cost": 181.1085,
+     "tokens": 554553793,
+     "output": 1012264,
+     "replies": 1241
     }
    ],
-   "alignment": 0.781,
+   "alignment": 0.784,
    "roadmap": {
     "items": [],
     "done": []
