@@ -13,6 +13,14 @@ I build [Vox2](https://github.com/chrisqtruong/vox2), a small desktop translator
 
 It's a small personal project. The sorting is a good guess, not an audit. But it's already useful: it showed that the meaning check took 48% of roadmap spend while holding 32% of the roadmap's value, and that the everyday features were the ones falling behind.
 
+## One dashboard for everything
+
+<p align="center"><img src="screenshots/all.png" width="640" alt="The all-projects overview for made-up sample projects: a tab per project, total spend, spend per day colored by project, a project leaderboard, and a donut of models"></p>
+
+Track one project, or all of them. With all of them, the dashboard opens on an overview: total spend, spend per day colored by project, every project ranked, and which models did the work. A tab per project (or a click on its row) opens that project's own view below. Work that didn't touch any project (chats, planning, one-offs) goes under *Everything else*, so the total is all your Claude Code usage.
+
+Setup finds your projects for you: your GitHub repos (with the [`gh` command](https://cli.github.com)), the git clones on your computer, and other folders Claude worked in. Each project can have its own buckets and roadmap.
+
 ## What it shows
 
 <sub>Screenshots use a made-up sample project, Recipe Box.</sub>
@@ -40,7 +48,7 @@ You need [Claude Code](https://claude.com/claude-code) (Swear Jar reads the hist
 
    (On Windows, `python` instead of `python3`.) It lists the projects Claude Code has worked on, with what each cost, and asks:
 
-   - **Which project to track.** Pick a number, or type the project's folder name.
+   - **One project or all of them.** "All" lists the projects it found (leave any out by number). "One" asks which project: pick a number, or type its folder name.
    - **A roadmap** (optional). A link to your README or ROADMAP.md with a list under a `Roadmap` heading. It turns on the quest log and next-up picks.
    - **A GitHub repo to publish to** (optional). Leave it blank to keep everything on your computer.
    - **Start at login?** Yes keeps the dashboard current without you thinking about it.
@@ -60,6 +68,7 @@ Your settings are in `~/.swear-jar/config.json` (on Windows, `C:\Users\<you>\.sw
 - **`buckets`**: name, color, and the `words` (in your messages) and `files` (Claude touched) that put a turn in that bucket. These are [regular expressions](https://regexone.com/): `|` means "or".
 - **`themes`**: groups of buckets. Mark the ones the roadmap is about with `"roadmap": true`; an `items` pattern sends matching roadmap items to that theme.
 - **`exclude`**: other projects' folder names, so work that touches them doesn't count.
+- **`projects`** (all-projects mode): a list where each project has a `product` name, the folder names that `match` it, an optional `color`, and optionally its own `buckets`, `themes` and `roadmap`.
 - **`roadmap_rule`**: one line on what your roadmap prioritizes, shown above the quest log.
 
 [`examples/vox2.json`](examples/vox2.json) is my full setup for Vox2, as an example of custom buckets and themes.
@@ -97,7 +106,7 @@ Everything is read on your own computer. What gets published is only totals per 
 
 - The buckets are keyword rules: good enough to see the shape, not exact. A turn that fixes a bug *and* merges counts once, for whichever it was mostly about.
 - It only knows what Claude Code saved on the computers that run it.
-- One project per setup.
+- A turn that works in two projects counts for the one with more files touched.
 - It reads Claude Code's history. The model chart already names and groups other makers' models (GPT, Gemini, Llama...), but reading other tools' history (Codex CLI, Gemini CLI, Cursor) isn't built yet. Models without a known price are priced like Claude Opus 5.5 and marked as a rough guess.
 - Start-at-login is built in for macOS and Windows; on Linux, run it from your own startup.
 

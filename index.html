@@ -59,6 +59,20 @@
   .row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
   .row h2 { margin-right: auto; }
 
+  /* project switcher (all-projects mode) */
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: -8px 0 24px; }
+  .tabs button {
+    display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+    font: 700 12px/1 var(--mono); color: var(--ink-2); background: none;
+    border: 2px solid var(--line); padding: 9px 12px;
+  }
+  .tabs button i { width: 10px; height: 10px; flex: none; }
+  .tabs button small { font: 400 12px/1 var(--mono); color: var(--ink-3); }
+  .tabs button:hover, .tabs button:focus-visible { border-color: var(--ink-3); outline: none; }
+  .tabs button[aria-pressed="true"] { color: var(--ink); background: var(--panel); border-color: var(--accent); }
+  .board .item.go { cursor: pointer; }
+  .board .item.go:hover .name { text-decoration: underline; text-underline-offset: 3px; }
+
   .toggle { display: inline-flex; border: 2px solid var(--line); }
   .toggle button {
     font: 700 12px/1 var(--mono); background: none; color: var(--ink-2); border: 0;
@@ -81,7 +95,7 @@
 
   /* leaderboard */
   .board { display: grid; gap: 10px; }
-  .board .item { display: grid; grid-template-columns: 22px minmax(140px, 220px) 1fr 92px; gap: 12px; align-items: center; }
+  .board .item { display: grid; grid-template-columns: 22px minmax(140px, 220px) 1fr 120px; gap: 12px; align-items: center; }
   .board .rank { font: 700 12px/1 var(--mono); color: var(--ink-3); }
   .board .name { display: flex; align-items: center; gap: 8px; }
   .board .name i { width: 12px; height: 12px; flex: none; }
@@ -191,6 +205,8 @@
     <div class="badge" id="badge">loading…</div>
   </header>
 
+  <nav class="tabs" id="tabs" aria-label="Projects" hidden></nav>
+
   <div class="hud">
     <div class="stat money"><div class="k">credits spent</div><div class="v" id="cost">$0</div><div class="n">est. at API prices</div></div>
     <div class="stat"><div class="k">tokens</div><div class="v" id="tokens">0</div><div class="n" id="tokens-n">&nbsp;</div></div>
@@ -213,7 +229,7 @@
 
   <section>
     <h2>high scores</h2>
-    <p class="lede">Where it all went, biggest first.</p>
+    <p class="lede" id="board-lede">Where it all went, biggest first.</p>
     <div class="board" id="board"></div>
   </section>
 
@@ -279,7 +295,8 @@ function roll(id, to, f) {
 }
 
 // ---------- chart: each day is a column of pixel blocks, filled bottom-up bucket by bucket
-const PX = 10, GAP = 2, COLW = 6, COLGAP = 26, TOP = 18, BASE = 30, MAXROWS = 26;
+const PX = 10, GAP = 2, TOP = 18, BASE = 30, MAXROWS = 26;
+let COLW = 6, COLGAP = 26;   // narrowed in layout() so every day fits across
 const NICE = [0.01, 0.02, 0.05, 0.1, 0.25, 0.5, 1, 2, 5, 10, 20, 50, 100, 250, 500, 1000];
 
 function allDays() {
@@ -296,6 +313,10 @@ function allDays() {
 
 function layout() {
   const days = allDays();
+  // fit the days across: thinner columns and gaps as the history grows (scrolls only past ~80 days)
+  const avail = Math.max(280, $('wrap').clientWidth - 8);
+  COLGAP = days.length > 10 ? 10 : 26;
+  COLW = Math.max(1, Math.min(6, Math.floor(((avail - COLGAP) / Math.max(1, days.length) - COLGAP + GAP) / (PX + GAP))));
   const max = Math.max(1e-9, ...days.map((d) => Object.values(d.by).reduce((s, c) => s + c[measure], 0)));
   let unit;
   if (measure === 'cost') unit = NICE.find((u) => max / u <= MAXROWS * COLW) ?? 1000;
@@ -348,11 +369,12 @@ function drawChart(fresh) {
   (function frame(t) {
     ctx.clearRect(0, 0, w, h);
     // baseline + day labels
+    const labelEvery = Math.max(1, Math.ceil(64 / (colPx + COLGAP)));
     ctx.fillStyle = '#342e48'; ctx.fillRect(0, h - BASE + 2, w, 2);
     ctx.font = 'bold 12px "Space Mono"'; ctx.textAlign = 'center';
     L.cols.forEach((c) => {
       ctx.fillStyle = '#7d7699';
-      ctx.fillText(dayLabel(c.date).toLowerCase(), c.x + colPx / 2, h - BASE + 20);
+      if (c.i % labelEvery === 0) ctx.fillText(dayLabel(c.date).toLowerCase(), c.x + colPx / 2, h - BASE + 20);
     });
     let busy = false;
     for (const b of tasks) {
@@ -371,7 +393,7 @@ function drawChart(fresh) {
     if (!busy) {
       ctx.font = 'bold 12px "Space Mono"';
       L.cols.forEach((c) => {
-        if (!c.total) return;
+        if (!c.total || colPx + COLGAP < 64) return;   // too narrow for a label; hover shows it
         const top = h - BASE - Math.ceil(c.blocks.length / COLW) * (PX + GAP);
         ctx.fillStyle = '#f4f1ff'; ctx.fillText(fmt(c.total), c.x + colPx / 2, Math.max(10, top - 6));
       });
@@ -410,10 +432,11 @@ document.querySelectorAll('.toggle button').forEach((btn) => btn.addEventListene
 function renderBoard() {
   const list = [...data.buckets].filter((b) => b.cost > 0).sort((a, b) => b[measure] - a[measure]);
   const total = list.reduce((s, b) => s + b[measure], 0) || 1, top = list[0]?.[measure] || 1;
+  const openable = new Set(data.overview && full ? full.projects.map((p) => p.id) : []);
   $('board').innerHTML = list.map((b, i) => `
-    <div class="item">
+    <div class="item${openable.has(b.id) ? ' go' : ''}" data-id="${esc(b.id)}">
       <span class="rank">${String(i + 1).padStart(2, '0')}</span>
-      <span class="name"><i style="background:${b.color}"></i>${b.name}</span>
+      <span class="name"><i style="background:${b.color}"></i>${esc(b.name)}</span>
       <div class="bar"><span style="background:${b.color}" data-w="${(100 * b[measure] / top).toFixed(1)}"></span></div>
       <span class="amt">${fmt(b[measure])}<small>${Math.round(100 * b[measure] / total)}% · ${b.turns} turns</small></span>
     </div>`).join('');
@@ -564,8 +587,10 @@ function badge() {
 }
 
 function render(prev) {
-  $('sub').textContent = `${data.product.toLowerCase()} · project expenditure`;
-  document.title = `Swear Jar · ${data.product}`;
+  $('sub').textContent = data.overview ? 'all projects · usage' : `${data.product.toLowerCase()} · project expenditure`;
+  document.title = data.overview ? 'Swear Jar' : `Swear Jar · ${data.product}`;
+  $('board-lede').textContent = data.overview ? 'Every project, biggest first. Click one to open it.' : 'Where it all went, biggest first.';
+  renderTabs();
   const t = data.totals;
   roll('cost', t.cost, money);
   roll('tokens', t.tokens, short);
@@ -582,11 +607,11 @@ function render(prev) {
 
   const read = t.cache_read, all = t.tokens || 1;
   $('foot').innerHTML = `
-    <p><b>How it's counted.</b> Swear Jar reads Claude Code's own transcripts and keeps the sessions that worked on ${esc(data.product)}. Each turn (your message plus everything Claude did for it) goes into one bucket, by the words in your message and the files Claude touched. It's a good guess, not an audit: a turn that fixes a bug <i>and</i> merges counts once, for whichever it was mostly about.</p>
+    <p><b>How it's counted.</b> Swear Jar reads Claude Code's own transcripts and ${data.overview ? `sorts every turn by the project folder Claude worked in; a short reply like "yes do it" goes with the project before it, and turns that touched no project go under ${esc((data.buckets.find((b) => b.id === 'other') || {}).name || 'everything else')}. Inside a project, each turn` : `keeps the sessions that worked on ${esc(data.product)}. Each turn`} (your message plus everything Claude did for it) goes into one bucket, by the words in your message and the files Claude touched. It's a good guess, not an audit: a turn that fixes a bug <i>and</i> merges counts once, for whichever it was mostly about.</p>
     <p><b>Credits</b> are what the same tokens would cost on the API at ${data.pricing.model} list prices ($${data.pricing.in}/M in, $${data.pricing.out}/M out, $${data.pricing.read}/M cache reads). On a Claude plan you pay a flat fee instead, so read it as "how much work", not a bill. ${Math.round(100 * read / all)}% of all tokens are Claude re-reading the conversation so far (cache reads), which are cheap; that's why tokens and credits don't move together.</p>
-    <p><b>Which computers.</b> ${data.machines || 1} so far. Each computer that runs Swear Jar with <code>--install</code> adds its own ${esc(data.product)} sessions; nothing is counted twice.</p>
+    <p><b>Which computers.</b> ${data.machines || 1} so far. Each computer that runs Swear Jar with <code>--install</code> adds its own ${data.overview ? '' : esc(data.product) + ' '}sessions; nothing is counted twice.</p>
     <p><b>Updates.</b> On your computer this page is live. The website version checks for new numbers every 2 minutes; computers publish every 5, and GitHub can add a few minutes of delay.</p>
-    <p><a href="https://github.com/chrisqtruong/swear-jar">Make your own Swear Jar</a>: download it, run <code>python3 swearjar.py setup</code>, pick your project.</p>`;
+    <p><a href="https://github.com/chrisqtruong/swear-jar">Make your own Swear Jar</a>: download it, run <code>python3 swearjar.py setup</code>, pick one project or all of them.</p>`;
 }
 
 // On your computer the page talks to swearjar.py (live, every few seconds). On the
@@ -606,14 +631,48 @@ async function fetchData() {
   throw new Error('no data');
 }
 
+// In all-projects mode data.json holds an overview plus one report per project; the page
+// shows one at a time (the #project in the address picks it).
+let full = null, viewId = decodeURIComponent(location.hash.slice(1)) || 'all';
+function pickView(f) {
+  if (f.mode !== 'all') return f;
+  const v = viewId === 'all' ? f.overview : (f.projects.find((p) => p.id === viewId) || f.overview);
+  return { generated: f.generated, live: f.live, machines: f.machines, pricing: f.pricing, ...v };
+}
+function renderTabs() {
+  const nav = $('tabs');
+  nav.hidden = !full || full.mode !== 'all';
+  if (nav.hidden) return;
+  const projects = [...full.projects].sort((a, b) => b.totals.cost - a.totals.cost);
+  const tab = (id, name, color, cost) => `<button type="button" data-id="${esc(id)}" aria-pressed="${data.id === id}">${color ? `<i style="background:${color}"></i>` : ''}${esc(name)} <small>${money(cost)}</small></button>`;
+  nav.innerHTML = tab('all', 'all projects', '', full.overview.totals.cost) + projects.map((p) => tab(p.id, p.product, p.color, p.totals.cost)).join('');
+}
+function openView(id) {
+  viewId = id;
+  history.replaceState(null, '', id === 'all' ? location.pathname + location.search : '#' + encodeURIComponent(id));
+  drawn = {};
+  data = pickView(full);
+  render(null);
+  window.scrollTo({ top: 0 });
+}
+$('tabs').addEventListener('click', (e) => { const b = e.target.closest('button[data-id]'); if (b) openView(b.dataset.id); });
+$('board').addEventListener('click', (e) => {
+  const row = e.target.closest('.item.go');
+  if (row) openView(row.dataset.id);
+});
+addEventListener('hashchange', () => { const id = decodeURIComponent(location.hash.slice(1)) || 'all'; if (full && id !== data.id) openView(id); });
+
+let lastSig = '';
 async function load() {
   try {
     const next = await fetchData();
+    const sig = JSON.stringify({ ...next, generated: 0 });
+    full = next;
+    if (data && sig === lastSig) { data = pickView(full); badge(); return; }
+    lastSig = sig;
     const prev = data;
-    if (prev && next.generated === prev.generated) return;
-    if (prev && JSON.stringify(next.totals) === JSON.stringify(prev.totals) && JSON.stringify(next.recent) === JSON.stringify(prev.recent)) { data = next; badge(); return; }
-    data = next;
-    render(prev);
+    data = pickView(full);
+    render(prev && prev.id === data.id ? prev : null);
   } catch (e) {
     if (!data) $('badge').textContent = 'no data yet';
   }

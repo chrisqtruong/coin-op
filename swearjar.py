@@ -111,10 +111,34 @@ GENERAL = {
 }
 
 CFG = dict(GENERAL)
+PROJECT_COLORS = ["#4dd2ff", "#ff9f43", "#ff4d8d", "#ffe14d", "#3ddc84", "#9b6bff", "#f2f2f2", "#2ec4b6", "#c77dff", "#5b8cff", "#ff6b3d"]
+OTHER = {"id": "other", "name": "Everything else", "color": "#7d7699",
+         "blurb": "Claude Code work that didn't touch any of your projects: chats, planning, one-offs."}
+
+
+def slug(name):
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-") or "project"
+
+
+def make_project(p, i):
+    """One tracked project, with its own buckets, themes and roadmap (general ones by default)."""
+    name = p.get("product") or p.get("name") or "my product"
+    proj = {"id": p.get("id") or slug(name), "name": name, "match": p.get("match") or [slug(name)],
+            "color": p.get("color") or PROJECT_COLORS[i % len(PROJECT_COLORS)],
+            "roadmap": p.get("roadmap") or "", "roadmap_link": p.get("roadmap_link") or "", "roadmap_rule": p.get("roadmap_rule") or "",
+            "buckets": p.get("buckets") or GENERAL["buckets"], "themes": p.get("themes") or GENERAL["themes"],
+            "default_bucket": p.get("default_bucket") or GENERAL["default_bucket"]}
+    proj["_match"] = name_pattern(proj["match"])
+    proj["_buckets"] = [(b["id"], re.compile(b["words"], re.I), re.compile(b["files"], re.I), b.get("weight", 3)) for b in proj["buckets"]]
+    proj["_order"] = [b["id"] for b in proj["buckets"]]
+    if proj["default_bucket"] not in proj["_order"]:
+        proj["default_bucket"] = proj["_order"][0]
+    return proj
 
 
 def load_config():
-    """Settings from ~/.swear-jar/config.json, filled in from GENERAL."""
+    """Settings from ~/.swear-jar/config.json, filled in from GENERAL. A "projects" list means
+    'track all of these on one dashboard'; without it, the top-level fields are one project."""
     global CFG
     try:
         user = json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
@@ -137,27 +161,30 @@ def name_pattern(names):
 
 
 def compile_config():
-    global MATCH, EXCLUDE, COMPILED, ORDER
-    MATCH = name_pattern(CFG["match"])
-    EXCLUDE = name_pattern([e for e in CFG["exclude"] + ALWAYS_EXCLUDE if e and e not in CFG["match"]])
-    COMPILED = [(b["id"], re.compile(b["words"], re.I), re.compile(b["files"], re.I), b.get("weight", 3)) for b in CFG["buckets"]]
-    ORDER = [b["id"] for b in CFG["buckets"]]
+    global PROJECTS, ALL, EXCLUDE
+    ALL = bool(CFG.get("projects"))
+    if ALL:
+        PROJECTS = [make_project(p, i) for i, p in enumerate(CFG["projects"])]
+        EXCLUDE = name_pattern(CFG.get("exclude") or [])
+    else:
+        PROJECTS = [make_project(CFG, 0)]
+        EXCLUDE = name_pattern([e for e in CFG["exclude"] + ALWAYS_EXCLUDE if e and e not in CFG["match"]])
 
 
 compile_config()
 
 
-def classify(prompt, touched):
-    """Return a bucket id, or None if the turn gives no clue."""
+def classify(prompt, touched, proj):
+    """Return one of the project's bucket ids, or None if the turn gives no clue."""
     scores = defaultdict(float)
-    for bid, words, _, weight in COMPILED:
+    for bid, words, _, weight in proj["_buckets"]:
         hits = len(set(m.group(0).lower() for m in words.finditer(prompt)))
         if hits:
             scores[bid] += min(hits, 3) * weight
     if touched:
         counts = defaultdict(int)
         for t in touched:
-            for bid, _, files, _ in COMPILED:
+            for bid, _, files, _ in proj["_buckets"]:
                 if files.search(t):
                     counts[bid] += 1
         total = sum(counts.values())
@@ -165,7 +192,7 @@ def classify(prompt, touched):
             scores[bid] += 4 * n / total
     if not scores:
         return None
-    return max(scores, key=lambda b: (scores[b], -ORDER.index(b)))
+    return max(scores, key=lambda b: (scores[b], -proj["_order"].index(b)))
 
 
 # ---------------------------------------------------------------- transcripts
@@ -279,31 +306,51 @@ def build_turns(events):
     return turns
 
 
-def scope(turn):
-    """'other' if the turn touched another project, 'mine' if only the product, else None."""
+def tag_turn(turn):
+    """The project whose folder the turn worked in (most matching paths wins), 'skip' if it
+    worked only in an excluded folder, or None if it touched no folders at all."""
     strings = [s for r in turn["replies"] for s in r["tools"]]
+    if not ALL and EXCLUDE and any(EXCLUDE.search(s) for s in strings):
+        return "skip"  # one project: a turn that also worked in another project doesn't count
+    hits = {}
+    for p in PROJECTS:
+        n = sum(1 for s in strings if p["_match"] and p["_match"].search(s))
+        if n:
+            hits[p["id"]] = n
+    if hits:
+        return max(hits, key=hits.get)
     if EXCLUDE and any(EXCLUDE.search(s) for s in strings):
-        return "other"
-    if MATCH and any(MATCH.search(s) for s in strings):
-        return "mine"
+        return "skip"
     return None
 
 
-def is_product(turns):
-    """A product session works mostly in the product's folder, or names it up front."""
-    if not MATCH:
-        return False
-    scopes = [scope(t) for t in turns]
-    mine, other = scopes.count("mine"), scopes.count("other")
-    said_so = any(n.lower() in t["prompt"].lower() for t in turns[:2] for n in CFG["match"] + [CFG["product"]] if n)
-    return mine >= 1 and (mine > other or (said_so and not other))
+def assign_projects(turns):
+    """A project (or 'skip') for every turn. Turns that touched no folders ("yes do it",
+    questions) belong to the project the session was just working on."""
+    tags = [tag_turn(t) for t in turns]
+    if not ALL:  # one project: the session must be mostly about it, or name it up front
+        p = PROJECTS[0]
+        mine, other = tags.count(p["id"]), tags.count("skip")
+        said_so = any(n.lower() in t["prompt"].lower() for t in turns[:2] for n in p["match"] + [p["name"]] if n)
+        if not (mine >= 1 and (mine > other or (said_so and not other))):
+            return ["skip"] * len(turns)
+    first = next((t for t in tags if t), None) or (OTHER["id"] if ALL else "skip")
+    out, prev = [], first
+    for t in tags:
+        prev = t or prev
+        out.append(prev)
+    return out
 
 
 # ---------------------------------------------------------------- finding your projects (for setup)
 
 FOLDER_MARKERS = {"developer", "projects", "project", "repos", "repositories", "code", "src", "dev", "work",
                   "github", "git", "sites", "apps", "scratchpad", "workspace", "documents", "desktop"}
-NOT_PROJECTS = {"null", "tmp", "temp", "bin", "lib", "usr", "var", "etc", "node_modules", "library", "applications"}
+NOT_PROJECTS = {"null", "tmp", "temp", "bin", "lib", "usr", "var", "etc", "node_modules", "library", "applications",
+                # folders that live inside projects rather than being one
+                "bench", "cargo", "refs", "rec", "vibe", "assets", "render", "tauri", "macos", "windows", "vis", "target",
+                "build", "dist", "docs", "tools", "scripts", "test", "tests", "public", "static", "resources", "examples",
+                "chrisqtruong", "users", "home", "downloads", "pictures", "movies", "music", "outputs"}
 PATH_RE = re.compile(r"(?:[A-Za-z]:)?[/\\][^\s\"'|;&<>()]+")
 
 
@@ -347,27 +394,23 @@ def find_projects(roots):
 
 VALUE = {"very high": 4, "high": 3, "medium-high": 2.5, "medium": 2, "low": 1}
 EFFORT = {"small": 1, "medium": 2, "large": 3}
-_readme = {"at": 0, "text": None, "src": None}
+_roadmaps = {}  # src -> (fetched at, text)
 
 
-def roadmap_text():
-    """The roadmap file (a URL or a path); re-read at most every 10 minutes."""
-    src = CFG.get("roadmap") or ""
+def roadmap_text(proj):
+    """The project's roadmap file (a URL or a path); re-read at most every 10 minutes."""
+    src = proj.get("roadmap") or ""
     if not src:
         return ""
-    if _readme["src"] != src or time.time() - _readme["at"] > 600:
-        text = None
+    at, text = _roadmaps.get(src, (0, None))
+    if time.time() - at > 600:
         try:
-            if re.match(r"https?://", src):
-                text = fetch(src)
-            else:
-                text = Path(src).expanduser().read_text(encoding="utf-8")
+            new = fetch(src) if re.match(r"https?://", src) else Path(src).expanduser().read_text(encoding="utf-8")
         except Exception:
-            pass
-        if text is not None or _readme["src"] != src:
-            _readme["text"] = text or ""
-        _readme.update(at=time.time(), src=src)
-    return _readme["text"] or ""
+            new = None
+        text = new if new is not None else (text or "")
+        _roadmaps[src] = (time.time(), text)
+    return text or ""
 
 
 def fetch(url):
@@ -384,8 +427,8 @@ def fetch(url):
         return r.stdout
 
 
-def theme_for(title):
-    road = [t for t in CFG["themes"] if t.get("roadmap")]
+def theme_for(title, proj):
+    road = [t for t in proj["themes"] if t.get("roadmap")]
     for t in road:
         if t.get("items") and re.search(t["items"], title, re.I):
             return t["id"]
@@ -395,10 +438,10 @@ def theme_for(title):
     return road[0]["id"] if road else None
 
 
-def parse_roadmap():
+def parse_roadmap(proj):
     """Items from a '## Roadmap' section (or the whole file): numbered or bulleted lines,
     optional **bold** titles, optional *High · small · ...* tags, [x] or a 'Done:' line for done."""
-    text = roadmap_text()
+    text = roadmap_text(proj)
     if not text:
         return {"items": [], "done": []}
     m = re.search(r"^#{1,3}\s*Roadmap\b[^\n]*$(.*?)(?=^#{1,3}\s|\Z)", text, re.M | re.S | re.I)
@@ -413,7 +456,7 @@ def parse_roadmap():
         if not title:
             continue
         if box and box.lower() == "x":
-            done.append({"title": title, "theme": theme_for(title)})
+            done.append({"title": title, "theme": theme_for(title, proj)})
             continue
         tag = re.search(r"\*(Very high|High|Medium-high|Medium|Low)\s*·\s*(small|medium|large)([^·*]*)", rest, re.I)
         value = tag.group(1).capitalize() if tag else "Medium"
@@ -423,18 +466,18 @@ def parse_roadmap():
         status = "started" if re.search(r"\b(Shipped|Started|In progress):", rest, re.I) else "open"
         score = VALUE.get(value.lower(), 2) / (EFFORT.get(effort, 2) + (0.5 if cost else 0))
         items.append({"n": len(items) + 1, "title": title, "value": value, "effort": effort + (" + cost" if cost else ""),
-                      "issue": int(issue.group(1)) if issue else None, "status": status, "theme": theme_for(title),
+                      "issue": int(issue.group(1)) if issue else None, "status": status, "theme": theme_for(title, proj),
                       "score": round(score, 2)})
     dm = re.search(r"^Done:(.*)$", block, re.M)
     if dm:
-        done += [{"title": t.strip().rstrip("."), "theme": theme_for(t)} for t in re.findall(r"\*\*(.+?)\*\*", dm.group(1))]
+        done += [{"title": t.strip().rstrip("."), "theme": theme_for(t, proj)} for t in re.findall(r"\*\*(.+?)\*\*", dm.group(1))]
     return {"items": items, "done": done}
 
 
-def plan_next(roadmap, theme_cost):
+def plan_next(roadmap, theme_cost, proj):
     """Recommend what to aim tokens at next, with plain-language reasons."""
     items = roadmap["items"]
-    road_themes = [t["id"] for t in CFG["themes"] if t.get("roadmap")]
+    road_themes = [t["id"] for t in proj["themes"] if t.get("roadmap")]
     spend = {t: theme_cost.get(t, 0) for t in road_themes}
     spend_total = sum(spend.values()) or 1
     value = defaultdict(float)
@@ -442,7 +485,7 @@ def plan_next(roadmap, theme_cost):
         value[it["theme"]] += VALUE.get(it["value"].lower(), 2)
     value_total = sum(value.values()) or 1
     gaps = {t: value[t] / value_total - spend[t] / spend_total for t in road_themes}
-    names = {t["id"]: t["name"] for t in CFG["themes"]}
+    names = {t["id"]: t["name"] for t in proj["themes"]}
 
     picks = []
     started = [i for i in items if i["status"] == "started"]
@@ -511,55 +554,64 @@ def local_day(ts):
 
 
 def collect(roots, live):
-    """This computer's product sessions -> ({session_id: totals}, recent turns)."""
+    """This computer's sessions -> ({session_id: {project_id: totals}}, recent turns)."""
     out, recent = {}, []
-    default = CFG.get("default_bucket") if CFG.get("default_bucket") in ORDER else ORDER[0]
+    by_id = {p["id"]: p for p in PROJECTS}
     for sid, events in load_all(roots).items():
         turns = build_turns(events)
-        if not is_product(turns):
+        if not turns:
             continue
-        days = defaultdict(lambda: defaultdict(lambda: {"cost": 0.0, "tokens": 0, "output": 0}))
-        buckets = defaultdict(lambda: {"cost": 0.0, "tokens": 0, "turns": 0})
-        models = defaultdict(lambda: {"cost": 0.0, "tokens": 0, "output": 0, "replies": 0})
-        totals = {"cost": 0.0, "tokens": 0, "input": 0, "output": 0, "cache_write": 0, "cache_read": 0, "turns": 0}
-        prev = default
-        for t in turns:
-            if scope(t) == "other":  # e.g. a website turn inside a mostly-product session
+        per = {}
+        prev_bucket = {}
+        for t, pid in zip(turns, assign_projects(turns)):
+            if pid == "skip":
                 continue
-            touched = [s for r in t["replies"] for s in r["tools"]]
-            bucket = prev if t["cont"] else (classify(t["prompt"], touched) or prev)
-            prev = bucket
+            proj = by_id.get(pid)
+            if pid not in per:
+                per[pid] = {"days": defaultdict(lambda: defaultdict(lambda: {"cost": 0.0, "tokens": 0, "output": 0})),
+                            "buckets": defaultdict(lambda: {"cost": 0.0, "tokens": 0, "turns": 0}),
+                            "models": defaultdict(lambda: {"cost": 0.0, "tokens": 0, "output": 0, "replies": 0}),
+                            "totals": {"cost": 0.0, "tokens": 0, "input": 0, "output": 0, "cache_write": 0, "cache_read": 0, "turns": 0}}
+            agg = per[pid]
+            if proj:
+                touched = [s for r in t["replies"] for s in r["tools"]]
+                prev = prev_bucket.get(pid, proj["default_bucket"])
+                bucket = prev if t["cont"] else (classify(t["prompt"], touched, proj) or prev)
+                prev_bucket[pid] = bucket
+            else:  # everything else: no buckets of its own
+                bucket = OTHER["id"]
             tcost, ttok = 0.0, 0
             for r in t["replies"]:
                 if not r.get("usage") or r.get("model") in (None, "<synthetic>"):
                     continue
                 dollars, parts = cost_of(r["model"], r["usage"])
                 tok = sum(parts.values())
-                cell = days[local_day(r["ts"])][bucket]
+                cell = agg["days"][local_day(r["ts"])][bucket]
                 cell["cost"] += dollars
                 cell["tokens"] += tok
                 cell["output"] += parts["output"]
-                mod = models[r["model"]]
+                mod = agg["models"][r["model"]]
                 mod["cost"] += dollars
                 mod["tokens"] += tok
                 mod["output"] += parts["output"]
                 mod["replies"] += 1
                 for k, v in parts.items():
-                    totals[k] += v
-                totals["cost"] += dollars
-                totals["tokens"] += tok
+                    agg["totals"][k] += v
+                agg["totals"]["cost"] += dollars
+                agg["totals"]["tokens"] += tok
                 tcost += dollars
                 ttok += tok
             if not t["replies"]:
                 continue
-            totals["turns"] += 1
-            b = buckets[bucket]
+            agg["totals"]["turns"] += 1
+            b = agg["buckets"][bucket]
             b["cost"] += tcost
             b["tokens"] += ttok
             b["turns"] += 1
             if live and not t["cont"]:
-                recent.append({"ts": t["ts"], "bucket": bucket, "prompt": t["prompt"][:120], "cost": round(tcost, 2), "tokens": ttok})
-        out[sid] = {"days": days, "buckets": buckets, "models": models, "totals": totals}
+                recent.append({"ts": t["ts"], "project": pid, "bucket": bucket, "prompt": t["prompt"][:120], "cost": round(tcost, 2), "tokens": ttok})
+        if per:
+            out[sid] = per
     return out, recent
 
 
@@ -571,13 +623,13 @@ def rounded(v):
     return v
 
 
-def combine(sessions, live, recent=(), machines=1):
-    """Add up sessions (from any number of computers) into what the page shows."""
+def add_up(aggs):
+    """Sum per-session totals: (days, by_bucket, models, totals)."""
     days = defaultdict(lambda: defaultdict(lambda: {"cost": 0.0, "tokens": 0, "output": 0}))
     by_bucket = defaultdict(lambda: {"cost": 0.0, "tokens": 0, "output": 0, "turns": 0})
     totals = defaultdict(float, {k: 0.0 for k in ("cost", "tokens", "input", "output", "cache_write", "cache_read", "turns")})
     models = defaultdict(lambda: {"cost": 0.0, "tokens": 0, "output": 0, "replies": 0})
-    for s in sessions.values():
+    for s in aggs:
         for m, v in s.get("models", {}).items():   # computers on older versions don't send this
             for k in models[m]:
                 models[m][k] += v.get(k, 0)
@@ -596,41 +648,88 @@ def combine(sessions, live, recent=(), machines=1):
     for d in days.values():
         for c in d.values():
             c["tokens"], c["output"] = int(c["tokens"]), int(c["output"])
+    return days, by_bucket, models, totals
 
-    theme_of = {b["id"]: b["theme"] for b in CFG["buckets"]}
-    fallback = next((t["id"] for t in CFG["themes"] if not t.get("roadmap")), CFG["themes"][-1]["id"])
+
+def models_out(models):
+    return [{"id": m, "name": model_name(m), "maker": model_maker(m), "family": model_family(m), "priced": m in PRICES}
+            | rounded(dict(v)) | {"tokens": int(v["tokens"]), "output": int(v["output"]), "replies": int(v["replies"])}
+            for m, v in sorted(models.items(), key=lambda kv: -kv[1]["cost"])]
+
+
+def days_out(days):
+    return [{"date": d, "by": rounded({b: dict(c) for b, c in days[d].items()})} for d in sorted(days)]
+
+
+def report(proj, aggs, recent, n_sessions):
+    """What the page shows for one project."""
+    days, by_bucket, models, totals = add_up(aggs)
+    theme_of = {b["id"]: b["theme"] for b in proj["buckets"]}
+    fallback = next((t["id"] for t in proj["themes"] if not t.get("roadmap")), proj["themes"][-1]["id"])
     theme_cost = defaultdict(float)
     for bid, v in by_bucket.items():
         theme_cost[theme_of.get(bid, fallback)] += v["cost"]
-    roadmap = parse_roadmap()
-    picks, gaps, value_share = plan_next(roadmap, theme_cost)
-    on_road = sum(theme_cost[t["id"]] for t in CFG["themes"] if t.get("roadmap"))
-    link = CFG.get("roadmap_link") or ""
-    if not link and re.match(r"https://raw\.githubusercontent\.com/([^/]+)/([^/]+)/", CFG.get("roadmap") or ""):
-        o, r = re.match(r"https://raw\.githubusercontent\.com/([^/]+)/([^/]+)/", CFG["roadmap"]).groups()
-        link = f"https://github.com/{o}/{r}#roadmap"
-
+    roadmap = parse_roadmap(proj)
+    picks, gaps, value_share = plan_next(roadmap, theme_cost, proj)
+    on_road = sum(theme_cost[t["id"]] for t in proj["themes"] if t.get("roadmap"))
+    link = proj.get("roadmap_link") or ""
+    m = re.match(r"https://raw\.githubusercontent\.com/([^/]+)/([^/]+)/", proj.get("roadmap") or "")
+    if not link and m:
+        link = f"https://github.com/{m.group(1)}/{m.group(2)}#roadmap"
     return {
-        "generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "live": live,
-        "product": CFG.get("product") or "my product",
-        "machines": machines,
-        "pricing": {"model": DEFAULT_MODEL, **PRICES[DEFAULT_MODEL]},
-        "sessions": len(sessions),
-        "buckets": [{k: b[k] for k in ("id", "name", "color", "theme")} | rounded(dict(by_bucket[b["id"]])) for b in CFG["buckets"]],
-        "themes": [{k: t.get(k) for k in ("id", "name", "blurb", "roadmap")} | {"cost": round(theme_cost[t["id"]], 4), "value_share": value_share.get(t["id"]), "gap": gaps.get(t["id"])} for t in CFG["themes"]],
-        "days": [{"date": d, "by": rounded({b: dict(c) for b, c in days[d].items()})} for d in sorted(days)],
+        "id": proj["id"], "color": proj["color"], "product": proj["name"],
+        "sessions": n_sessions,
+        "buckets": [{k: b[k] for k in ("id", "name", "color", "theme")} | rounded(dict(by_bucket[b["id"]])) for b in proj["buckets"]],
+        "themes": [{k: t.get(k) for k in ("id", "name", "blurb", "roadmap")} | {"cost": round(theme_cost[t["id"]], 4), "value_share": value_share.get(t["id"]), "gap": gaps.get(t["id"])} for t in proj["themes"]],
+        "days": days_out(days),
         "totals": rounded(dict(totals)),
-        "models": [{"id": m, "name": model_name(m), "maker": model_maker(m), "family": model_family(m), "priced": m in PRICES}
-                   | rounded(dict(v)) | {"tokens": int(v["tokens"]), "output": int(v["output"]), "replies": int(v["replies"])}
-                   for m, v in sorted(models.items(), key=lambda kv: -kv[1]["cost"])],
+        "models": models_out(models),
         "alignment": round(on_road / (sum(theme_cost.values()) or 1), 3),
-        "roadmap": roadmap,
-        "roadmap_link": link,
-        "roadmap_rule": CFG.get("roadmap_rule") or "",
+        "roadmap": roadmap, "roadmap_link": link, "roadmap_rule": proj.get("roadmap_rule") or "",
         "next": picks,
         "recent": sorted(recent, key=lambda r: r["ts"])[-12:],
     }
+
+
+def combine(sessions, live, recent=(), machines=1):
+    """Add up sessions (from any number of computers) into what the page shows. One project:
+    that project's report. Several: an overview where each project is a bucket, plus a report each."""
+    head = {"generated": datetime.now(timezone.utc).isoformat(timespec="seconds"), "live": live, "machines": machines,
+            "pricing": {"model": DEFAULT_MODEL, **PRICES[DEFAULT_MODEL]}}
+    per = defaultdict(list)
+    count = defaultdict(int)
+    for s in sessions.values():
+        for pid, agg in s.items():
+            per[pid].append(agg)
+            count[pid] += 1
+    if not ALL:
+        p = PROJECTS[0]
+        return head | report(p, per.get(p["id"], []), [r for r in recent if r["project"] == p["id"]], count[p["id"]])
+
+    projects = []
+    for p in PROJECTS:
+        if per.get(p["id"]):
+            projects.append(report(p, per[p["id"]], [r for r in recent if r["project"] == p["id"]], count[p["id"]]))
+    # the overview: projects are the buckets; everything else is folded in as one more
+    over_aggs = []
+    for pid, aggs in per.items():
+        for a in aggs:
+            over_aggs.append({"days": {d: {pid: {k: sum(c[k] for c in cells.values()) for k in ("cost", "tokens", "output")}}
+                                       for d, cells in a["days"].items()},
+                              "buckets": {pid: {k: sum(b[k] for b in a["buckets"].values()) for k in ("cost", "tokens", "turns")}},
+                              "models": a.get("models", {}), "totals": a["totals"]})
+    days, by_bucket, models, totals = add_up(over_aggs)
+    entries = [{"id": p["id"], "name": p["name"], "color": p["color"], "theme": ""} for p in PROJECTS] + \
+              [{"id": OTHER["id"], "name": OTHER["name"], "color": OTHER["color"], "theme": ""}]
+    overview = {
+        "id": "all", "product": "All projects", "overview": True, "sessions": len(sessions),
+        "buckets": [e | rounded(dict(by_bucket[e["id"]])) for e in entries],
+        "themes": [], "days": days_out(days), "totals": rounded(dict(totals)), "models": models_out(models),
+        "alignment": 0, "roadmap": {"items": [], "done": []}, "roadmap_link": "", "roadmap_rule": "", "next": [],
+        "recent": [r | {"bucket": r["project"]} for r in sorted(recent, key=lambda r: r["ts"])[-12:]],
+        "other_blurb": OTHER["blurb"],
+    }
+    return head | {"mode": "all", "overview": overview, "projects": projects}
 
 
 # ---------------------------------------------------------------- publishing
@@ -678,7 +777,10 @@ def other_machines():
         if f.stem == machine_id():
             continue
         try:
-            out.update(json.loads(f.read_text(encoding="utf-8"))["sessions"])
+            got = json.loads(f.read_text(encoding="utf-8"))
+            if got.get("version", 1) < 2:  # older files: one project per session
+                got["sessions"] = {sid: {PROJECTS[0]["id"]: agg} for sid, agg in got["sessions"].items()}
+            out.update(got["sessions"])
             n += 1
         except (OSError, ValueError, KeyError):
             pass
@@ -714,7 +816,7 @@ def publish(roots):
     mine, _ = collect(roots, live=False)
     (PUBLISHED / "machines").mkdir(exist_ok=True)
     (PUBLISHED / "machines" / f"{machine_id()}.json").write_text(
-        json.dumps({"machine": machine_id(), "sessions": rounded(mine)}, sort_keys=True) + "\n", encoding="utf-8")
+        json.dumps({"machine": machine_id(), "version": 2, "sessions": rounded(mine)}, sort_keys=True) + "\n", encoding="utf-8")
     shutil.copyfile(HERE / "index.html", PUBLISHED / "index.html")
     (PUBLISHED / ".nojekyll").write_text("")
     (PUBLISHED / "README.md").write_text("The Swear Jar dashboard and its data. Written automatically by swearjar.py; don't edit.\n")
@@ -736,7 +838,7 @@ def publish(roots):
     for _ in range(2):
         if git("push", "-q", "-u", "origin", DATA_BRANCH, check=False).returncode == 0:
             ensure_pages()
-            return f"published ${data['totals'].get('cost', 0):,.2f}"
+            return f"published ${(data.get('totals') or data['overview']['totals']).get('cost', 0):,.2f}"
         git("pull", "-q", "--rebase", "origin", DATA_BRANCH, check=False)
     return "push failed (will retry)"
 
@@ -810,6 +912,9 @@ def setup(roots, example=None):
     print("\nSwear Jar setup. Press Enter to take the suggestion in [brackets].\n")
     print("Looking through your Claude Code history for projects...")
     found = find_projects(roots)
+    print("\nSwear Jar can follow one project, or all of them on one dashboard (with a tab for each).")
+    if ask("One project or all? (one/all)", "all").lower().startswith("a"):
+        return setup_all(roots, found)
     cfg = {k: v for k, v in GENERAL.items() if k not in ("buckets", "themes")}
     if found:
         print()
@@ -848,6 +953,94 @@ def setup(roots, example=None):
     cfg["buckets"], cfg["themes"] = GENERAL["buckets"], GENERAL["themes"]
     save_config(cfg)
     print(f"\nSaved to {CONFIG_FILE}. Edit it any time: rename buckets, change their words, add themes.")
+    if yes("\nStart Swear Jar whenever you log in, so the dashboard is always up to date?"):
+        load_config()
+        install()
+    else:
+        print(f"Run it any time with: python3 {Path(__file__).resolve()}")
+
+
+CLONE_DIRS = ["Developer", "Projects", "projects", "code", "Code", "src", "dev", "repos", "GitHub", "Documents/GitHub", "work"]
+
+
+def local_clones():
+    """{repo name: [local folder names]} for git clones in the usual places."""
+    out = defaultdict(list)
+    for d in CLONE_DIRS:
+        base = Path.home() / d
+        if not base.is_dir():
+            continue
+        for sub in base.iterdir():
+            if (sub / ".git").exists():
+                url = subprocess.run(["git", "-C", str(sub), "remote", "get-url", "origin"], capture_output=True, text=True).stdout.strip()
+                repo = re.sub(r"\.git$", "", url.rstrip("/").split("/")[-1].split(":")[-1]) if url else sub.name
+                out[repo.lower()].append(sub.name)
+    return out
+
+
+def github_repos():
+    """Your GitHub repo names, if the gh command is installed and signed in."""
+    if not shutil.which("gh"):
+        return []
+    r = subprocess.run(["gh", "repo", "list", "--limit", "200", "--json", "name", "-q", ".[].name"], capture_output=True, text=True)
+    return [n for n in r.stdout.split() if n] if r.returncode == 0 else []
+
+
+def pretty(name):
+    """weather-in-dots -> Weather in dots; leaves names with dots (my.site.io) alone."""
+    return name if "." in name else (name[:1].upper() + name[1:]).replace("-", " ").replace("_", " ")
+
+
+def preset(pid):
+    """examples/<project>.json, if there is one: custom buckets, themes and roadmap."""
+    f = HERE / "examples" / f"{pid}.json"
+    if not f.exists():
+        return {}
+    ex = json.loads(f.read_text(encoding="utf-8"))
+    return {k: ex[k] for k in ("product", "roadmap", "roadmap_link", "roadmap_rule", "default_bucket", "buckets", "themes") if k in ex}
+
+
+def setup_all(roots, found):
+    clones = local_clones()
+    repos = github_repos()
+    projects, seen = [], set()
+    for repo in repos:
+        names = [repo] + [f for f in clones.get(repo.lower(), []) if f.lower() != repo.lower()]
+        projects.append({"product": pretty(repo), "match": names})
+        seen |= {n.lower() for n in names}
+    for repo, folders in clones.items():   # local clones of repos that aren't yours on GitHub
+        if repo not in seen and not seen & {f.lower() for f in folders}:
+            projects.append({"product": pretty(repo), "match": sorted({repo, *folders})})
+            seen |= {repo, *(f.lower() for f in folders)}
+    for n, c, _ in found:                   # folders Claude worked in that aren't clones
+        if n not in seen and c >= 2:
+            projects.append({"product": pretty(n), "match": [n]})
+            seen.add(n)
+    if not projects:
+        sys.exit("Didn't find any projects yet. Run setup again after you've worked on one with Claude Code.")
+    cost = {n: c for n, c, _ in found}
+    print("\nProjects found" + (" (your GitHub repos, your local clones, and folders Claude worked in)" if repos else "") + ":\n")
+    for i, p in enumerate(projects, 1):
+        spent = max((cost.get(m.lower(), 0) for m in p["match"]), default=0)
+        print(f"  {i:>2}. {p['product']:<28} {'$' + format(spent, ',.2f') if spent else 'no Claude work found yet':>12}")
+    drop = ask("\nLeave any out? Numbers separated by commas (Enter to keep them all)", "")
+    gone = {int(x) for x in re.findall(r"\d+", drop)}
+    projects = [p for i, p in enumerate(projects, 1) if i not in gone]
+    for p in projects:
+        p.update(preset(slug(p["match"][0])))
+    print("Work that touched none of these goes under 'Everything else'.")
+    print("\nOptional: a dashboard on the web. Swear Jar can publish to a GitHub repo you own (a")
+    print(f"'{DATA_BRANCH}' branch, served by GitHub Pages; nothing else in the repo is touched).")
+    repo = ask("GitHub repo as owner/name (Enter to keep it on this computer)", "")
+    cfg = {"projects": projects, "exclude": [], "publish_repo": ""}
+    if repo:
+        repo = re.sub(r"^https?://github\.com/|\.git$", "", repo).strip("/")
+        if shutil.which("gh") and subprocess.run(["gh", "repo", "view", repo], capture_output=True).returncode != 0:
+            if yes(f"{repo} doesn't exist yet. Create it as a public repo?"):
+                subprocess.run(["gh", "repo", "create", repo, "--public", "--description", "Swear Jar: where my Claude tokens go"], check=False)
+        cfg["publish_repo"] = repo
+    save_config(cfg)
+    print(f"\nSaved to {CONFIG_FILE}. Rename projects, pick colors or add a roadmap per project there.")
     if yes("\nStart Swear Jar whenever you log in, so the dashboard is always up to date?"):
         load_config()
         install()
