@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-07T01:49:38+00:00",
+ "generated": "2026-10-07T02:30:20+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -40,10 +40,10 @@
     "name": "Personal site",
     "color": "#ff4d8d",
     "theme": "",
-    "cost": 283.4876,
-    "tokens": 903668851,
-    "output": 1646189,
-    "turns": 228
+    "cost": 284.0834,
+    "tokens": 906375973,
+    "output": 1648267,
+    "turns": 230
    },
    {
     "id": "swear-jar",
@@ -292,9 +292,9 @@
       "output": 166804
      },
      "personal-site": {
-      "cost": 147.5953,
-      "tokens": 489965916,
-      "output": 926384
+      "cost": 148.1911,
+      "tokens": 492673038,
+      "output": 928462
      },
      "weather-in-dots": {
       "cost": 4.5102,
@@ -310,13 +310,13 @@
    }
   ],
   "totals": {
-   "cost": 757.676,
-   "tokens": 2214448222,
-   "input": 10536,
-   "output": 4866152,
-   "cache_write": 28995070,
-   "cache_read": 2180576464,
-   "turns": 759
+   "cost": 758.2718,
+   "tokens": 2217155344,
+   "input": 10546,
+   "output": 4868230,
+   "cache_write": 28996762,
+   "cache_read": 2183279806,
+   "turns": 761
   },
   "models": [
    {
@@ -325,10 +325,10 @@
     "maker": "Anthropic",
     "family": "opus",
     "priced": true,
-    "cost": 727.1077,
-    "tokens": 2151171479,
-    "output": 4314071,
-    "replies": 4728
+    "cost": 727.7035,
+    "tokens": 2153878601,
+    "output": 4316149,
+    "replies": 4733
    },
    {
     "id": "claude-sonnet-5",
@@ -1201,20 +1201,20 @@
      "name": "Releases & Git",
      "color": "#3ddc84",
      "theme": "upkeep",
-     "cost": 22.9499,
-     "tokens": 52676934,
-     "output": 59500,
-     "turns": 13
+     "cost": 23.1983,
+     "tokens": 53758364,
+     "output": 60838,
+     "turns": 14
     },
     {
      "id": "docs",
      "name": "Docs & planning",
      "color": "#f2f2f2",
      "theme": "upkeep",
-     "cost": 32.4511,
-     "tokens": 98776970,
-     "output": 127844,
-     "turns": 23
+     "cost": 32.7984,
+     "tokens": 100402662,
+     "output": 128584,
+     "turns": 24
     },
     {
      "id": "setup",
@@ -1252,7 +1252,7 @@
      "name": "Upkeep",
      "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
      "roadmap": false,
-     "cost": 66.6103,
+     "cost": 67.2061,
      "value_share": null,
      "gap": null
     }
@@ -1337,9 +1337,9 @@
        "output": 764873
       },
       "ship": {
-       "cost": 2.5041,
-       "tokens": 9667166,
-       "output": 13208
+       "cost": 2.7526,
+       "tokens": 10748596,
+       "output": 14546
       },
       "bugs": {
        "cost": 3.474,
@@ -1347,9 +1347,9 @@
        "output": 27005
       },
       "docs": {
-       "cost": 21.2658,
-       "tokens": 67598299,
-       "output": 82982
+       "cost": 21.6131,
+       "tokens": 69223991,
+       "output": 83722
       },
       "learn": {
        "cost": 3.9683,
@@ -1365,13 +1365,13 @@
     }
    ],
    "totals": {
-    "cost": 283.4876,
-    "tokens": 903668851,
-    "input": 3836,
-    "output": 1646189,
-    "cache_write": 9002943,
-    "cache_read": 893015883,
-    "turns": 228
+    "cost": 284.0834,
+    "tokens": 906375973,
+    "input": 3846,
+    "output": 1648267,
+    "cache_write": 9004635,
+    "cache_read": 895719225,
+    "turns": 230
    },
    "models": [
     {
@@ -1380,13 +1380,13 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 283.4876,
-     "tokens": 903668851,
-     "output": 1646189,
-     "replies": 1911
+     "cost": 284.0834,
+     "tokens": 906375973,
+     "output": 1648267,
+     "replies": 1916
     }
    ],
-   "alignment": 0.765,
+   "alignment": 0.763,
    "roadmap": {
     "items": [],
     "done": []
