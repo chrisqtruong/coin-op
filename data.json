@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-07T16:44:46+00:00",
+ "generated": "2026-10-07T16:49:49+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -40,10 +40,10 @@
     "name": "Personal site",
     "color": "#ff4d8d",
     "theme": "",
-    "cost": 318.8941,
-    "tokens": 1017032105,
-    "output": 1808726,
-    "turns": 251
+    "cost": 321.8484,
+    "tokens": 1029292657,
+    "output": 1819668,
+    "turns": 253
    },
    {
     "id": "swear-jar",
@@ -317,9 +317,9 @@
       "output": 5355
      },
      "personal-site": {
-      "cost": 34.8107,
-      "tokens": 110656132,
-      "output": 160459
+      "cost": 37.765,
+      "tokens": 122916684,
+      "output": 171401
      },
      "other": {
       "cost": 0.8159,
@@ -330,13 +330,13 @@
    }
   ],
   "totals": {
-   "cost": 794.8894,
-   "tokens": 2332355267,
-   "input": 10964,
-   "output": 5036888,
-   "cache_write": 30309149,
-   "cache_read": 2296998266,
-   "turns": 785
+   "cost": 797.8437,
+   "tokens": 2344615819,
+   "input": 11002,
+   "output": 5047830,
+   "cache_write": 30345739,
+   "cache_read": 2309211248,
+   "turns": 787
   },
   "models": [
    {
@@ -345,10 +345,10 @@
     "maker": "Anthropic",
     "family": "opus",
     "priced": true,
-    "cost": 764.3211,
-    "tokens": 2269078524,
-    "output": 4484807,
-    "replies": 4942
+    "cost": 767.2754,
+    "tokens": 2281339076,
+    "output": 4495749,
+    "replies": 4961
    },
    {
     "id": "claude-sonnet-5",
@@ -1201,10 +1201,10 @@
      "name": "Features & UI",
      "color": "#4dd2ff",
      "theme": "build",
-     "cost": 236.157,
-     "tokens": 754291965,
-     "output": 1458342,
-     "turns": 179
+     "cost": 239.1114,
+     "tokens": 766552517,
+     "output": 1469284,
+     "turns": 181
     },
     {
      "id": "bugs",
@@ -1273,7 +1273,7 @@
      "name": "Building the product",
      "blurb": "New features and making them better.",
      "roadmap": true,
-     "cost": 244.6289,
+     "cost": 247.5832,
      "value_share": 0.0,
      "gap": -1.0
     },
@@ -1397,9 +1397,9 @@
      "date": "2026-10-07",
      "by": {
       "features": {
-       "cost": 27.7515,
-       "tokens": 81888851,
-       "output": 120099
+       "cost": 30.7058,
+       "tokens": 94149403,
+       "output": 131041
       },
       "bugs": {
        "cost": 1.77,
@@ -1415,13 +1415,13 @@
     }
    ],
    "totals": {
-    "cost": 318.8941,
-    "tokens": 1017032105,
-    "input": 4236,
-    "output": 1808726,
-    "cache_write": 10222701,
-    "cache_read": 1004996442,
-    "turns": 251
+    "cost": 321.8484,
+    "tokens": 1029292657,
+    "input": 4274,
+    "output": 1819668,
+    "cache_write": 10259291,
+    "cache_read": 1017209424,
+    "turns": 253
    },
    "models": [
     {
@@ -1430,13 +1430,13 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 318.8941,
-     "tokens": 1017032105,
-     "output": 1808726,
-     "replies": 2111
+     "cost": 321.8484,
+     "tokens": 1029292657,
+     "output": 1819668,
+     "replies": 2130
     }
    ],
-   "alignment": 0.767,
+   "alignment": 0.769,
    "roadmap": {
     "items": [],
     "done": []
