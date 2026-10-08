@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-08T03:25:10+00:00",
+ "generated": "2026-10-08T03:40:17+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -70,10 +70,10 @@
     "name": "Bankrolled",
     "color": "#9b6bff",
     "theme": "",
-    "cost": 7.5925,
-    "tokens": 14015947,
-    "output": 14662,
-    "turns": 2
+    "cost": 8.4698,
+    "tokens": 16648843,
+    "output": 24135,
+    "turns": 3
    },
    {
     "id": "simplebar",
@@ -236,15 +236,15 @@
       "tokens": 12289645,
       "output": 121586
      },
-     "swear-jar": {
-      "cost": 13.4857,
-      "tokens": 30132359,
-      "output": 91683
-     },
      "bankrolled": {
       "cost": 2.0323,
       "tokens": 8629301,
       "output": 7949
+     },
+     "swear-jar": {
+      "cost": 13.4857,
+      "tokens": 30132359,
+      "output": 91683
      }
     }
    },
@@ -271,15 +271,15 @@
       "tokens": 29962934,
       "output": 93028
      },
-     "swear-jar": {
-      "cost": 11.1699,
-      "tokens": 18418896,
-      "output": 44747
-     },
      "bankrolled": {
       "cost": 5.5602,
       "tokens": 5386646,
       "output": 6713
+     },
+     "swear-jar": {
+      "cost": 11.1699,
+      "tokens": 18418896,
+      "output": 44747
      }
     }
    },
@@ -335,18 +335,23 @@
       "cost": 6.9386,
       "tokens": 16098115,
       "output": 78284
+     },
+     "bankrolled": {
+      "cost": 0.8773,
+      "tokens": 2632896,
+      "output": 9473
      }
     }
    }
   ],
   "totals": {
-   "cost": 845.3503,
-   "tokens": 2427085095,
-   "input": 11362,
-   "output": 5236131,
-   "cache_write": 33918069,
-   "cache_read": 2387919533,
-   "turns": 805
+   "cost": 846.2275,
+   "tokens": 2429717991,
+   "input": 11380,
+   "output": 5245604,
+   "cache_write": 33938975,
+   "cache_read": 2390522032,
+   "turns": 806
   },
   "models": [
    {
@@ -355,10 +360,10 @@
     "maker": "Anthropic",
     "family": "opus",
     "priced": true,
-    "cost": 813.9312,
-    "tokens": 2362330205,
-    "output": 4674163,
-    "replies": 5127
+    "cost": 814.8085,
+    "tokens": 2364963101,
+    "output": 4683636,
+    "replies": 5136
    },
    {
     "id": "claude-sonnet-5",
@@ -1844,17 +1849,17 @@
    "id": "bankrolled",
    "color": "#9b6bff",
    "product": "Bankrolled",
-   "sessions": 1,
+   "sessions": 2,
    "buckets": [
     {
      "id": "features",
      "name": "Features & UI",
      "color": "#4dd2ff",
      "theme": "build",
-     "cost": 0.0,
-     "tokens": 0,
-     "output": 0,
-     "turns": 0
+     "cost": 0.8773,
+     "tokens": 2632896,
+     "output": 9473,
+     "turns": 1
     },
     {
      "id": "bugs",
@@ -1923,9 +1928,9 @@
      "name": "Building the product",
      "blurb": "New features and making them better.",
      "roadmap": true,
-     "cost": 0.0,
+     "cost": 0.8773,
      "value_share": 0.0,
-     "gap": 0.0
+     "gap": -1.0
     },
     {
      "id": "upkeep",
@@ -1957,16 +1962,26 @@
        "output": 6713
       }
      }
+    },
+    {
+     "date": "2026-10-07",
+     "by": {
+      "features": {
+       "cost": 0.8773,
+       "tokens": 2632896,
+       "output": 9473
+      }
+     }
     }
    ],
    "totals": {
-    "cost": 7.5925,
-    "tokens": 14015947,
-    "input": 48,
-    "output": 14662,
-    "cache_write": 576776,
-    "cache_read": 13424461,
-    "turns": 2
+    "cost": 8.4698,
+    "tokens": 16648843,
+    "input": 66,
+    "output": 24135,
+    "cache_write": 597682,
+    "cache_read": 16026960,
+    "turns": 3
    },
    "models": [
     {
@@ -1975,13 +1990,13 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 7.5925,
-     "tokens": 14015947,
-     "output": 14662,
-     "replies": 24
+     "cost": 8.4698,
+     "tokens": 16648843,
+     "output": 24135,
+     "replies": 33
     }
    ],
-   "alignment": 0.0,
+   "alignment": 0.104,
    "roadmap": {
     "items": [],
     "done": []
