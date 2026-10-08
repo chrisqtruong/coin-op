@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-08T20:48:46+00:00",
+ "generated": "2026-10-08T20:53:50+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -110,10 +110,10 @@
     "name": "Everything else",
     "color": "#7d7699",
     "theme": "",
-    "cost": 34.5562,
-    "tokens": 77103295,
-    "output": 629772,
-    "turns": 124
+    "cost": 35.5153,
+    "tokens": 79359076,
+    "output": 646574,
+    "turns": 125
    }
   ],
   "themes": [],
@@ -352,9 +352,9 @@
       "output": 116122
      },
      "other": {
-      "cost": 8.886,
-      "tokens": 16697933,
-      "output": 133898
+      "cost": 9.8451,
+      "tokens": 18953714,
+      "output": 150700
      },
      "bankrolled": {
       "cost": 0.3419,
@@ -365,13 +365,13 @@
    }
   ],
   "totals": {
-   "cost": 905.568,
-   "tokens": 2567527797,
-   "input": 12000,
-   "output": 5557920,
-   "cache_write": 37220037,
-   "cache_read": 2524737840,
-   "turns": 844
+   "cost": 906.5271,
+   "tokens": 2569783578,
+   "input": 12014,
+   "output": 5574722,
+   "cache_write": 37242501,
+   "cache_read": 2526954341,
+   "turns": 845
   },
   "models": [
    {
@@ -380,10 +380,10 @@
     "maker": "Anthropic",
     "family": "opus",
     "priced": true,
-    "cost": 874.1489,
-    "tokens": 2502772907,
-    "output": 4995952,
-    "replies": 5446
+    "cost": 875.108,
+    "tokens": 2505028688,
+    "output": 5012754,
+    "replies": 5453
    },
    {
     "id": "claude-sonnet-5",
