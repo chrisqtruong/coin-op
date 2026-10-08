@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-08T04:20:43+00:00",
+ "generated": "2026-10-08T04:25:46+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -40,9 +40,9 @@
     "name": "Personal site",
     "color": "#ff4d8d",
     "theme": "",
-    "cost": 350.08,
-    "tokens": 1114962578,
-    "output": 1967958,
+    "cost": 350.0805,
+    "tokens": 1114963770,
+    "output": 1967971,
     "turns": 269
    },
    {
@@ -70,10 +70,10 @@
     "name": "Bankrolled",
     "color": "#9b6bff",
     "theme": "",
-    "cost": 7.5925,
-    "tokens": 14015947,
-    "output": 14662,
-    "turns": 2
+    "cost": 7.9344,
+    "tokens": 15609226,
+    "output": 15470,
+    "turns": 3
    },
    {
     "id": "simplebar",
@@ -236,15 +236,15 @@
       "tokens": 12289645,
       "output": 121586
      },
-     "swear-jar": {
-      "cost": 13.4857,
-      "tokens": 30132359,
-      "output": 91683
-     },
      "bankrolled": {
       "cost": 2.0323,
       "tokens": 8629301,
       "output": 7949
+     },
+     "swear-jar": {
+      "cost": 13.4857,
+      "tokens": 30132359,
+      "output": 91683
      }
     }
    },
@@ -271,15 +271,15 @@
       "tokens": 29962934,
       "output": 93028
      },
-     "swear-jar": {
-      "cost": 11.1699,
-      "tokens": 18418896,
-      "output": 44747
-     },
      "bankrolled": {
       "cost": 5.5602,
       "tokens": 5386646,
       "output": 6713
+     },
+     "swear-jar": {
+      "cost": 11.1699,
+      "tokens": 18418896,
+      "output": 44747
      }
     }
    },
@@ -342,21 +342,26 @@
     "date": "2026-10-08",
     "by": {
      "personal-site": {
-      "cost": 8.5672,
-      "tokens": 34794290,
-      "output": 47304
+      "cost": 8.5677,
+      "tokens": 34795482,
+      "output": 47317
+     },
+     "bankrolled": {
+      "cost": 0.3419,
+      "tokens": 1593279,
+      "output": 808
      }
     }
    }
   ],
   "totals": {
-   "cost": 861.1092,
-   "tokens": 2484686940,
-   "input": 11628,
-   "output": 5354042,
-   "cache_write": 34162034,
-   "cache_read": 2445159236,
-   "turns": 817
+   "cost": 861.4516,
+   "tokens": 2486281411,
+   "input": 11634,
+   "output": 5354863,
+   "cache_write": 34162956,
+   "cache_read": 2446751958,
+   "turns": 818
   },
   "models": [
    {
@@ -365,10 +370,10 @@
     "maker": "Anthropic",
     "family": "opus",
     "priced": true,
-    "cost": 829.6901,
-    "tokens": 2419932050,
-    "output": 4792074,
-    "replies": 5260
+    "cost": 830.0325,
+    "tokens": 2421526521,
+    "output": 4792895,
+    "replies": 5263
    },
    {
     "id": "claude-sonnet-5",
@@ -1256,9 +1261,9 @@
      "name": "Releases & Git",
      "color": "#3ddc84",
      "theme": "upkeep",
-     "cost": 23.311,
-     "tokens": 54289084,
-     "output": 61150,
+     "cost": 23.3114,
+     "tokens": 54290276,
+     "output": 61163,
      "turns": 15
     },
     {
@@ -1307,7 +1312,7 @@
      "name": "Upkeep",
      "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
      "roadmap": false,
-     "cost": 81.1456,
+     "cost": 81.1461,
      "value_share": null,
      "gap": null
     }
@@ -1457,20 +1462,20 @@
        "output": 26208
       },
       "ship": {
-       "cost": 0.1126,
-       "tokens": 530720,
-       "output": 312
+       "cost": 0.1131,
+       "tokens": 531912,
+       "output": 325
       }
      }
     }
    ],
    "totals": {
-    "cost": 350.08,
-    "tokens": 1114962578,
+    "cost": 350.0805,
+    "tokens": 1114963770,
     "input": 4588,
-    "output": 1967958,
-    "cache_write": 11379996,
-    "cache_read": 1101610036,
+    "output": 1967971,
+    "cache_write": 11379992,
+    "cache_read": 1101611219,
     "turns": 269
    },
    "models": [
@@ -1480,9 +1485,9 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 349.2293,
-     "tokens": 1113484431,
-     "output": 1958071,
+     "cost": 349.2297,
+     "tokens": 1113485623,
+     "output": 1958084,
      "replies": 2273
     },
     {
@@ -1874,7 +1879,7 @@
    "id": "bankrolled",
    "color": "#9b6bff",
    "product": "Bankrolled",
-   "sessions": 1,
+   "sessions": 2,
    "buckets": [
     {
      "id": "features",
@@ -1911,10 +1916,10 @@
      "name": "Releases & Git",
      "color": "#3ddc84",
      "theme": "upkeep",
-     "cost": 0.0,
-     "tokens": 0,
-     "output": 0,
-     "turns": 0
+     "cost": 0.3419,
+     "tokens": 1593279,
+     "output": 808,
+     "turns": 1
     },
     {
      "id": "docs",
@@ -1962,7 +1967,7 @@
      "name": "Upkeep",
      "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
      "roadmap": false,
-     "cost": 7.5925,
+     "cost": 7.9344,
      "value_share": null,
      "gap": null
     }
@@ -1987,16 +1992,26 @@
        "output": 6713
       }
      }
+    },
+    {
+     "date": "2026-10-08",
+     "by": {
+      "ship": {
+       "cost": 0.3419,
+       "tokens": 1593279,
+       "output": 808
+      }
+     }
     }
    ],
    "totals": {
-    "cost": 7.5925,
-    "tokens": 14015947,
-    "input": 48,
-    "output": 14662,
-    "cache_write": 576776,
-    "cache_read": 13424461,
-    "turns": 2
+    "cost": 7.9344,
+    "tokens": 15609226,
+    "input": 54,
+    "output": 15470,
+    "cache_write": 577702,
+    "cache_read": 15016000,
+    "turns": 3
    },
    "models": [
     {
@@ -2005,10 +2020,10 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 7.5925,
-     "tokens": 14015947,
-     "output": 14662,
-     "replies": 24
+     "cost": 7.9344,
+     "tokens": 15609226,
+     "output": 15470,
+     "replies": 27
     }
    ],
    "alignment": 0.0,
