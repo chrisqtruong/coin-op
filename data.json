@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-08T01:39:22+00:00",
+ "generated": "2026-10-08T02:24:39+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -13,7 +13,7 @@
   "id": "all",
   "product": "All projects",
   "overview": true,
-  "sessions": 22,
+  "sessions": 23,
   "buckets": [
    {
     "id": "vox2",
@@ -40,10 +40,10 @@
     "name": "Personal site",
     "color": "#ff4d8d",
     "theme": "",
-    "cost": 338.8076,
-    "tokens": 1072758004,
-    "output": 1895200,
-    "turns": 260
+    "cost": 339.3673,
+    "tokens": 1073425234,
+    "output": 1898425,
+    "turns": 261
    },
    {
     "id": "swear-jar",
@@ -317,9 +317,9 @@
       "output": 10246
      },
      "personal-site": {
-      "cost": 54.7242,
-      "tokens": 166382031,
-      "output": 246933
+      "cost": 55.2839,
+      "tokens": 167049261,
+      "output": 250158
      },
      "weather-in-dots": {
       "cost": 8.2805,
@@ -335,13 +335,13 @@
    }
   ],
   "totals": {
-   "cost": 837.5609,
-   "tokens": 2409508833,
-   "input": 11176,
-   "output": 5147960,
-   "cache_write": 33519496,
-   "cache_read": 2370830201,
-   "turns": 798
+   "cost": 838.1205,
+   "tokens": 2410176063,
+   "input": 11190,
+   "output": 5151185,
+   "cache_write": 33623335,
+   "cache_read": 2371390353,
+   "turns": 799
   },
   "models": [
    {
@@ -383,10 +383,10 @@
     "maker": "Anthropic",
     "family": "sonnet",
     "priced": true,
-    "cost": 0.703,
-    "tokens": 2075651,
-    "output": 442,
-    "replies": 22
+    "cost": 1.2627,
+    "tokens": 2742881,
+    "output": 3667,
+    "replies": 29
    }
   ],
   "alignment": 0,
@@ -1204,17 +1204,17 @@
    "id": "personal-site",
    "color": "#ff4d8d",
    "product": "Personal site",
-   "sessions": 7,
+   "sessions": 8,
    "buckets": [
     {
      "id": "features",
      "name": "Features & UI",
      "color": "#4dd2ff",
      "theme": "build",
-     "cost": 254.1631,
-     "tokens": 802615234,
-     "output": 1531066,
-     "turns": 186
+     "cost": 254.7228,
+     "tokens": 803282464,
+     "output": 1534291,
+     "turns": 187
     },
     {
      "id": "bugs",
@@ -1283,7 +1283,7 @@
      "name": "Building the product",
      "blurb": "New features and making them better.",
      "roadmap": true,
-     "cost": 262.6349,
+     "cost": 263.1946,
      "value_share": 0.0,
      "gap": -1.0
     },
@@ -1407,9 +1407,9 @@
      "date": "2026-10-07",
      "by": {
       "features": {
-       "cost": 45.7576,
-       "tokens": 130212120,
-       "output": 192823
+       "cost": 46.3172,
+       "tokens": 130879350,
+       "output": 196048
       },
       "bugs": {
        "cost": 3.3516,
@@ -1430,13 +1430,13 @@
     }
    ],
    "totals": {
-    "cost": 338.8076,
-    "tokens": 1072758004,
-    "input": 4390,
-    "output": 1895200,
-    "cache_write": 11127260,
-    "cache_read": 1059731154,
-    "turns": 260
+    "cost": 339.3673,
+    "tokens": 1073425234,
+    "input": 4404,
+    "output": 1898425,
+    "cache_write": 11231099,
+    "cache_read": 1060291306,
+    "turns": 261
    },
    "models": [
     {
@@ -1449,9 +1449,20 @@
      "tokens": 1072758004,
      "output": 1895200,
      "replies": 2188
+    },
+    {
+     "id": "claude-sonnet-5-5",
+     "name": "Claude Sonnet 5.5",
+     "maker": "Anthropic",
+     "family": "sonnet",
+     "priced": true,
+     "cost": 0.5597,
+     "tokens": 667230,
+     "output": 3225,
+     "replies": 7
     }
    ],
-   "alignment": 0.775,
+   "alignment": 0.776,
    "roadmap": {
     "items": [],
     "done": []
