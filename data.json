@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-08T02:29:42+00:00",
+ "generated": "2026-10-08T02:34:45+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -90,9 +90,9 @@
     "name": "Tracewire",
     "color": "#2ec4b6",
     "theme": "",
-    "cost": 2.9706,
-    "tokens": 4635901,
-    "output": 22958,
+    "cost": 4.6756,
+    "tokens": 7217987,
+    "output": 61363,
     "turns": 1
    },
    {
@@ -332,20 +332,20 @@
       "output": 2844
      },
      "tracewire": {
-      "cost": 2.9706,
-      "tokens": 4635901,
-      "output": 22958
+      "cost": 4.6756,
+      "tokens": 7217987,
+      "output": 61363
      }
     }
    }
   ],
   "totals": {
-   "cost": 840.5315,
-   "tokens": 2414144734,
-   "input": 11248,
-   "output": 5170918,
-   "cache_write": 33797672,
-   "cache_read": 2375164896,
+   "cost": 842.2364,
+   "tokens": 2416726820,
+   "input": 11274,
+   "output": 5209323,
+   "cache_write": 33852550,
+   "cache_read": 2377653673,
    "turns": 799
   },
   "models": [
@@ -355,10 +355,10 @@
     "maker": "Anthropic",
     "family": "opus",
     "priced": true,
-    "cost": 809.1124,
-    "tokens": 2349389844,
-    "output": 4608950,
-    "replies": 5070
+    "cost": 810.8173,
+    "tokens": 2351971930,
+    "output": 4647355,
+    "replies": 5083
    },
    {
     "id": "claude-sonnet-5",
@@ -2031,9 +2031,9 @@
      "name": "Docs & planning",
      "color": "#f2f2f2",
      "theme": "upkeep",
-     "cost": 2.9706,
-     "tokens": 4635901,
-     "output": 22958,
+     "cost": 4.6756,
+     "tokens": 7217987,
+     "output": 61363,
      "turns": 1
     },
     {
@@ -2072,7 +2072,7 @@
      "name": "Upkeep",
      "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
      "roadmap": false,
-     "cost": 2.9706,
+     "cost": 4.6756,
      "value_share": null,
      "gap": null
     }
@@ -2082,20 +2082,20 @@
      "date": "2026-10-07",
      "by": {
       "docs": {
-       "cost": 2.9706,
-       "tokens": 4635901,
-       "output": 22958
+       "cost": 4.6756,
+       "tokens": 7217987,
+       "output": 61363
       }
      }
     }
    ],
    "totals": {
-    "cost": 2.9706,
-    "tokens": 4635901,
-    "input": 72,
-    "output": 22958,
-    "cache_write": 278176,
-    "cache_read": 4334695,
+    "cost": 4.6756,
+    "tokens": 7217987,
+    "input": 98,
+    "output": 61363,
+    "cache_write": 333054,
+    "cache_read": 6823472,
     "turns": 1
    },
    "models": [
@@ -2105,10 +2105,10 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 2.1198,
-     "tokens": 3157754,
-     "output": 13071,
-     "replies": 22
+     "cost": 3.8248,
+     "tokens": 5739840,
+     "output": 51476,
+     "replies": 35
     },
     {
      "id": "claude-sonnet-5-5",
