@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-08T02:24:39+00:00",
+ "generated": "2026-10-08T02:29:42+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -40,10 +40,10 @@
     "name": "Personal site",
     "color": "#ff4d8d",
     "theme": "",
-    "cost": 339.3673,
-    "tokens": 1073425234,
-    "output": 1898425,
-    "turns": 261
+    "cost": 338.8076,
+    "tokens": 1072758004,
+    "output": 1895200,
+    "turns": 260
    },
    {
     "id": "swear-jar",
@@ -90,10 +90,10 @@
     "name": "Tracewire",
     "color": "#2ec4b6",
     "theme": "",
-    "cost": 0.0,
-    "tokens": 0,
-    "output": 0,
-    "turns": 0
+    "cost": 2.9706,
+    "tokens": 4635901,
+    "output": 22958,
+    "turns": 1
    },
    {
     "id": "ai-product-ops-academy",
@@ -317,9 +317,9 @@
       "output": 10246
      },
      "personal-site": {
-      "cost": 55.2839,
-      "tokens": 167049261,
-      "output": 250158
+      "cost": 54.7242,
+      "tokens": 166382031,
+      "output": 246933
      },
      "weather-in-dots": {
       "cost": 8.2805,
@@ -330,17 +330,22 @@
       "cost": 0.8159,
       "tokens": 455353,
       "output": 2844
+     },
+     "tracewire": {
+      "cost": 2.9706,
+      "tokens": 4635901,
+      "output": 22958
      }
     }
    }
   ],
   "totals": {
-   "cost": 838.1205,
-   "tokens": 2410176063,
-   "input": 11190,
-   "output": 5151185,
-   "cache_write": 33623335,
-   "cache_read": 2371390353,
+   "cost": 840.5315,
+   "tokens": 2414144734,
+   "input": 11248,
+   "output": 5170918,
+   "cache_write": 33797672,
+   "cache_read": 2375164896,
    "turns": 799
   },
   "models": [
@@ -350,10 +355,10 @@
     "maker": "Anthropic",
     "family": "opus",
     "priced": true,
-    "cost": 806.9925,
-    "tokens": 2346232090,
-    "output": 4595879,
-    "replies": 5048
+    "cost": 809.1124,
+    "tokens": 2349389844,
+    "output": 4608950,
+    "replies": 5070
    },
    {
     "id": "claude-sonnet-5",
@@ -383,10 +388,10 @@
     "maker": "Anthropic",
     "family": "sonnet",
     "priced": true,
-    "cost": 1.2627,
-    "tokens": 2742881,
-    "output": 3667,
-    "replies": 29
+    "cost": 1.5538,
+    "tokens": 3553798,
+    "output": 10329,
+    "replies": 36
    }
   ],
   "alignment": 0,
@@ -1204,17 +1209,17 @@
    "id": "personal-site",
    "color": "#ff4d8d",
    "product": "Personal site",
-   "sessions": 8,
+   "sessions": 7,
    "buckets": [
     {
      "id": "features",
      "name": "Features & UI",
      "color": "#4dd2ff",
      "theme": "build",
-     "cost": 254.7228,
-     "tokens": 803282464,
-     "output": 1534291,
-     "turns": 187
+     "cost": 254.1631,
+     "tokens": 802615234,
+     "output": 1531066,
+     "turns": 186
     },
     {
      "id": "bugs",
@@ -1283,7 +1288,7 @@
      "name": "Building the product",
      "blurb": "New features and making them better.",
      "roadmap": true,
-     "cost": 263.1946,
+     "cost": 262.6349,
      "value_share": 0.0,
      "gap": -1.0
     },
@@ -1407,9 +1412,9 @@
      "date": "2026-10-07",
      "by": {
       "features": {
-       "cost": 46.3172,
-       "tokens": 130879350,
-       "output": 196048
+       "cost": 45.7576,
+       "tokens": 130212120,
+       "output": 192823
       },
       "bugs": {
        "cost": 3.3516,
@@ -1430,13 +1435,13 @@
     }
    ],
    "totals": {
-    "cost": 339.3673,
-    "tokens": 1073425234,
-    "input": 4404,
-    "output": 1898425,
-    "cache_write": 11231099,
-    "cache_read": 1060291306,
-    "turns": 261
+    "cost": 338.8076,
+    "tokens": 1072758004,
+    "input": 4390,
+    "output": 1895200,
+    "cache_write": 11127260,
+    "cache_read": 1059731154,
+    "turns": 260
    },
    "models": [
     {
@@ -1449,20 +1454,9 @@
      "tokens": 1072758004,
      "output": 1895200,
      "replies": 2188
-    },
-    {
-     "id": "claude-sonnet-5-5",
-     "name": "Claude Sonnet 5.5",
-     "maker": "Anthropic",
-     "family": "sonnet",
-     "priced": true,
-     "cost": 0.5597,
-     "tokens": 667230,
-     "output": 3225,
-     "replies": 7
     }
    ],
-   "alignment": 0.776,
+   "alignment": 0.775,
    "roadmap": {
     "items": [],
     "done": []
@@ -1974,6 +1968,158 @@
      "tokens": 14015947,
      "output": 14662,
      "replies": 24
+    }
+   ],
+   "alignment": 0.0,
+   "roadmap": {
+    "items": [],
+    "done": []
+   },
+   "roadmap_link": "",
+   "roadmap_rule": "",
+   "next": [],
+   "recent": []
+  },
+  {
+   "id": "tracewire",
+   "color": "#2ec4b6",
+   "product": "Tracewire",
+   "sessions": 1,
+   "buckets": [
+    {
+     "id": "features",
+     "name": "Features & UI",
+     "color": "#4dd2ff",
+     "theme": "build",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "bugs",
+     "name": "Bug squashing",
+     "color": "#ff6b3d",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "quality",
+     "name": "Tests & quality",
+     "color": "#ff4d8d",
+     "theme": "build",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "ship",
+     "name": "Releases & Git",
+     "color": "#3ddc84",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "docs",
+     "name": "Docs & planning",
+     "color": "#f2f2f2",
+     "theme": "upkeep",
+     "cost": 2.9706,
+     "tokens": 4635901,
+     "output": 22958,
+     "turns": 1
+    },
+    {
+     "id": "setup",
+     "name": "Setup & tooling",
+     "color": "#9b6bff",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    },
+    {
+     "id": "learn",
+     "name": "Learning & questions",
+     "color": "#ffe14d",
+     "theme": "upkeep",
+     "cost": 0.0,
+     "tokens": 0,
+     "output": 0,
+     "turns": 0
+    }
+   ],
+   "themes": [
+    {
+     "id": "build",
+     "name": "Building the product",
+     "blurb": "New features and making them better.",
+     "roadmap": true,
+     "cost": 0.0,
+     "value_share": 0.0,
+     "gap": 0.0
+    },
+    {
+     "id": "upkeep",
+     "name": "Upkeep",
+     "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
+     "roadmap": false,
+     "cost": 2.9706,
+     "value_share": null,
+     "gap": null
+    }
+   ],
+   "days": [
+    {
+     "date": "2026-10-07",
+     "by": {
+      "docs": {
+       "cost": 2.9706,
+       "tokens": 4635901,
+       "output": 22958
+      }
+     }
+    }
+   ],
+   "totals": {
+    "cost": 2.9706,
+    "tokens": 4635901,
+    "input": 72,
+    "output": 22958,
+    "cache_write": 278176,
+    "cache_read": 4334695,
+    "turns": 1
+   },
+   "models": [
+    {
+     "id": "claude-opus-5-5",
+     "name": "Claude Opus 5.5",
+     "maker": "Anthropic",
+     "family": "opus",
+     "priced": true,
+     "cost": 2.1198,
+     "tokens": 3157754,
+     "output": 13071,
+     "replies": 22
+    },
+    {
+     "id": "claude-sonnet-5-5",
+     "name": "Claude Sonnet 5.5",
+     "maker": "Anthropic",
+     "family": "sonnet",
+     "priced": true,
+     "cost": 0.8507,
+     "tokens": 1478147,
+     "output": 9887,
+     "replies": 14
     }
    ],
    "alignment": 0.0,
