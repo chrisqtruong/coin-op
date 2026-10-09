@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-09T14:25:49+00:00",
+ "generated": "2026-10-09T14:30:52+00:00",
  "live": false,
  "machines": 1,
  "pricing": {
@@ -40,10 +40,10 @@
     "name": "Personal site",
     "color": "#ff4d8d",
     "theme": "",
-    "cost": 384.648,
-    "tokens": 1194459640,
-    "output": 2089296,
-    "turns": 307
+    "cost": 393.7236,
+    "tokens": 1202865449,
+    "output": 2099867,
+    "turns": 310
    },
    {
     "id": "swear-jar",
@@ -367,9 +367,9 @@
     "date": "2026-10-09",
     "by": {
      "personal-site": {
-      "cost": 5.9274,
-      "tokens": 16553186,
-      "output": 52520
+      "cost": 15.003,
+      "tokens": 24958995,
+      "output": 63091
      },
      "other": {
       "cost": 11.8907,
@@ -380,13 +380,13 @@
    }
   ],
   "totals": {
-   "cost": 934.4853,
-   "tokens": 2623924481,
-   "input": 12460,
-   "output": 5790714,
-   "cache_write": 38890152,
-   "cache_read": 2579231155,
-   "turns": 890
+   "cost": 943.5609,
+   "tokens": 2632330290,
+   "input": 12486,
+   "output": 5801285,
+   "cache_write": 39811315,
+   "cache_read": 2586705204,
+   "turns": 893
   },
   "models": [
    {
@@ -395,10 +395,10 @@
     "maker": "Anthropic",
     "family": "opus",
     "priced": true,
-    "cost": 903.0662,
-    "tokens": 2559169591,
-    "output": 5228746,
-    "replies": 5674
+    "cost": 912.1419,
+    "tokens": 2567575400,
+    "output": 5239317,
+    "replies": 5687
    },
    {
     "id": "claude-sonnet-5",
@@ -1266,10 +1266,10 @@
      "name": "Features & UI",
      "color": "#4dd2ff",
      "theme": "build",
-     "cost": 288.7159,
-     "tokens": 883423361,
-     "output": 1654656,
-     "turns": 206
+     "cost": 297.7292,
+     "tokens": 891604850,
+     "output": 1664376,
+     "turns": 208
     },
     {
      "id": "bugs",
@@ -1296,10 +1296,10 @@
      "name": "Releases & Git",
      "color": "#3ddc84",
      "theme": "upkeep",
-     "cost": 26.3271,
-     "tokens": 65780362,
-     "output": 80432,
-     "turns": 20
+     "cost": 26.3895,
+     "tokens": 66004682,
+     "output": 81283,
+     "turns": 21
     },
     {
      "id": "docs",
@@ -1338,7 +1338,7 @@
      "name": "Building the product",
      "blurb": "New features and making them better.",
      "roadmap": true,
-     "cost": 297.1877,
+     "cost": 306.201,
      "value_share": 0.0,
      "gap": -1.0
     },
@@ -1347,7 +1347,7 @@
      "name": "Upkeep",
      "blurb": "Bugs, releases, docs, setup and learning. Not on the roadmap, but it keeps the lights on.",
      "roadmap": false,
-     "cost": 87.4603,
+     "cost": 87.5226,
      "value_share": null,
      "gap": null
     }
@@ -1506,6 +1506,11 @@
     {
      "date": "2026-10-09",
      "by": {
+      "features": {
+       "cost": 10.2816,
+       "tokens": 11285158,
+       "output": 25281
+      },
       "docs": {
        "cost": 1.8758,
        "tokens": 3898174,
@@ -1516,27 +1521,22 @@
        "tokens": 5075702,
        "output": 10767
       },
-      "features": {
-       "cost": 1.2683,
-       "tokens": 3103669,
-       "output": 15561
-      },
       "ship": {
-       "cost": 1.3606,
-       "tokens": 4475641,
-       "output": 12255
+       "cost": 1.4229,
+       "tokens": 4699961,
+       "output": 13106
       }
      }
     }
    ],
    "totals": {
-    "cost": 384.648,
-    "tokens": 1194459640,
-    "input": 4986,
-    "output": 2089296,
-    "cache_write": 13465194,
-    "cache_read": 1178900164,
-    "turns": 307
+    "cost": 393.7236,
+    "tokens": 1202865449,
+    "input": 5012,
+    "output": 2099867,
+    "cache_write": 14386357,
+    "cache_read": 1186374213,
+    "turns": 310
    },
    "models": [
     {
@@ -1545,10 +1545,10 @@
      "maker": "Anthropic",
      "family": "opus",
      "priced": true,
-     "cost": 383.7972,
-     "tokens": 1192981493,
-     "output": 2079409,
-     "replies": 2470
+     "cost": 392.8729,
+     "tokens": 1201387302,
+     "output": 2089980,
+     "replies": 2483
     },
     {
      "id": "claude-sonnet-5-5",
@@ -1562,7 +1562,7 @@
      "replies": 14
     }
    ],
-   "alignment": 0.773,
+   "alignment": 0.778,
    "roadmap": {
     "items": [],
     "done": []
